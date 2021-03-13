@@ -23,6 +23,9 @@ public class Room {
         return itemsInRoom;
     }
 
+    public int[][] getExitCoordinate() {
+        return exitCoordinate;
+    }
 
     public String[][] getMap() {
         return map;
