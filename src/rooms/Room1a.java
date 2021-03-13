@@ -4,37 +4,33 @@ import theitems.Item;
 
 import java.util.ArrayList;
 
-public class Room1b extends Room {
+public class Room1a extends Room {
 
-    private String roomName;
-    private String[][] map1b;
+    private String[][] map1a;
 
-    public Room1b(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
+    public Room1a(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
         super(exitCoordinates, items, map);
-        this.map1b = map;
+        this.map1a = map;
     }
 
     @Override
     protected void createLayout() {
         for (int index = 1; index < 6; index++) {
             for (int innerIndex = 1; innerIndex < 6; innerIndex++) {
-                this.map1b[index][innerIndex] = " ";
-                if (index == 4 && innerIndex >= 3) {
-                    this.map1b[index][innerIndex] = "X";
+                this.map1a[index][innerIndex] = " ";
                 }
             }
-        }
     }
 
     protected void populateRoom() {
         for (Item eachItem : this.getItemsInRoom()) {
-            this.map1b[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "i";
+            this.map1a[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "i";
         }
-        this.map1b[this.getExitCoordinate()[0][0]][this.getExitCoordinate()[0][1]] = "D";
+        this.map1a[this.getExitCoordinate()[0][0]][this.getExitCoordinate()[0][1]] = "D";
     }
 
     public static void main(final String[] args) {
-        int[][] testExitCoord = {{1, 6}};
+        int[][] testExitCoord = {{1, 0}};
         int[] keyCoord = {5, 5};
         String keyName = "A key";
         String keyDesc = "Opens a lock";
@@ -54,11 +50,11 @@ public class Room1b extends Room {
                 testMap[index][innerIndex] = "U";
             }
         }
-        Room1b testRoom1b = new Room1b(testExitCoord, testItemsInRoom, testMap);
-        testRoom1b.deleteLayout();
-        testRoom1b.createLayout();
-        testRoom1b.populateRoom();
-        testRoom1b.displayLayout();
+        Room1a testRoom1a = new Room1a(testExitCoord, testItemsInRoom, testMap);
+        testRoom1a.deleteLayout();
+        testRoom1a.createLayout();
+        testRoom1a.populateRoom();
+        testRoom1a.displayLayout();
 
         for (Item items : testItemsInRoom) {
             System.out.println(items.getItemName());
