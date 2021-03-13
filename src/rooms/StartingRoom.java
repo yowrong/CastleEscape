@@ -20,10 +20,7 @@ public class StartingRoom extends Room {
     protected void createLayout() {
         for (int index = 1; index < 6; index++) {
             for (int innerIndex = 1; innerIndex < 6; innerIndex++) {
-                if(innerIndex > 3){
-                    this.StartingRoom[index][innerIndex] = " ";
-                }
-                if(index > 3) {
+                if(innerIndex > 3 || index > 3){
                     this.StartingRoom[index][innerIndex] = " ";
                 }
             }
@@ -40,9 +37,19 @@ public class StartingRoom extends Room {
         for (Item torch : itemsInRoom) {
             this.StartingRoom[torch.getItemCoordinate()[0]][torch.getItemCoordinate()[1]] = "T";
         }
+        this.getExitCoordinate();
+        this.StartingRoom[this.getExitCoordinate()[0][0]][this.getExitCoordinate()[0][1]] = "D";
+
+//        this.StartingRoom[(this.getExitCoordinate()[0][0]) + 1][this.getExitCoordinate()[0][1]] = "P";
+
+        //EXPERIMENTAL -- This is where player spawns, Door behind starting point should be dysfunctional.
+        //User should be prompted something along the lines "door is shut with a magical force"
+        this.StartingRoom[(this.getExitCoordinate()[0][0]) + 4][this.getExitCoordinate()[0][1] - 4] = "D";
+        this.StartingRoom[(this.getExitCoordinate()[0][0]) + 4][this.getExitCoordinate()[0][1] - 3] = "P";
     }
+
     public static void main(final String[] args) {
-        int[][] testExitCoord = {{0, 0}};
+        int[][] testExitCoord = {{0, 4}};
         int[] testItemCoord = {5, 3};
         String testItemName = "A torch";
         String testItemDesc = "I am a torch.";
@@ -61,12 +68,14 @@ public class StartingRoom extends Room {
 //        testRoom.displayLayout();
 
         StartingRoom testStartingRoom = new StartingRoom(testExitCoord, testItemsInRoom, testMap);
-//        testStartingRoom.getItemsInRoom().add(torch, testItemCoord);
+        testStartingRoom.getItemsInRoom().add(torch);
         testStartingRoom.deleteLayout();
         testStartingRoom.createLayout();
-        testStartingRoom.displayLayout();
+//        testStartingRoom.displayLayout();
         testStartingRoom.populateRoom();
 
+
+        testStartingRoom.displayLayout();
 
     }
 }
