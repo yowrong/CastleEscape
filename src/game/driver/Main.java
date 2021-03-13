@@ -1,4 +1,4 @@
-package com.company;
+package game.driver;
 
 public class Main {
 
