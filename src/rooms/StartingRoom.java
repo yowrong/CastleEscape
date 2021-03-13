@@ -61,7 +61,7 @@ public class StartingRoom extends Room {
 //        testRoom.displayLayout();
 
         StartingRoom testStartingRoom = new StartingRoom(testExitCoord, testItemsInRoom, testMap);
-        testStartingRoom.getItemsInRoom().add(torch, testItemCoord);
+//        testStartingRoom.getItemsInRoom().add(torch, testItemCoord);
         testStartingRoom.deleteLayout();
         testStartingRoom.createLayout();
         testStartingRoom.displayLayout();

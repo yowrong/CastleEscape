@@ -17,11 +17,26 @@ public class Room2 extends Room {
     @Override
     protected void createLayout() {
         for (int index = 1; index < 6; index++) {
-            for (int innerIndex = 2; innerIndex < 5; innerIndex++) {
-                this.map2[index][innerIndex] = " ";
+            for (int innerIndex = 1; innerIndex < 6; innerIndex++) {
+                if (index > 3 || innerIndex > 3) {
+                    this.map2[index][innerIndex] = " ";
+                }
             }
         }
     }
+
+    private void populateRoom() {
+        for (Item item : this.getItemsInRoom()) {
+            item.getItemCoordinate();
+            this.map2[item.getItemCoordinate()[0]][item.getItemCoordinate()[1]] = "i";
+        }
+        this.map2[exitCoordinates[0][0]][exitCoordinates[0][1]] = "D";
+        this.map2[obsCoordinates[0]obsCoordinates[1]] = "O";
+    }
+
+
+
+
 
 
     public static void main(final String[] args) {
