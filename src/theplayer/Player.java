@@ -22,6 +22,18 @@ public class Player {
         return currentRoom;
     }
 
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
+    public int[] getPlayerCoordinates() {
+        return playerCoordinates;
+    }
+
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
     }
@@ -42,6 +54,6 @@ public class Player {
         else if (direction == "east") {
             this.playerCoordinates[1] += 1;
         }
+        
     }
-
 }
