@@ -30,13 +30,9 @@ public class Room2 extends Room {
             item.getItemCoordinate();
             this.map2[item.getItemCoordinate()[0]][item.getItemCoordinate()[1]] = "i";
         }
-        this.map2[exitCoordinates[0][0]][exitCoordinates[0][1]] = "D";
-        this.map2[obsCoordinates[0]obsCoordinates[1]] = "O";
+        this.map2[getExitCoordinate()[0][0]][getExitCoordinate()[0][1]] = "D";
+        this.map2[(getExitCoordinate()[0][0]-1)][(getExitCoordinate()[0][1]-1)] = "P";
     }
-
-
-
-
 
 
     public static void main(final String[] args) {
