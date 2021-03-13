@@ -54,6 +54,16 @@ public class Player {
         else if (direction == "east") {
             this.playerCoordinates[1] += 1;
         }
-        
+    }
+
+    private void placeItem(String itemName) {
+        for (Item itemInInventory : inventory) {
+            if (itemName.equals(itemInInventory.getItemName())) {
+                itemInInventory.setItemCoordinate(this.getPlayerCoordinates());
+                currentRoom.addItemToRoom(itemInInventory, itemInInventory.getItemCoordinate());
+                inventory.remove(itemInInventory);
+
+            }
+        }
     }
 }
