@@ -29,7 +29,7 @@ public class Room {
     }
 
 
-    private void createLayout() {
+    protected void createLayout() {
         for (int index = 1; index < 6; index++) {
             for (int innerIndex = 2; innerIndex < 5; innerIndex++) {
                 this.map[index][innerIndex] = " ";
@@ -38,7 +38,7 @@ public class Room {
     }
 
 
-    private void deleteLayout() {
+    protected void deleteLayout() {
         for (int index = 0; index < 7; index++) {
             for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
                 if (!this.map[index][innerIndex].equals("X")) {
@@ -49,7 +49,7 @@ public class Room {
     }
 
 
-    private void displayLayout() {
+    protected void displayLayout() {
         for (int index = 0; index < 7; index++) {
             for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
                 System.out.print(map[index][innerIndex]);
@@ -60,28 +60,28 @@ public class Room {
     }
 
 
-    private void updatePlayerPos(int[] currentPlayerPos, int[] newPlayerPos) {
+    protected void updatePlayerPos(int[] currentPlayerPos, int[] newPlayerPos) {
         this.map[currentPlayerPos[0]][currentPlayerPos[1]] = " ";
         this.map[newPlayerPos[0]][newPlayerPos[1]] = "P";
     }
 
-    private void updateItemPos(int[] currentItemPos, int[] newItemPos) {
+    protected void updateItemPos(int[] currentItemPos, int[] newItemPos) {
         this.map[currentItemPos[0]][currentItemPos[1]] = " ";
         this.map[newItemPos[0]][newItemPos[1]] = "i";
     }
 
-    private void updateObstaclePos(int[] currentObstaclePos, int[] newObstaclePos) {
+    protected void updateObstaclePos(int[] currentObstaclePos, int[] newObstaclePos) {
         this.map[currentObstaclePos[0]][currentObstaclePos[1]] = " ";
         this.map[newObstaclePos[0]][newObstaclePos[1]] = "O";
     }
 
-    private void addItemToRoom(Item itemToDrop, int[] currentPosition) {
+    protected void addItemToRoom(Item itemToDrop, int[] currentPosition) {
        this.itemsInRoom.add(itemToDrop);
        itemToDrop.setItemCoordinate(currentPosition);
     }
 
 
-    private void playerEntersRoom(int[] playerCoord) {
+    public void playerEntersRoom(int[] playerCoord) {
         playerCoord[0] = 0;
         playerCoord[1] = 0;
     }
