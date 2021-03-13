@@ -63,22 +63,22 @@ public class Room {
     }
 
 
-    protected void updatePlayerPos(int[] currentPlayerPos, int[] newPlayerPos) {
+    public void updatePlayerPos(int[] currentPlayerPos, int[] newPlayerPos) {
         this.map[currentPlayerPos[0]][currentPlayerPos[1]] = " ";
         this.map[newPlayerPos[0]][newPlayerPos[1]] = "P";
     }
 
-    protected void updateItemPos(int[] currentItemPos, int[] newItemPos) {
+    public void updateItemPos(int[] currentItemPos, int[] newItemPos) {
         this.map[currentItemPos[0]][currentItemPos[1]] = " ";
         this.map[newItemPos[0]][newItemPos[1]] = "i";
     }
 
-    protected void updateObstaclePos(int[] currentObstaclePos, int[] newObstaclePos) {
+    public void updateObstaclePos(int[] currentObstaclePos, int[] newObstaclePos) {
         this.map[currentObstaclePos[0]][currentObstaclePos[1]] = " ";
         this.map[newObstaclePos[0]][newObstaclePos[1]] = "O";
     }
 
-    protected void addItemToRoom(Item itemToDrop, int[] currentPosition) {
+    public void addItemToRoom(Item itemToDrop, int[] currentPosition) {
        this.itemsInRoom.add(itemToDrop);
        itemToDrop.setItemCoordinate(currentPosition);
     }
@@ -88,6 +88,8 @@ public class Room {
         playerCoord[0] = 0;
         playerCoord[1] = 0;
     }
+
+
 
 //    private void moveRooms(Room newRoom) {
 //

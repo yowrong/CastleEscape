@@ -22,6 +22,18 @@ public class Player {
         return currentRoom;
     }
 
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
+    public int[] getPlayerCoordinates() {
+        return playerCoordinates;
+    }
+
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
     }
@@ -44,4 +56,14 @@ public class Player {
         }
     }
 
+    private void placeItem(String itemName) {
+        for (Item itemInInventory : inventory) {
+            if (itemName.equals(itemInInventory.getItemName())) {
+                itemInInventory.setItemCoordinate(this.getPlayerCoordinates());
+                currentRoom.addItemToRoom(itemInInventory, itemInInventory.getItemCoordinate());
+                inventory.remove(itemInInventory);
+
+            }
+        }
+    }
 }
