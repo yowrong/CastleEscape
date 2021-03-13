@@ -30,7 +30,7 @@ public class Room1b extends Room {
         for (Item eachItem : this.getItemsInRoom()) {
             this.map1b[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "i";
         }
-        this.map1b[exitCoordinates[0]][exitCoordinates[1]] = "D";
+        this.map1b[this.getExitCoordinate()[0][0]][this.getExitCoordinate()[0][1]] = "D";
     }
 
     public static void main(final String[] args) {
@@ -52,7 +52,7 @@ public class Room1b extends Room {
         testRoom1b.deleteLayout();
         testRoom1b.createLayout();
         testRoom1b.displayLayout();
-        testRoom1b.pop
+//        testRoom1b.populateRoom();
 
         for (Item items : testItemsInRoom) {
             System.out.println(items.getItemName());
