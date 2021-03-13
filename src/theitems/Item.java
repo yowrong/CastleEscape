@@ -14,10 +14,12 @@ public class Item {
 
 
     public int[] getItemCoordinate() {
+
         return itemCoordinate;
     }
 
     public String getItemName() {
+
         return itemName;
     }
 

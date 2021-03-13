@@ -19,13 +19,23 @@ public class Room1b extends Room {
         for (int index = 1; index < 6; index++) {
             for (int innerIndex = 1; innerIndex < 6; innerIndex++) {
                 this.map1b[index][innerIndex] = " ";
+                if (index >= 3 && innerIndex == 4) {
+                    this.map1b[index][innerIndex] = "X";
+                }
             }
         }
     }
 
+    protected void populateRoom() {
+        for (Item eachItem : this.getItemsInRoom()) {
+            this.map1b[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "i";
+        }
+        this.map1b[exitCoordinates[0]][exitCoordinates[1]] = "D";
+    }
+
     public static void main(final String[] args) {
-        int[][] testExitCoord = {{0, 0}};
-        int[] testItemCoord = {1, 2};
+        int[][] testExitCoord = {{1, 2}};
+        int[] testItemCoord = {5, 5};
         String testItemName = "A rock";
         String testItemDesc = "I am error.";
 
@@ -42,6 +52,11 @@ public class Room1b extends Room {
         testRoom1b.deleteLayout();
         testRoom1b.createLayout();
         testRoom1b.displayLayout();
+        testRoom1b.pop
+
+        for (Item items : testItemsInRoom) {
+            System.out.println(items.getItemName());
+        }
 
     }
 }
