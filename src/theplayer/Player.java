@@ -44,6 +44,4 @@ public class Player {
         }
     }
 
-    private void
-
 }
