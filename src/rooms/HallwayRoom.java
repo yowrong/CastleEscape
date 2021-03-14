@@ -47,7 +47,7 @@ public class HallwayRoom extends Room{
             this.getMap()[door[0]][door[1]] = "D";
         }
         this.getMap()[this.escapeCoordinate[0]][this.escapeCoordinate[1]] = "E";
-        this.getMap()[this.getCrate().getObstacleCoordinate()[0]][this.getCrate().getObstacleCoordinate()[1]] = "O";
+        this.getMap()[this.getObstacle().getObstacleCoordinate()[0]][this.getObstacle().getObstacleCoordinate()[1]] = "O";
         this.getMap()[this.pressPlate[0]][this.pressPlate[1]] = "*";
         this.getMap()[thePlayer.getPlayerCoordinates()[0]][thePlayer.getPlayerCoordinates()[1]] = "P";
     }
