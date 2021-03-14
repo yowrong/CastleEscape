@@ -9,9 +9,13 @@ public class Room1b extends Room {
 
     private String roomName;
     private String[][] map1b;
+    private int[][] exitCoordinate;
+    private ArrayList<Item> itemsInRoom;
 
     public Room1b(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
         super(exitCoordinates, items, map);
+        this.exitCoordinate = exitCoordinates;
+        this.itemsInRoom = items;
         this.map1b = map;
     }
 
