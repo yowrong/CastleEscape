@@ -1,6 +1,7 @@
 package game.driver;
 
 import rooms.BlueKeyRoom;
+import rooms.StartingRoom;
 import theitems.Item;
 import theobstacles.Obstacle;
 import theplayer.Player;
@@ -22,10 +23,26 @@ public class Main {
                 map[index][innerIndex] = "U";
             }
         }
-        Obstacle blueRmObstacle = new Obstacle("Crate", "A moveable crate", blueRmObsCoord);
+        Obstacle blueRmObstacle = new Obstacle("Crate", "A movable crate", blueRmObsCoord);
 
         BlueKeyRoom blueKeyRoom = new BlueKeyRoom(blueRmExitCoord, blueRmItems, map, blueRmObstacle);
         Player player = new Player("Player", blueKeyRoom, playerCoord);
+
+//        player.setCurrentRoom(Room startingRoom);
+        //----------------------------
+
+        int[][] startingRoomExitCoord = {{0, 4}};
+        ArrayList<Item> startingRoomItemsInRoom = new ArrayList<>();
+        String[][] startingRoomMap = new String[7][7];
+        for (int index = 0; index < 7; index++) {
+            for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
+                startingRoomMap[index][innerIndex] = "U";
+            }
+        }
+        StartingRoom startingRoom = new StartingRoom(startingRoomExitCoord, startingRoomItemsInRoom, startingRoomMap);
+
+
+
 
         // write your code here
         // create an item with its own coordinate
