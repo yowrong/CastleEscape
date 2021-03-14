@@ -112,11 +112,9 @@ public class GreenKeyRoom extends Room{
         BlueKeyRoom testroomb = new BlueKeyRoom(exitCoord, testItemsInRoom,testMap, testObstacle);
         RedKeyRoom testroomr = new RedKeyRoom(exitCoord, testItemsInRoom, testMap);
         StatueRoom testrooms = new StatueRoom(exitCoord, testItemsInRoom, testMap);
-<<<<<<< HEAD
-        HallwayRoom testroomh = new HallwayRoom(exitCoord, testItemsInRoom, testMap, testObstacle);
-=======
+
         HallwayRoom testroomh = new HallwayRoom(hallCoord, testItemsInRoom, testMap, testObstacle);
->>>>>>> 7d1319fa12415e86d87b1d52f6adb50a909bf220
+
 
 
 //        for (Item items : testItemsInRoom){

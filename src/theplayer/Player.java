@@ -52,10 +52,6 @@ public class Player {
         }
 
         else if (direction.equals("south") && !currentRoom.getMap()[playerOldPos[0] + 1][playerOldPos[1]].equals("X")) {
-<<<<<<< HEAD
-=======
-
->>>>>>> 7d1319fa12415e86d87b1d52f6adb50a909bf220
             int[] playerNewPos = {playerOldPos[0] + 1,playerOldPos[1]};
             currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
             this.getPlayerCoordinates()[0] += 1;
