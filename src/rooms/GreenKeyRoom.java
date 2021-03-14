@@ -103,7 +103,7 @@ public class GreenKeyRoom extends Room{
         BlueKeyRoom testroomb = new BlueKeyRoom(exitCoord, testItemsInRoom,testMap, testObstacle);
         RedKeyRoom testroomr = new RedKeyRoom(exitCoord, testItemsInRoom, testMap);
         StatueRoom testrooms = new StatueRoom(exitCoord, testItemsInRoom, testMap);
-        HallwayRoom testroomh = new HallwayRoom(exitCoord, testItemsInRoom, testMap);
+        HallwayRoom testroomh = new HallwayRoom(exitCoord, testItemsInRoom, testMap, testObstacle);
 
 
 //        for (Item items : testItemsInRoom){
@@ -138,8 +138,9 @@ public class GreenKeyRoom extends Room{
 
 
 
-        testroomg.displayLayout();
-        testroomg.exitRoom(player1.getPlayerCoordinates(), player1, roomlist);
+        player1.getCurrentRoom().displayLayout();
+        player1.getCurrentRoom().exitRoom(player1.getPlayerCoordinates(), player1, roomlist);
+        System.out.println(player1.getCurrentRoom());
 //        System.out.println(testroom3.getItemsInRoom());
 //        for (Item items : testItemsInRoom){
 //            System.out.println(items.getItemName());
