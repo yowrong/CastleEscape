@@ -83,6 +83,7 @@ public class Room {
         this.getMap()[newPlayerPos[0]][newPlayerPos[1]] = "P";
     }
 
+<<<<<<< HEAD
     public String getLastSquare() {
         return lastSquare;
     }
@@ -101,6 +102,8 @@ public class Room {
         this.getMap()[newObstaclePos[0]][newObstaclePos[1]] = "O";
     }
 
+=======
+>>>>>>> 14785bb1507d70753276761ee2c8a1c2730c3c86
     public void addItemToRoom(Item itemToDrop, int[] currentPosition) {
        this.itemsInRoom.add(itemToDrop);
        itemToDrop.setItemCoordinate(currentPosition);
