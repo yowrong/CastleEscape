@@ -45,25 +45,25 @@ public class Player {
         int[] playerOldPos = this.getPlayerCoordinates();
 
         if (direction.equals("north") && !currentRoom.getMap()[playerOldPos[0] - 1][playerOldPos[1]].equals("X")) {
-            int[] playerNewPos = {playerOldPos[0] - 1};
+            int[] playerNewPos = {playerOldPos[0] - 1,playerOldPos[1]};
             currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
             this.getPlayerCoordinates()[0] -= 1;
         }
 
         else if (direction.equals("south") && !currentRoom.getMap()[playerOldPos[0] + 1][playerOldPos[1]].equals("X")) {
-            int[] playerNewPos = {playerOldPos[0] + 1};
-            currentRoom.updatePlayerPos(playerOldPos, this.getPlayerCoordinates());
+            int[] playerNewPos = {playerOldPos[0] + 1,playerOldPos[1]};
+            currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
             this.getPlayerCoordinates()[0] += 1;
         }
 
         else if (direction.equals("west") && !currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] - 1].equals("X")) {
-            int[] playerNewPos = {playerOldPos[1] - 1};
+            int[] playerNewPos = {playerOldPos[0],playerOldPos[1] - 1};
             currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
             this.getPlayerCoordinates()[1] -= 1;
         }
 
         else if (direction.equals("east") && !currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] + 1].equals("X")) {
-            int[] playerNewPos = {playerOldPos[1] + 1};
+            int[] playerNewPos = {playerOldPos[0],playerOldPos[1] + 1};
             currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
             this.getPlayerCoordinates()[1] += 1;
         }
