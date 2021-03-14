@@ -119,11 +119,11 @@ public class HallwayRoom extends Room{
             }
 
             else if (Arrays.equals(playerCoord, this.getExitCoordinate()[2])) {
-                thePlayer.setCurrentRoom(nextRoom[3]);
+                thePlayer.setCurrentRoom(nextRoom[2]);
             }
 
             else if (Arrays.equals(playerCoord, this.getExitCoordinate()[3])){
-                thePlayer.setCurrentRoom(nextRoom[2]);
+                thePlayer.setCurrentRoom(nextRoom[3]);
             }
 
             else {
