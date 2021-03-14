@@ -72,20 +72,14 @@ public class BlueKeyRoom extends Room {
 
     //jewelSort is a sequence puzzle triggered when the player is in the adjacent position to the table item
     public void jewelSort(Player player) {
-        int[] tablePos = new int[2];
         String chestSlots = "ruby emerald sapphire";
         Scanner scan = new Scanner(System.in);
 
-        for (Item item : this.getItemsInRoom()) {
-            tablePos[0] = item.getItemCoordinate()[0];
-            tablePos[1] = item.getItemCoordinate()[1];
-        }
+        int[] tableAccessPt1 = {table[0], table[1]+1};
+        int[] tableAccessPt2 = {table[0]-1, table[1]};
 
-        int[] tableAccessPos1 = {tablePos[0], tablePos[1]+1};
-        int[] tableAccessPos2 = {tablePos[0]-1, tablePos[1]};
-
-        if (Arrays.equals(player.getPlayerCoordinates(), tableAccessPos1)
-                || Arrays.equals(player.getPlayerCoordinates(), tableAccessPos2)) {
+        if (Arrays.equals(player.getPlayerCoordinates(), tableAccessPt1)
+                || Arrays.equals(player.getPlayerCoordinates(), tableAccessPt2)) {
             System.out.println("There are three jewels on the table, a ruby, a sapphire, and an emerald."
                 + "\nYou notice there is a chest with 3 colored slots in the order: red, green, blue"
                 + "\nEnter the order you place the jewels in to unlock the chest:");
@@ -95,6 +89,7 @@ public class BlueKeyRoom extends Room {
             System.out.println("The jewels clicked into the chest. The chest opens and reveals a key.");
             generateBigKey(player);
         }
+        scan.close();
     }
 
 
@@ -102,17 +97,17 @@ public class BlueKeyRoom extends Room {
     public static void main(final String[] args) {
         int[][] testExitCoord = {{4, 6}};
         int[] testItemCoord = {5, 1};
-        String testItemName = "Table";
-        String testItemDesc = "A table";
+//        String testItemName = "Table";
+//        String testItemDesc = "A table";
         int[] testObsCoord = {1, 4};
         int[] testPlayCoord = {5, 2};
 
         Obstacle testObstacle = new Obstacle("crate", "I'm a crate", testObsCoord);
 
-        Item testItem = new Item(testItemCoord, testItemName, testItemDesc);
+//        Item testItem = new Item(testItemCoord, testItemName, testItemDesc);
 
         ArrayList<Item> testItemsInRoom = new ArrayList<>();
-        testItemsInRoom.add(testItem);
+//        testItemsInRoom.add(testItem);
         String[][] testMap = new String[7][7];
         for (int index = 0; index < 7; index++) {
             for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
