@@ -28,6 +28,7 @@ public class HallwayRoom extends Room{
         }
     }
 
+
     @Override
     protected void populateRoom() {
         for (int[] door : this.getExitCoordinate()) {
