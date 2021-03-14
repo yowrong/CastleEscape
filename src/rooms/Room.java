@@ -100,7 +100,7 @@ public class Room {
         this.getMap()[currentObstaclePos[0]][currentObstaclePos[1]] = " ";
         this.getMap()[newObstaclePos[0]][newObstaclePos[1]] = "O";
     }
-    
+
     public void addItemToRoom(Item itemToDrop, int[] currentPosition) {
        this.itemsInRoom.add(itemToDrop);
        itemToDrop.setItemCoordinate(currentPosition);
