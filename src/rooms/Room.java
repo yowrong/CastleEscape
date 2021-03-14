@@ -77,6 +77,30 @@ public class Room {
         }
     }
 
+    public void updatePlayerPos(int[] currentPlayerPos, int[] newPlayerPos) {
+        this.getMap()[currentPlayerPos[0]][currentPlayerPos[1]] = lastSquare;
+        lastSquare = this.getMap()[newPlayerPos[0]][newPlayerPos[1]];
+        this.getMap()[newPlayerPos[0]][newPlayerPos[1]] = "P";
+    }
+
+    public String getLastSquare() {
+        return lastSquare;
+    }
+
+    public void setLastSquare(String lastSquare) {
+        this.lastSquare = lastSquare;
+    }
+
+    public void updateItemPos(int[] currentItemPos, int[] newItemPos) {
+        this.getMap()[currentItemPos[0]][currentItemPos[1]] = " ";
+        this.getMap()[newItemPos[0]][newItemPos[1]] = "i";
+    }
+
+    public void updateObstaclePos(int[] currentObstaclePos, int[] newObstaclePos) {
+        this.getMap()[currentObstaclePos[0]][currentObstaclePos[1]] = " ";
+        this.getMap()[newObstaclePos[0]][newObstaclePos[1]] = "O";
+    }
+
     public void addItemToRoom(Item itemToDrop, int[] currentPosition) {
        this.itemsInRoom.add(itemToDrop);
        itemToDrop.setItemCoordinate(currentPosition);
