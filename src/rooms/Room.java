@@ -1,6 +1,7 @@
 package rooms;
 
 import theitems.Item;
+import theobstacles.Obstacle;
 import theplayer.Player;
 
 import java.util.ArrayList;
@@ -12,6 +13,8 @@ public class Room {
     private ArrayList<Item> itemsInRoom;
     private String[][] map;
     private String lastSquare = " ";
+    private Obstacle obstacle;
+
 
     public Room(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
         this.exitCoordinate = exitCoordinates;
@@ -33,6 +36,10 @@ public class Room {
 
     public String[][] getMap() {
         return map;
+    }
+
+    public Obstacle getObstacle() {
+        return obstacle;
     }
 
 
