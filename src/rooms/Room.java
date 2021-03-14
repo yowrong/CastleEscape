@@ -123,6 +123,13 @@ public class Room {
         testRoom.deleteLayout();
         testRoom.createLayout();
         testRoom.displayLayout();
+        String keyName = "red key";
+        String keyDesc = "The key";
+        int[] keyCoord = {16, 16};
+        Item redKey = new Item(keyCoord, keyName, keyDesc);
+        ArrayList<Item> itemsStartingInRoom = new ArrayList<>();
+        itemsStartingInRoom.add(redKey);
+        Room newRoom = new Room(testExitCoord, itemsStartingInRoom, testMap);
 
     }
 
