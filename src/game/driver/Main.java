@@ -46,11 +46,12 @@ public class Main {
         ArrayList<Item> hallItems = new ArrayList<>();
         ArrayList<Item> startItems = new ArrayList<>();
         startItems.add(torch);
+        ArrayList<Item> inventory = new ArrayList<>();
 
         String[][] map = new String[7][7];
         for (int index = 0; index < 7; index++) {
             for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
-                map[index][innerIndex] = "U";
+                map[index][innerIndex] = "X";
             }
         }
 
@@ -66,13 +67,22 @@ public class Main {
 
         Room[] listRooms = new Room[]{blueKeyRoom, greenKeyRoom, redKeyRoom, statueRoom, hallwayRoom, startingRoom};
 
-        Player thePlayer = new Player("Player 1", listRooms, spawnCoord);
+        Player thePlayer = new Player("Player 1", listRooms, spawnCoord, inventory);
         thePlayer.setCurrentRoom(startingRoom);
+        thePlayer.getCurrentRoom().createLayout();
+        thePlayer.getCurrentRoom().populateRoom(thePlayer);
+        thePlayer.getCurrentRoom().displayLayout();
 
         while(!victory) {
             System.out.println("Enter a command:");
             thePlayer.userAction(scan.nextLine());
             thePlayer.getCurrentRoom().checkEventTriggers();
+            if (thePlayer.getWinGame()) {
+                victory = true;
+            }
+
+            thePlayer.getCurrentRoom().populateRoom(thePlayer);
+            thePlayer.getCurrentRoom().displayLayout();
         }
 
 

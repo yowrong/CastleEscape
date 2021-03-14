@@ -52,7 +52,7 @@ public class GreenKeyRoom extends Room{
 
     //Populates room not sure if these letters can be interacted with.
     @Override
-    protected void populateRoom (Player thePlayer){
+    public void populateRoom (Player thePlayer){
         this.getMap()[this.getExitCoordinate()[0][0]][this.getExitCoordinate()[0][1]] = "D";
         this.getMap()[rope[0]][rope[1]] = "R";
         for (Item items : getItemsInRoom()) {
@@ -93,7 +93,7 @@ public class GreenKeyRoom extends Room{
 
     //Layout for room.
     @Override
-    protected void createLayout() {
+    public void createLayout() {
         for (int index = 1; index < 6; index++) {
             for (int innerIndex = 1; innerIndex < 6; innerIndex++) {
                 if (index < 3 || innerIndex < 3) {
@@ -104,99 +104,99 @@ public class GreenKeyRoom extends Room{
     }
 
 
-    public static void main(final String[] args) {
-        int[][] exitCoord = {{5, 0}};
-        int[][] hallCoord = {{2, 1},{2, 5},{4, 1},{4, 5}};
-
-        int[] itemCoord1 = {1, 5};
-        String itemSword = "A sword.";
-        String testSwordDesc = "It's sharp.";
-        Item swordItem = new Item(itemCoord1, itemSword, testSwordDesc);
-
-        ArrayList<Item> testItemsInRoom = new ArrayList<Item>();
-        String[][] testMap = new String[7][7];
-        for (int index = 0; index < 7; index++) {
-            for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
-                testMap[index][innerIndex] = "U";
-            }
-        }
-
-        int[] testObsCoord = {1, 4};
-        GreenKeyRoom testroomg = new GreenKeyRoom(exitCoord, testItemsInRoom, testMap);
-        Obstacle testObstacle = new Obstacle("crate", "I'm a crate", testObsCoord);
-        BlueKeyRoom testroomb = new BlueKeyRoom(exitCoord, testItemsInRoom,testMap, testObstacle);
-        RedKeyRoom testroomr = new RedKeyRoom(exitCoord, testItemsInRoom, testMap);
-        StatueRoom testrooms = new StatueRoom(exitCoord, testItemsInRoom, testMap);
-
-        HallwayRoom testroomh = new HallwayRoom(hallCoord, testItemsInRoom, testMap, testObstacle);
-
-
-
-//        for (Item items : testItemsInRoom){
-//            System.out.println(items.getItemName());
+//    public static void main(final String[] args) {
+//        int[][] exitCoord = {{5, 0}};
+//        int[][] hallCoord = {{2, 1},{2, 5},{4, 1},{4, 5}};
+//
+//        int[] itemCoord1 = {1, 5};
+//        String itemSword = "A sword.";
+//        String testSwordDesc = "It's sharp.";
+//        Item swordItem = new Item(itemCoord1, itemSword, testSwordDesc);
+//
+//        ArrayList<Item> testItemsInRoom = new ArrayList<Item>();
+//        String[][] testMap = new String[7][7];
+//        for (int index = 0; index < 7; index++) {
+//            for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
+//                testMap[index][innerIndex] = "U";
+//            }
 //        }
-
-        Room[] roomlist = new Room[]{testroomb,testroomg,testroomr,testrooms,testroomh};
-        System.out.println();
-        System.out.println("after");
-        System.out.println();
-        Player player1 = new Player("Sup",roomlist, new int[]{1, 5});
-        player1.setCurrentRoom(roomlist[1]);
-        player1.getCurrentRoom().deleteLayout();
-        player1.getCurrentRoom().createLayout();
-        player1.getCurrentRoom().addItemToRoom(swordItem, itemCoord1);
-        player1.getCurrentRoom().populateRoom(player1);
-        player1.getCurrentRoom().displayLayout();
-        player1.pickUpItem();
-        player1.playerMove("west");
-        player1.playerMove("west");
-        player1.playerMove("west");
-        testroomg.cutRope(player1);
-        player1.playerMove("west");
-        player1.playerMove("south");
-        player1.playerMove("south");
-        player1.pickUpItem();
-        player1.playerMove("south");
-        player1.playerMove("south");
-//        System.out.println(testroomg.getItemsInRoom());
+//
+//        int[] testObsCoord = {1, 4};
+//        GreenKeyRoom testroomg = new GreenKeyRoom(exitCoord, testItemsInRoom, testMap);
+//        Obstacle testObstacle = new Obstacle("crate", "I'm a crate", testObsCoord);
+//        BlueKeyRoom testroomb = new BlueKeyRoom(exitCoord, testItemsInRoom,testMap, testObstacle);
+//        RedKeyRoom testroomr = new RedKeyRoom(exitCoord, testItemsInRoom, testMap);
+//        StatueRoom testrooms = new StatueRoom(exitCoord, testItemsInRoom, testMap);
+//
+//        HallwayRoom testroomh = new HallwayRoom(hallCoord, testItemsInRoom, testMap, testObstacle);
+//
+//
+//
+////        for (Item items : testItemsInRoom){
+////            System.out.println(items.getItemName());
+////        }
+//
+//        Room[] roomlist = new Room[]{testroomb,testroomg,testroomr,testrooms,testroomh};
+//        System.out.println();
+//        System.out.println("after");
+//        System.out.println();
+//        Player player1 = new Player("Sup",roomlist, new int[]{1, 5});
+//        player1.setCurrentRoom(roomlist[1]);
+//        player1.getCurrentRoom().deleteLayout();
+//        player1.getCurrentRoom().createLayout();
+//        player1.getCurrentRoom().addItemToRoom(swordItem, itemCoord1);
+//        player1.getCurrentRoom().populateRoom(player1);
+//        player1.getCurrentRoom().displayLayout();
+//        player1.pickUpItem();
+//        player1.playerMove("west");
+//        player1.playerMove("west");
+//        player1.playerMove("west");
+//        testroomg.cutRope(player1);
+//        player1.playerMove("west");
+//        player1.playerMove("south");
+//        player1.playerMove("south");
+//        player1.pickUpItem();
+//        player1.playerMove("south");
+//        player1.playerMove("south");
+////        System.out.println(testroomg.getItemsInRoom());
+////        System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
+////        testroom3.cutRope(player1);
+////        System.out.println(item);
+//        System.out.println(player1.getInventory().get(1).getItemName());
+//        System.out.println(Arrays.deepToString(testroomg.getExitCoordinate()));
 //        System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
-//        testroom3.cutRope(player1);
-//        System.out.println(item);
-        System.out.println(player1.getInventory().get(1).getItemName());
-        System.out.println(Arrays.deepToString(testroomg.getExitCoordinate()));
-        System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
-
-
-
-        player1.getCurrentRoom().displayLayout();
-        player1.getCurrentRoom().exitRoom(player1.getPlayerCoordinates(), player1, roomlist);
-        System.out.println(player1.getCurrentRoom());
-        player1.getCurrentRoom().deleteLayout();
-        player1.getCurrentRoom().createLayout();
-        player1.getCurrentRoom().populateRoom(player1);
-        player1.getCurrentRoom().displayLayout();
-        System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
-        player1.playerPull("south");
-        player1.playerPull("south");
-        player1.playerMove("west");
-        player1.playerMove("north");
-        player1.getCurrentRoom().checkEventTriggers();
-        player1.playerPull("west");
-        player1.playerMove("south");
-        player1.getCurrentRoom().checkEventTriggers();
-        player1.playerMove("west");
-        player1.getCurrentRoom().exitRoom(player1.getPlayerCoordinates(), player1, roomlist);
-        player1.getCurrentRoom().deleteLayout();
-        player1.getCurrentRoom().createLayout();
-        player1.getCurrentRoom().populateRoom(player1);
-        player1.getCurrentRoom().displayLayout();
-        System.out.println(player1.getCurrentRoom());
-        System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
+//
+//
+//
+//        player1.getCurrentRoom().displayLayout();
+//        player1.getCurrentRoom().exitRoom(player1.getPlayerCoordinates(), player1, roomlist);
+//        System.out.println(player1.getCurrentRoom());
+//        player1.getCurrentRoom().deleteLayout();
+//        player1.getCurrentRoom().createLayout();
+//        player1.getCurrentRoom().populateRoom(player1);
+//        player1.getCurrentRoom().displayLayout();
+//        System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
+//        player1.playerPull("south");
+//        player1.playerPull("south");
+//        player1.playerMove("west");
+//        player1.playerMove("north");
+//        player1.getCurrentRoom().checkEventTriggers();
+//        player1.playerPull("west");
+//        player1.playerMove("south");
+//        player1.getCurrentRoom().checkEventTriggers();
+//        player1.playerMove("west");
+//        player1.getCurrentRoom().exitRoom(player1.getPlayerCoordinates(), player1, roomlist);
+//        player1.getCurrentRoom().deleteLayout();
+//        player1.getCurrentRoom().createLayout();
+//        player1.getCurrentRoom().populateRoom(player1);
+//        player1.getCurrentRoom().displayLayout();
+//        System.out.println(player1.getCurrentRoom());
+//        System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
 
 //        System.out.println(testroom3.getItemsInRoom());
 //        for (Item items : testItemsInRoom){
 //            System.out.println(items.getItemName());
 //        }
-    }
+//    }
 
 }

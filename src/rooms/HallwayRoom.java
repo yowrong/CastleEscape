@@ -36,7 +36,7 @@ public class HallwayRoom extends Room{
     }
 
     @Override
-    protected void createLayout() {
+    public void createLayout() {
         for (int index = 1; index < 6; index++) {
             for (int innerIndex = 2; innerIndex < 5; innerIndex++) {
                 this.getMap()[index][innerIndex] = " ";
@@ -45,7 +45,7 @@ public class HallwayRoom extends Room{
     }
 
     @Override
-    protected void populateRoom(Player thePlayer) {
+    public void populateRoom(Player thePlayer) {
         for (int[] door : this.getExitCoordinate()) {
             this.getMap()[door[0]][door[1]] = "D";
         }
@@ -112,18 +112,26 @@ public class HallwayRoom extends Room{
         if (this.eventTrigger) {
             System.out.println("yes");
             if (Arrays.equals(playerCoord, this.getExitCoordinate()[0])) {
+                int[] blueSpawn = new int[] {4, 5};
+                thePlayer.setPlayerCoordinates(blueSpawn);
                 thePlayer.setCurrentRoom(nextRoom[0]);
             }
 
             else if (Arrays.equals(playerCoord, this.getExitCoordinate()[1])){
+                int[] greenSpawn = new int[] {5, 1};
+                thePlayer.setPlayerCoordinates(greenSpawn);
                 thePlayer.setCurrentRoom(nextRoom[1]);
             }
 
             else if (Arrays.equals(playerCoord, this.getExitCoordinate()[2])) {
+                int[] redSpawn = new int[] {2, 5};
+                thePlayer.setPlayerCoordinates(redSpawn);
                 thePlayer.setCurrentRoom(nextRoom[2]);
             }
 
             else if (Arrays.equals(playerCoord, this.getExitCoordinate()[3])){
+                int[] statueSpawn = new int[] {4, 5};
+                thePlayer.setPlayerCoordinates(statueSpawn);
                 thePlayer.setCurrentRoom(nextRoom[3]);
             }
 

@@ -27,7 +27,7 @@ public class StartingRoom extends Room {
     }
 
     @Override
-    protected void createLayout() {
+    public void createLayout() {
         for (int index = 1; index < 6; index++) {
             for (int innerIndex = 1; innerIndex < 6; innerIndex++) {
                 if(innerIndex > 3 || index > 3){
@@ -37,7 +37,7 @@ public class StartingRoom extends Room {
         }
     }
     @Override
-    protected void populateRoom(Player thePlayer) {
+    public void populateRoom(Player thePlayer) {
         // Might need to change itemsInRoom to this.itemsInRoom
         this.getMap()[this.pressPlate[0]][this.pressPlate[1]] = "*";
         for (Item torch : this.getItemsInRoom()) {
@@ -48,8 +48,8 @@ public class StartingRoom extends Room {
         //Real door
         this.getMap()[this.getExitCoordinate()[0][0]][this.getExitCoordinate()[0][1]] = "D";
 
-        //Fake player
-        this.getMap()[(this.getExitCoordinate()[0][0]) + 4][this.getExitCoordinate()[0][1] - 3] = "P";
+
+        this.getMap()[thePlayer.getPlayerCoordinates()[0]][thePlayer.getPlayerCoordinates()[1]] = "P";
 
         generateLockedDoor();
         generateTorch();
@@ -76,7 +76,7 @@ public class StartingRoom extends Room {
             }
             return true;
         } else {
-            System.out.println("Bye!!!!");
+//            System.out.println("Bye!!!!");
             if (this.doorOpen) {
                 System.out.println("You hear the door click, locking itself.");
                 this.doorOpen = false;
@@ -90,8 +90,9 @@ public class StartingRoom extends Room {
     @Override
     public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
         int[] playerPosOnExit = {5, 3};
-        if (playerCoord[0] == 5 && playerCoord[1] == 5) {
+        if (playerCoord[0] == 1 && playerCoord[1] == 4) {
             thePlayer.setCurrentRoom(nextRoom[4]);
+            thePlayer.setPlayerCoordinates(playerPosOnExit);
         }
     }
     public void generateLockedDoor() {

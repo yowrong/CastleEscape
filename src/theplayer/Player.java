@@ -17,6 +17,7 @@ public class Player {
     private Room[] listRooms;
     private ArrayList<Item> inventory;
     private int[] playerCoordinates;
+    private int[] escapeCoord = new int[]{1, 3};
 
     public boolean getWinGame() {
         return winGame;
@@ -27,11 +28,11 @@ public class Player {
         this.winGame = winGame;
     }
 
-    public Player(String playerName, Room[] listRooms, int[] playerCoordinates) {
+    public Player(String playerName, Room[] listRooms, int[] playerCoordinates, ArrayList<Item> inventory) {
         this.playerName = playerName;
         this.listRooms = listRooms;
         this.playerCoordinates = playerCoordinates;
-        this.inventory = new ArrayList<>();
+        this.inventory = inventory;
     }
 
     public Room getCurrentRoom() {
@@ -201,13 +202,16 @@ public class Player {
     }
 
     public void placeItem(String itemName) {
+        Item itemToRemove = null;
         for (Item itemInInventory : inventory) {
             if (itemName.equals(itemInInventory.getItemName())) {
                 itemInInventory.setItemCoordinate(this.getPlayerCoordinates());
                 currentRoom.addItemToRoom(itemInInventory, itemInInventory.getItemCoordinate());
-                inventory.remove(itemInInventory);
+                itemToRemove = itemInInventory;
+
             }
         }
+        inventory.remove(itemToRemove);
     }
 
     public void pickUpItem() {
@@ -225,46 +229,53 @@ public class Player {
             currentRoom.getItemsInRoom().remove(itemToRemove);
         }
     }
-    
+
     public void userAction(String userInput) {
-        if (userInput == "move north") {
+        if (userInput.equals("move north")) {
             playerMove("north");
-        } else if (userInput == "move south") {
+        } else if (userInput.equals("move south")) {
             playerMove("south");
-        } else if (userInput == "move west") {
+        } else if (userInput.equals("move west")) {
             playerMove("west");
-        } else if (userInput == "move east") {
+        } else if (userInput.equals("move east")) {
             playerMove("east");
-        } else if (userInput == "push north") {
+        } else if (userInput.equals("push north")) {
             playerPush("north");
-        } else if (userInput == "push south") {
+        } else if (userInput.equals("push south")) {
             playerPush("south");
-        } else if (userInput == "push west") {
+        } else if (userInput.equals("push west")) {
             playerPush("west");
-        } else if (userInput == "push east") {
+        } else if (userInput.equals("push east")) {
             playerPush("east");
-        } else if (userInput == "pull north") {
+        } else if (userInput.equals("pull north")) {
             playerPull("north");
-        } else if (userInput == "pull south") {
+        } else if (userInput.equals("pull south")) {
             playerPull("south");
-        } else if (userInput == "pull west") {
+        } else if (userInput.equals("pull west")) {
             playerPull("west");
-        } else if (userInput == "pull east") {
+        } else if (userInput.equals("pull east")) {
             playerPull("east");
-        } else if (userInput == "place item") {
+        } else if (userInput.equals("place item")) {
             System.out.println("Enter the name of the item");
             placeItem(scan.nextLine());
-        } else if (userInput == "pick up item") {
-            pickUpItem();
-        } else if (userInput == "exit" || userInput == "open door") {
+        } else if (userInput.equals("pick up item")) {
+            this.pickUpItem();
+            System.out.println("You've picked up a " + this.inventory.get(0).getItemName());
+        } else if (userInput.equals("exit") || userInput.equals("open door")) {
             this.getCurrentRoom().exitRoom(this.getPlayerCoordinates(), this, this.listRooms);
+            this.getCurrentRoom().deleteLayout();
+            this.getCurrentRoom().createLayout();
         } else if (this.getCurrentRoom() == this.listRooms[0]) {
-            if (userInput == "interact") {
+            if (userInput.equals("interact")) {
                 this.listRooms[0].jewelSort(this);
             }
         } else if (this.getCurrentRoom() == this.listRooms[1]) {
-            if (userInput == "interact") {
+            if (userInput.equals("interact")) {
                 this.listRooms[1].cutRope(this);
+            }
+        } else if (this.getCurrentRoom() == this.listRooms[4]) {
+            if (userInput.equals("escape") && Arrays.equals(this.getPlayerCoordinates(), escapeCoord)) {
+                this.listRooms[4].exitCastle(this.getPlayerCoordinates(), this, this.listRooms);
             }
         } else {
             System.out.println("command not recognized (lowercase commands only)");

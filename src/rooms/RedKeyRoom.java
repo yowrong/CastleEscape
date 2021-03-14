@@ -28,7 +28,7 @@ public class RedKeyRoom extends Room {
     }
 
     @Override
-    protected void createLayout() {
+    public void createLayout() {
         for (int index = 1; index < 6; index++) {
             for (int innerIndex = 1; innerIndex < 6; innerIndex++) {
                 if (index < 2 || innerIndex < 4) {
@@ -46,7 +46,7 @@ public class RedKeyRoom extends Room {
 
     // creates room with door, press plate, and items
     @Override
-    protected void populateRoom(Player thePlayer) {
+    public void populateRoom(Player thePlayer) {
         this.map1a[thePlayer.getPlayerCoordinates()[0]][thePlayer.getPlayerCoordinates()[1]] = "P";
         this.map1a[this.getExitCoordinate()[0][0]][this.getExitCoordinate()[0][1]] = "D";
         this.map1a[this.pressPlate[0]][this.pressPlate[1]] = "*";

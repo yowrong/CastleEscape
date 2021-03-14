@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class BlueKeyRoom extends Room {
 
-    private Obstacle obstacleInRoom;
+    Obstacle obstacleInRoom;
     private int[] pressPlate = {4, 4};
     private int[] table = {5, 1};
     private boolean wallsOpened = false;
@@ -31,7 +31,7 @@ public class BlueKeyRoom extends Room {
     }
 
     @Override
-    protected void createLayout() {
+    public void createLayout() {
         for (int index = 1; index < 6; index++) {
             for (int innerIndex = 1; innerIndex < 6; innerIndex++) {
                 if (index > 2 || innerIndex > 3) {
@@ -43,10 +43,10 @@ public class BlueKeyRoom extends Room {
 
     //populateRoom creates the room
     @Override
-    protected void populateRoom(Player thePlayer) {
+    public void populateRoom(Player thePlayer) {
         this.getMap()[getExitCoordinate()[0][0]][getExitCoordinate()[0][1]] = "D";
         this.getMap()[thePlayer.getPlayerCoordinates()[0]][thePlayer.getPlayerCoordinates()[1]] = "P";
-        this.getMap()[obstacleInRoom.getObstacleCoordinate()[0]][obstacleInRoom.getObstacleCoordinate()[1]] = "O";
+        this.getMap()[this.getObstacle().getObstacleCoordinate()[0]][this.getObstacle().getObstacleCoordinate()[1]] = "O";
         this.getMap()[pressPlate[0]][pressPlate[1]] = "*";
         this.getMap()[table[0]][table[1]] = "?";
     }

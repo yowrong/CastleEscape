@@ -28,7 +28,7 @@ public class StatueRoom extends Room {
     }
 
     @Override
-    protected void createLayout() {
+    public void createLayout() {
         for (int index = 1; index < 6; index++) {
             for (int innerIndex = 1; innerIndex < 6; innerIndex++) {
                 this.map1b[index][innerIndex] = " ";
@@ -46,7 +46,7 @@ public class StatueRoom extends Room {
     }
 
     @Override
-    protected void populateRoom(Player thePlayer) {
+    public void populateRoom(Player thePlayer) {
         this.map1b[thePlayer.getPlayerCoordinates()[0]][thePlayer.getPlayerCoordinates()[1]] = "P";
         for (Item eachItem : this.getItemsInRoom()) {
             this.map1b[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "i";

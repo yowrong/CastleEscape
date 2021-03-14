@@ -23,7 +23,7 @@ public class Room {
         this.map = map;
     }
 
-    protected void populateRoom(Player thePlayer) {
+    public void populateRoom(Player thePlayer) {
     }
 
 
@@ -47,7 +47,7 @@ public class Room {
         return roomDescription;
     }
 
-    protected void createLayout() {
+    public void createLayout() {
         for (int index = 1; index < 6; index++) {
             for (int innerIndex = 2; innerIndex < 5; innerIndex++) {
                 this.map[index][innerIndex] = " ";
@@ -56,7 +56,7 @@ public class Room {
     }
 
 
-    protected void deleteLayout() {
+    public void deleteLayout() {
         for (int index = 0; index < 7; index++) {
             for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
                 if (!this.map[index][innerIndex].equals("X")) {
@@ -67,7 +67,7 @@ public class Room {
     }
 
 
-    protected void displayLayout() {
+    public void displayLayout() {
         for (int index = 0; index < 7; index++) {
             for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
                 System.out.print(map[index][innerIndex]);
