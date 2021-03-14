@@ -90,6 +90,10 @@ public class Room {
     }
 
 
+    public void checkEventTriggers() {
+        boolean eventTrigger = false;
+        System.out.println("This will be overridden.");
+    }
 
 //    private void moveRooms(Room newRoom) {
 //

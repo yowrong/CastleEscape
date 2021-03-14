@@ -117,12 +117,29 @@ public class BlueKeyRoom extends Room {
 
         testRoom.jewelSort(testPlayer);
         testRoom.displayLayout();
-//        testPlayer.pickUpItem();
-
+        testPlayer.pickUpItem();
         for (Item items : testItemsInRoom) {
             System.out.println(items.getItemName());
         }
 
+
+
+
+
+//        for (Item items : testItemsInRoom) {
+//            System.out.println(items.getItemName());
+//        }
+//
+//        for (Item items : testItemsInRoom) {
+//            System.out.println(Arrays.toString(items.getItemCoordinate()));
+//        }
+//
+        System.out.println(testPlayer.getInventory().size());
+        for (Item items : testPlayer.getInventory()) {
+            System.out.println(items.getItemName());
+        }
+//
+//
 //        for (Item items : testItemsInRoom) {
 //            System.out.println(items.getItemName());
 //        }
