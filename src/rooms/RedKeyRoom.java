@@ -41,6 +41,7 @@ public class RedKeyRoom extends Room {
         for (Item eachItem : this.getItemsInRoom()) {
             if (eachItem.getItemName().equals("Big Red Key")) {
                 this.map1a[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "!";
+                // remove this and add to generateBigKey
             } else {
                 this.map1a[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "i";
             }
@@ -51,6 +52,7 @@ public class RedKeyRoom extends Room {
         int[] redKeyCoord = {1, 5};
         Item bigRedKey = new Item(redKeyCoord, "Big Red Key", "A large shiny red key");
         this.getItemsInRoom().add(bigRedKey);
+        // add "!" to this method
     }
 
     private void onPressPlate(Item item) {
