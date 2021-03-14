@@ -1,6 +1,7 @@
 package rooms;
 
 import theitems.Item;
+import theplayer.Player;
 
 import java.util.ArrayList;
 
@@ -33,16 +34,24 @@ public class Room1b extends Room {
         this.map1b[this.getExitCoordinate()[0][0]][this.getExitCoordinate()[0][1]] = "D";
     }
 
+//    protected void useKey(Player thePlayer) {
+//        for (Item eachItem : thePlayer.getInventory()) {
+//            if (eachItem.getItemName().equals("Small key")) {
+//
+//            }
+//        }
+//    }
+
     public static void main(final String[] args) {
         int[][] testExitCoord = {{1, 6}};
         int[] keyCoord = {5, 5};
-        String keyName = "A key";
+        String keyName = "Small key";
         String keyDesc = "Opens a lock";
         Item key = new Item(keyCoord, keyName, keyDesc);
 
         int[] statueCoord = {1, 1};
-        String statueName = "A statue";
-        String statueDesc = "A small statue made of stone.  It is surrounded by a cage with a lock";
+        String statueName = "Statue";
+        String statueDesc = "A small statue made of stone.";
         Item statue = new Item(statueCoord, statueName, statueDesc);
 
         ArrayList<Item> testItemsInRoom = new ArrayList<Item>();
