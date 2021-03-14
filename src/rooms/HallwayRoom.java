@@ -124,13 +124,13 @@ public class HallwayRoom extends Room{
             }
 
             else if (Arrays.equals(playerCoord, this.getExitCoordinate()[2])) {
-                int[] redSpawn = new int[] {2, 5};
+                int[] redSpawn = new int[] {1, 1};
                 thePlayer.setPlayerCoordinates(redSpawn);
                 thePlayer.setCurrentRoom(nextRoom[2]);
             }
 
             else if (Arrays.equals(playerCoord, this.getExitCoordinate()[3])){
-                int[] statueSpawn = new int[] {4, 5};
+                int[] statueSpawn = new int[] {1, 5};
                 thePlayer.setPlayerCoordinates(statueSpawn);
                 thePlayer.setCurrentRoom(nextRoom[3]);
             }

@@ -54,6 +54,8 @@ public class BlueKeyRoom extends Room {
     @Override
     public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
         if (playerCoord[0] == 4 && playerCoord[1] == 5){
+            int[] hallspwn = new int[]{2, 1};
+            thePlayer.setPlayerCoordinates(hallspwn);
             thePlayer.setCurrentRoom(nextRoom[4]);
         } else {
             System.out.println("You are not close enough to the door!");
