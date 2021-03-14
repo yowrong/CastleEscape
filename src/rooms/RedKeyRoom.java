@@ -1,6 +1,7 @@
 package rooms;
 
 import theitems.Item;
+import theplayer.Player;
 
 import java.util.ArrayList;
 
@@ -61,9 +62,24 @@ public class RedKeyRoom extends Room {
             this.map1a[4][4] = "i";
     }
 
-    public void checkEventTriggers() {
+    // trying out new plate trigger method for checkEventTriggers
+    private boolean isOnPressPlate(Player thePlayer) {
+        for (Item items : thePlayer.getInventory()) {
+            if ((items.getItemName().equals("Statue")) && (thePlayer.getPlayerCoordinates()[0] == this.pressPlate[0])
+                    && (thePlayer.getPlayerCoordinates()[1] == this.pressPlate[1] - 1)) {
+                this.map1a[4][4] = "i";
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // checkEventTrigger needs player parameter???
+    public void checkEventTriggers(Player thePlayer) {
         boolean eventTrigger = false;
-        System.out.println("This will be overridden.");
+        if (this.isOnPressPlate(thePlayer)) {
+            eventTrigger = true;
+        }
     }
 
     public static void main(final String[] args) {
