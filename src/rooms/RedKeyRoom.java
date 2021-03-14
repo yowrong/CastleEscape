@@ -39,7 +39,7 @@ public class RedKeyRoom extends Room {
 
     // creates room with door, press plate, and items
     @Override
-    protected void populateRoom() {
+    protected void populateRoom(Player thePlayer) {
         this.map1a[this.getExitCoordinate()[0][0]][this.getExitCoordinate()[0][1]] = "D";
         this.map1a[this.pressPlate[0]][this.pressPlate[1]] = "*";
         for (Item eachItem : this.getItemsInRoom()) {
@@ -127,7 +127,7 @@ public class RedKeyRoom extends Room {
         testRoom1a.deleteLayout();
         testRoom1a.createLayout();
         testRoom1a.isOnPressPlate();
-        testRoom1a.populateRoom();
+//        testRoom1a.populateRoom();
         System.out.println("Before statue placed");
         testRoom1a.displayLayout();
         for (Item items : testItemsInRoom) {
@@ -141,7 +141,7 @@ public class RedKeyRoom extends Room {
         testRoom1a.createLayout();
         statue.setItemCoordinate(statueNewCoord);
         testRoom1a.displayLayout();
-        testRoom1a.populateRoom();
+//        testRoom1a.populateRoom();
         testRoom1a.isOnPressPlate();
         System.out.println("After statue placed");
         testRoom1a.displayLayout();

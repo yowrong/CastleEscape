@@ -34,7 +34,7 @@ public class BlueKeyRoom extends Room {
 
     //populateRoom creates the room
     @Override
-    protected void populateRoom() {
+    protected void populateRoom(Player thePlayer) {
         this.getMap()[getExitCoordinate()[0][0]][getExitCoordinate()[0][1]] = "D";
         this.getMap()[getExitCoordinate()[0][0]][(getExitCoordinate()[0][1]-1)] = "P";
         this.getMap()[obstacleInRoom.getObstacleCoordinate()[0]][obstacleInRoom.getObstacleCoordinate()[1]] = "O";
