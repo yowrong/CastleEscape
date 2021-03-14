@@ -1,5 +1,6 @@
 package theplayer;
 
+import rooms.HallwayRoom;
 import rooms.Room;
 import theitems.Item;
 
@@ -95,4 +96,18 @@ public class Player {
 
         currentRoom.getItemsInRoom().remove(itemToRemove);
     }
+
+//    public void openDoor() {
+//        for (int i = 0; i < currentRoom.getExitCoordinate().length; i++) {
+//            for (int j = 0; j < currentRoom.getExitCoordinate()[i].length; j++) {
+//                if ((Math.abs(this.getPlayerCoordinates()[0] - currentRoom.getExitCoordinate()[i][j]) == 1
+//                    && Math.abs(this.getPlayerCoordinates()[1] - currentRoom.getExitCoordinate()[i][j]) == 0)
+//                    || (Math.abs(this.getPlayerCoordinates()[0] - currentRoom.getExitCoordinate()[i][j]) == 0
+//                    && Math.abs(this.getPlayerCoordinates()[1] - currentRoom.getExitCoordinate()[i][j]) == 1)) {
+//                    System.out.println("You opened the door and enter the new room");
+//                    this.setCurrentRoom()
+//                }
+//            }
+//        }
+//    }
 }

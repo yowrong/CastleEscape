@@ -28,6 +28,7 @@ public class Main {
         BlueKeyRoom blueKeyRoom = new BlueKeyRoom(blueRmExitCoord, blueRmItems, map, blueRmObstacle);
         Player player = new Player("Player", blueKeyRoom, playerCoord);
         System.out.println(player.getCurrentRoom());
+        player.playerMove("east");
 
 
 
