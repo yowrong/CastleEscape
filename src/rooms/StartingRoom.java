@@ -30,13 +30,8 @@ public class StartingRoom extends Room {
         }
     }
 
-
-    public void addItemToRoom(Item itemToDrop, int[] currentPosition) {
-        this.itemsInRoom.add(itemToDrop);
-        itemToDrop.setItemCoordinate(currentPosition);
-    }
-
     protected void populateRoom() {
+        // Might need to change itemsInRoom to this.itemsInRoom
         for (Item torch : itemsInRoom) {
             this.StartingRoom[torch.getItemCoordinate()[0]][torch.getItemCoordinate()[1]] = "T";
         }
@@ -56,23 +51,46 @@ public class StartingRoom extends Room {
         this.StartingRoom[this.getExitCoordinate()[0][0] + 1][this.getExitCoordinate()[0][1] + 1] = "H";
     }
 
-    public void torchLever(Player player) {
-        for (Item itemInInventory : player.getInventory()) {
 
-            if (player.getPlayerCoordinates() == torchPlace && itemInInventory.getItemName() == "torch") {
+
+
+    //Experimental Torch Lever 1 / 2 are incomplete, and need to go over logic to fix how items should be detected.
+    // Only one of two should ideally be used.
+    public void experimentalTorchLever(Player player) {
+        for (Item itemInInventory : player.getInventory()) {
+            this.StartingRoom[this.getExitCoordinate()[0][0] + 1][this.getExitCoordinate()[0][1] + 1] = "H";
+            if (player.getPlayerCoordinates() == torchPlace && itemInInventory.getItemName() == "Torch") {
                 //Player places item.
             }
         }
     }
 
 
+    public void experimentalTorchLever2(Item item) {
+
+        if ((item.getItemName().equals("Torch")) && ((item.getItemCoordinate() == torchPlace))) {
+            //if torch is placed, door opens.
+        }
+    }
+
+    private void generateTorch() {
+        int[] torchCoord1 = {5, 3};
+        String itemName1 = "Torch";
+        String torchDesc1 = "It's a torch... Seems to light the way";
+        Item torch = new Item(torchCoord1, itemName1, torchDesc1);
+        this.getItemsInRoom().add(torch);
+    }
+
+//    private void onPressPlate(Item item) {
+//        if ((item.getItemName().equals("Statue")) && (item.getItemCoordinate()[0] == this.pressPlate[0])
+//                && (item.getItemCoordinate()[1] == this.pressPlate[1])) {
+//            generateBigKey();
+//        }
+//    }
+
     public static void main(final String[] args) {
         int[][] testExitCoord = {{0, 4}};
-        int[] testItemCoord = {5, 3};
-        String testItemName = "A torch";
-        String testItemDesc = "It's a torch... Seems to light the way";
 
-        Item torch = new Item(testItemCoord, testItemName, testItemDesc);
         ArrayList<Item> testItemsInRoom = new ArrayList<Item>();
         String[][] testMap = new String[7][7];
         for (int index = 0; index < 7; index++) {
@@ -86,16 +104,25 @@ public class StartingRoom extends Room {
 //        testRoom.displayLayout();
 
         StartingRoom testStartingRoom = new StartingRoom(testExitCoord, testItemsInRoom, testMap);
-        testStartingRoom.getItemsInRoom().add(torch);
         testStartingRoom.deleteLayout();
         testStartingRoom.createLayout();
+        testStartingRoom.generateTorch();
 //        testStartingRoom.displayLayout();
         testStartingRoom.populateRoom();
 
         //Room desc
-        System.out.println();
 
         testStartingRoom.displayLayout();
+        for (Item items : testItemsInRoom) {
+            System.out.println(items.getItemName());
+        }
+
+        int[] torchNewCoord = {1, 5};
+        testItemsInRoom.get(0).setItemCoordinate(torchNewCoord);
+        testStartingRoom.createLayout();
+        testStartingRoom.populateRoom();
+        testStartingRoom.displayLayout();
+
 
     }
 }
