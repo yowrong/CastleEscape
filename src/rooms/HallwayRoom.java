@@ -28,6 +28,10 @@ public class HallwayRoom extends Room{
         return roomDescription;
     }
 
+    public Obstacle getCrate() {
+        return crate;
+    }
+
     @Override
     protected void createLayout() {
         for (int index = 1; index < 6; index++) {
@@ -43,7 +47,7 @@ public class HallwayRoom extends Room{
             this.getMap()[door[0]][door[1]] = "D";
         }
         this.getMap()[this.escapeCoordinate[0]][this.escapeCoordinate[1]] = "E";
-        this.getMap()[this.crate.getObstacleCoordinate()[0]][this.crate.getObstacleCoordinate()[1]] = "O";
+        this.getMap()[this.getCrate().getObstacleCoordinate()[0]][this.getCrate().getObstacleCoordinate()[1]] = "O";
         this.getMap()[this.pressPlate[0]][this.pressPlate[1]] = "*";
         this.getMap()[thePlayer.getPlayerCoordinates()[0]][thePlayer.getPlayerCoordinates()[1]] = "P";
     }
