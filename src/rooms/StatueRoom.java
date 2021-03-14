@@ -37,6 +37,7 @@ public class StatueRoom extends Room {
         }
     }
 
+    @Override
     protected void populateRoom() {
         for (Item eachItem : this.getItemsInRoom()) {
             this.map1b[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "i";

@@ -11,12 +11,13 @@ public class Player {
 
     private String playerName;
     private Room currentRoom;
+    private Room[] listRooms;
     private ArrayList<Item> inventory;
     private int[] playerCoordinates;
 
-    public Player(String playerName, Room currentRoom, int[] playerCoordinates) {
+    public Player(String playerName, Room[] listRooms, int[] playerCoordinates) {
         this.playerName = playerName;
-        this.currentRoom = currentRoom;
+        this.listRooms = listRooms;
         this.playerCoordinates = playerCoordinates;
         this.inventory = new ArrayList<>();
     }

@@ -36,7 +36,8 @@ public class RedKeyRoom extends Room {
     **/
 
     // creates room with door, press plate, and items
-    private void populateRoom() {
+    @Override
+    protected void populateRoom() {
         this.map1a[this.getExitCoordinate()[0][0]][this.getExitCoordinate()[0][1]] = "D";
         this.map1a[this.pressPlate[0]][this.pressPlate[1]] = "*";
         for (Item eachItem : this.getItemsInRoom()) {
