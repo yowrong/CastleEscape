@@ -41,31 +41,32 @@ public class Player {
     }
 
     public void playerMove(String direction) {
-        int[] playerOldPos = this.playerCoordinates;
+        int[] playerOldPos = this.getPlayerCoordinates();
 
         if (direction.equals("north") && !currentRoom.getMap()[playerOldPos[0] - 1][playerOldPos[1]].equals("X")) {
-            this.playerCoordinates[0] -= 1;
-            currentRoom.updatePlayerPos(playerOldPos, this.playerCoordinates);
+            int[] playerNewPos = {playerOldPos[0] - 1};
+            currentRoom.updatePlayerPos(playerOldPos, this.getPlayerCoordinates());
         }
 
         else if (direction.equals("south") && !currentRoom.getMap()[playerOldPos[0] + 1][playerOldPos[1]].equals("X")) {
-            this.playerCoordinates[0] += 1;
-            currentRoom.updatePlayerPos(playerOldPos, this.playerCoordinates);
+            int[] playerNewPos = {playerOldPos[0] + 1};
+            currentRoom.updatePlayerPos(playerOldPos, this.getPlayerCoordinates());
         }
 
         else if (direction.equals("west") && !currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] - 1].equals("X")) {
-            this.playerCoordinates[1] -= 1;
-            currentRoom.updatePlayerPos(playerOldPos, this.playerCoordinates);
+            int[] playerNewPos = {playerOldPos[1] - 1};
+            currentRoom.updatePlayerPos(playerOldPos, this.getPlayerCoordinates());
         }
 
         else if (direction.equals("east") && !currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] + 1].equals("X")) {
-            this.playerCoordinates[1] += 1;
-            currentRoom.updatePlayerPos(playerOldPos, this.playerCoordinates);
+            int[] playerNewPos = {playerOldPos[1] + 1};
+            currentRoom.updatePlayerPos(playerOldPos, this.getPlayerCoordinates());
         }
 
         else {
             System.out.println("There's a wall there");
         }
+
     }
 
     public void placeItem(String itemName) {

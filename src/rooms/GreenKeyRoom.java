@@ -113,9 +113,9 @@ public class GreenKeyRoom extends Room{
         player1.playerMove("west");
         player1.playerMove("south");
         player1.playerMove("west");
-        System.out.println(player1.getInventory().get(0).getItemName());
-        System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
-        testroom3.cutRope(player1);
+//        System.out.println(player1.getInventory().get(0).getItemName());
+//        System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
+//        testroom3.cutRope(player1);
 
 
         testroom3.displayLayout();
