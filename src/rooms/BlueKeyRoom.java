@@ -31,7 +31,8 @@ public class BlueKeyRoom extends Room {
     }
 
     //populateRoom creates the room
-    private void populateRoom() {
+    @Override
+    protected void populateRoom() {
 //        for (Item item : this.getItemsInRoom()) {
 //            this.getMap()[item.getItemCoordinate()[0]][item.getItemCoordinate()[1]] = "?";
 //        }
@@ -47,6 +48,32 @@ public class BlueKeyRoom extends Room {
         boolean eventTrigger = false;
         if (this.onPressPlate()) {
             eventTrigger = true;
+        }
+    }
+
+    @Override
+    public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
+        for (int i = 0; i < this.getExitCoordinate().length; i++) {
+            for (int j = 0; j < this.getExitCoordinate()[i].length; j++) {
+                if ((Math.abs(playerCoord[0] - this.getExitCoordinate()[i][j]) == 1
+                        && Math.abs(playerCoord[1] - this.getExitCoordinate()[i][j]) == 0)
+                        || (Math.abs(playerCoord[0] - this.getExitCoordinate()[i][j]) == 0
+                        && Math.abs(playerCoord[1] - this.getExitCoordinate()[i][j]) == 1)) {
+                    if (Arrays.equals(this.getExitCoordinate()[i], new int[]{2, 1})) {
+                        thePlayer.setCurrentRoom(nextRoom[0]);
+                    } else if (Arrays.equals(this.getExitCoordinate()[i], new int[]{2, 5})) {
+                        thePlayer.setCurrentRoom(nextRoom[1]);
+                    } else if (Arrays.equals(this.getExitCoordinate()[i], new int[]{4, 5})) {
+                        thePlayer.setCurrentRoom(nextRoom[2]);
+                    } else if (Arrays.equals(this.getExitCoordinate()[i], new int[]{4, 1})) {
+                        thePlayer.setCurrentRoom(nextRoom[3]);
+                    } else {
+                        thePlayer.setCurrentRoom(nextRoom[4]);
+                    }
+                } else {
+                    System.out.println("You are not close enough to the door!");
+                }
+            }
         }
     }
 
@@ -116,19 +143,19 @@ public class BlueKeyRoom extends Room {
         }
         BlueKeyRoom testRoom = new BlueKeyRoom(testExitCoord, testItemsInRoom, testMap, testObstacle);
 
-        Player testPlayer = new Player("Player", testRoom, testPlayCoord);
+//        Player testPlayer = new Player("Player", testRoom, testPlayCoord);
 
-        testRoom.deleteLayout();
-        testRoom.createLayout();
-        testRoom.populateRoom();
-        testRoom.displayLayout();
-
-        testRoom.jewelSort(testPlayer);
-        testRoom.displayLayout();
-        testPlayer.pickUpItem();
-        for (Item items : testItemsInRoom) {
-            System.out.println(items.getItemName());
-        }
+//        testRoom.deleteLayout();
+//        testRoom.createLayout();
+//        testRoom.populateRoom();
+//        testRoom.displayLayout();
+//
+//        testRoom.jewelSort(testPlayer);
+//        testRoom.displayLayout();
+//        testPlayer.pickUpItem();
+//        for (Item items : testItemsInRoom) {
+//            System.out.println(items.getItemName());
+//        }
 
 
 
@@ -142,10 +169,10 @@ public class BlueKeyRoom extends Room {
 //            System.out.println(Arrays.toString(items.getItemCoordinate()));
 //        }
 //
-        System.out.println(testPlayer.getInventory().size());
-        for (Item items : testPlayer.getInventory()) {
-            System.out.println(items.getItemName());
-        }
+//        System.out.println(testPlayer.getInventory().size());
+//        for (Item items : testPlayer.getInventory()) {
+//            System.out.println(items.getItemName());
+//        }
 //
 //
 //        for (Item items : testItemsInRoom) {
