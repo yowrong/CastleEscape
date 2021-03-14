@@ -85,6 +85,7 @@ public class HallwayRoom extends Room{
         }
     }
 
+    @Override
     public void exitCastle(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
         int count = 0;
         if (!thePlayer.getWinGame()) {

@@ -112,6 +112,9 @@ public class Room {
         playerCoord[1] = 0;
     }
 
+    public void exitCastle(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
+    }
+
 
     public void checkEventTriggers() {
         boolean eventTrigger = false;
