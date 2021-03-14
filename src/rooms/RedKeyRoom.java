@@ -74,6 +74,7 @@ public class RedKeyRoom extends Room {
         return false;
     }
 
+
     // checkEventTrigger needs player parameter???
     public void checkEventTriggers(Player thePlayer) {
         boolean eventTrigger = false;
