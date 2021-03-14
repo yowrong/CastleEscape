@@ -185,4 +185,9 @@ public class Room {
     }
 
 
+    public void jewelSort(Player player) {
+    }
+
+    public void cutRope(Player player) {
+    }
 }

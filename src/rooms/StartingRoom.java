@@ -50,6 +50,9 @@ public class StartingRoom extends Room {
 
         //Fake player
         this.getMap()[(this.getExitCoordinate()[0][0]) + 4][this.getExitCoordinate()[0][1] - 3] = "P";
+
+        generateLockedDoor();
+        generateTorch();
     }
 
 //    public boolean TorchLever(Item item) {
@@ -109,46 +112,46 @@ public class StartingRoom extends Room {
         this.eventTrigger = this.onPressPlate();
     }
 
-    public static void main(final String[] args) {
-        int[][] testExitCoord = {{0, 4}};
-
-        ArrayList<Item> testItemsInRoom = new ArrayList<Item>();
-        String[][] testMap = new String[7][7];
-        for (int index = 0; index < 7; index++) {
-            for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
-                testMap[index][innerIndex] = "U";
-            }
-        }
-
-        StartingRoom testStartingRoom = new StartingRoom(testExitCoord, testItemsInRoom, testMap);
-        testStartingRoom.deleteLayout();
-        testStartingRoom.createLayout();
-        testStartingRoom.generateTorch();
-        testStartingRoom.generateLockedDoor();
-//        testStartingRoom.populateRoom();
-
-        //Room desc
-
-        testStartingRoom.displayLayout();
-        for (Item items : testItemsInRoom) {
-            System.out.println(items.getItemName());
-        }
-        //Before torch move
-        testStartingRoom.checkEventTriggers();
-        System.out.println(testStartingRoom.onPressPlate());
-
-        //Testing if player placed torch on pressure plate successfully
-        int[] torchNewCoord = {1, 5};
-
-        testItemsInRoom.get(0).setItemCoordinate(torchNewCoord);
-        System.out.println(testStartingRoom.getMap()[1][5]);
-        //Prints if the pressureplate
-        testStartingRoom.checkEventTriggers();
-        System.out.println(testStartingRoom.onPressPlate());
-        testStartingRoom.createLayout();
-//        testStartingRoom.populateRoom();
-        testStartingRoom.displayLayout();
-
-
-    }
+//    public static void main(final String[] args) {
+//        int[][] testExitCoord = {{0, 4}};
+//
+//        ArrayList<Item> testItemsInRoom = new ArrayList<Item>();
+//        String[][] testMap = new String[7][7];
+//        for (int index = 0; index < 7; index++) {
+//            for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
+//                testMap[index][innerIndex] = "U";
+//            }
+//        }
+//
+//        StartingRoom testStartingRoom = new StartingRoom(testExitCoord, testItemsInRoom, testMap);
+//        testStartingRoom.deleteLayout();
+//        testStartingRoom.createLayout();
+//        testStartingRoom.generateTorch();
+//        testStartingRoom.generateLockedDoor();
+////        testStartingRoom.populateRoom();
+//
+//        //Room desc
+//
+//        testStartingRoom.displayLayout();
+//        for (Item items : testItemsInRoom) {
+//            System.out.println(items.getItemName());
+//        }
+//        //Before torch move
+//        testStartingRoom.checkEventTriggers();
+//        System.out.println(testStartingRoom.onPressPlate());
+//
+//        //Testing if player placed torch on pressure plate successfully
+//        int[] torchNewCoord = {1, 5};
+//
+//        testItemsInRoom.get(0).setItemCoordinate(torchNewCoord);
+//        System.out.println(testStartingRoom.getMap()[1][5]);
+//        //Prints if the pressureplate
+//        testStartingRoom.checkEventTriggers();
+//        System.out.println(testStartingRoom.onPressPlate());
+//        testStartingRoom.createLayout();
+////        testStartingRoom.populateRoom();
+//        testStartingRoom.displayLayout();
+//
+//
+//    }
 }
