@@ -31,4 +31,23 @@ public class Obstacle {
     public void setObstacleCoordinate(int[] obstacleCoordinate) {
         this.obstacleCoordinate = obstacleCoordinate;
     }
+
+    public void shiftObstacle(String direction) {
+
+        if (direction.equals("north")) {
+            this.getObstacleCoordinate()[0] -=1;
+        }
+
+        else if (direction.equals("south")) {
+            this.getObstacleCoordinate()[0] += 1;
+        }
+
+        else if (direction.equals("west")) {
+            this.getObstacleCoordinate()[1] -= 1;
+        }
+
+        else if (direction.equals("east")) {
+            this.getObstacleCoordinate()[1] += 1;
+        }
+    }
 }

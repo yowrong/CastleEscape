@@ -29,10 +29,6 @@ public class HallwayRoom extends Room{
         }
     }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 7d1319fa12415e86d87b1d52f6adb50a909bf220
     @Override
     protected void populateRoom() {
         for (int[] door : this.getExitCoordinate()) {
@@ -44,8 +40,8 @@ public class HallwayRoom extends Room{
     }
 
     public boolean onPressPlate() {
-        if (this.getMap()[pressPlate[0]][pressPlate[1]].equals("P")
-                || this.getMap()[pressPlate[0]][pressPlate[1]].equals("O")) {
+        if (this.getMap()[this.pressPlate[0]][this.pressPlate[1]].equals("P")
+                || this.getMap()[this.pressPlate[0]][this.pressPlate[1]].equals("O")) {
             if (!this.barsRetracted) {
                 System.out.println("The bars blocking the doors retract.");
                 this.barsRetracted = true;
