@@ -1,19 +1,76 @@
-//package game.driver;
-//
-//import rooms.*;
-//import theitems.Item;
-//import theobstacles.Obstacle;
-//import theplayer.Player;
-//
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//
-//public class Main {
-//
-//    public static void main(String[] args) {
-//        int[][] exitCoord = {{5, 0}};
-//        int[][] hallCoord = {{2, 1},{2, 5},{4, 1},{4, 5}};
-//
+package game.driver;
+
+import rooms.*;
+import theitems.Item;
+import theobstacles.Obstacle;
+import theplayer.Player;
+import theenemy.Enemy;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        int[][] blueExitCoord = {{4, 6}};
+        int[][] greenExitCoord = {{5, 0}};
+        int[][] redExitCoord = {{1, 0}};
+        int[][] statueExitCoord = {{1, 6}};
+        int[][] hallExitCoord = {{2, 1},{2, 5},{4, 1},{4, 5}};
+        int[][] startExitCoord = {{0, 4}};
+        int[] blueObsCoord = {1, 4};
+        int[] hallObsCoord = {1, 4};
+        int[] swordCoord = {1, 5};
+        int[] statueCoord = {1, 1};
+        int[] smallKeyCoord = {5, 5};
+        int[] torchCoord = {5, 3};
+        int[] spawnCoord = {5, 5};
+
+        Item sword = new Item(swordCoord, "Sword", "It's sharp.");
+        Item statue = new Item(statueCoord, "Statue", "A small statue made of stone.");
+        Item smallKey = new Item(smallKeyCoord, "Small key", "This may open a barrier.");
+        Item torch = new Item(torchCoord, "Torch", "It's a torch... Seems to light the way.");
+
+        ArrayList<Item> blueItems = new ArrayList<>();
+        ArrayList<Item> greenItems = new ArrayList<>();
+        greenItems.add(sword);
+        ArrayList<Item> redItems = new ArrayList<>();
+        ArrayList<Item> statueItems = new ArrayList<>();
+        statueItems.add(statue);
+        statueItems.add(smallKey);
+        ArrayList<Item> hallItems = new ArrayList<>();
+        ArrayList<Item> startItems = new ArrayList<>();
+        startItems.add(torch);
+
+        String[][] map = new String[7][7];
+        for (int index = 0; index < 7; index++) {
+            for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
+                map[index][innerIndex] = "U";
+            }
+        }
+
+        Obstacle blueCrate = new Obstacle("Crate", "a movable crate", blueObsCoord);
+        Obstacle hallwayCrate = new Obstacle("Crate", "a movable crate", hallObsCoord);
+
+        BlueKeyRoom blueKeyRoom = new BlueKeyRoom(blueExitCoord, blueItems, map, blueCrate);
+        GreenKeyRoom greenKeyRoom = new GreenKeyRoom(greenExitCoord, greenItems, map);
+        RedKeyRoom redKeyRoom = new RedKeyRoom(redExitCoord, redItems, map);
+        StatueRoom statueRoom = new StatueRoom(statueExitCoord, statueItems, map);
+        HallwayRoom hallwayRoom = new HallwayRoom(hallExitCoord, hallItems, map, hallwayCrate);
+        StartingRoom startingRoom = new StartingRoom(startExitCoord, startItems, map);
+
+        Room[] listRooms = new Room[]{blueKeyRoom, greenKeyRoom, redKeyRoom, statueRoom, hallwayRoom, startingRoom};
+
+        Player thePlayer = new Player("Player 1", listRooms, spawnCoord);
+        thePlayer.setCurrentRoom(startingRoom);
+
+
+
+
+
 //        int[] itemCoord1 = {1, 5};
 //        String itemSword = "A sword.";
 //        String testSwordDesc = "It's sharp.";
@@ -28,23 +85,11 @@
 //        }
 //
 //        int[] testObsCoord = {1, 4};
-//        GreenKeyRoom testroomg = new GreenKeyRoom(exitCoord, testItemsInRoom, testMap);
-//        Obstacle testObstacle = new Obstacle("crate", "I'm a crate", testObsCoord);
-//        BlueKeyRoom testroomb = new BlueKeyRoom(exitCoord, testItemsInRoom,testMap, testObstacle);
-//        RedKeyRoom testroomr = new RedKeyRoom(exitCoord, testItemsInRoom, testMap);
-//        StatueRoom testrooms = new StatueRoom(exitCoord, testItemsInRoom, testMap);
-//        HallwayRoom testroomh = new HallwayRoom(hallCoord, testItemsInRoom, testMap, testObstacle);
 //
 //
-////        for (Item items : testItemsInRoom){
-////            System.out.println(items.getItemName());
-////        }
 //
 //        Room[] roomlist = new Room[]{testroomb,testroomg,testroomr,testrooms,testroomh};
-//        System.out.println();
-//        System.out.println("after");
-//        System.out.println();
-//        Player player1 = new Player("Sup",roomlist, new int[]{1, 5});
+//
 //        player1.setCurrentRoom(roomlist[1]);
 //        player1.getCurrentRoom().deleteLayout();
 //        player1.getCurrentRoom().createLayout();
@@ -99,26 +144,22 @@
 //
 //        int[][] startingRoomExitCoord = {{0, 4}};
 //        ArrayList<Item> startingRoomItemsInRoom = new ArrayList<>();
-//        String[][] startingRoomMap = new String[7][7];
-//        for (int index = 0; index < 7; index++) {
-//            for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
-//                startingRoomMap[index][innerIndex] = "U";
-//            }
-//        }
+//
 //        StartingRoom startingRoom = new StartingRoom(startingRoomExitCoord, startingRoomItemsInRoom, startingRoomMap);
 //
 //        player.setCurrentRoom(startingRoom);
 //        System.out.println(player.getCurrentRoom());
-//
-//
-//        // write your code here
-//        // create an item with its own coordinate
-//        // put item in list
-//        // create room and pass list
-//        // room will have the list
-//        // when room is displayed
-//        // first fill with X
-//        // place whitespace
-//        // add symbols
-//    }
-//}
+
+
+        // write your code here
+        // create an item with its own coordinate
+        // put item in list
+        // create room and pass list
+        // room will have the list
+        // when room is displayed
+        // first fill with X
+        // place whitespace
+        // add symbols
+
+    }
+}

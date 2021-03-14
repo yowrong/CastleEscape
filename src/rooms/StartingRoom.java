@@ -26,7 +26,7 @@ public class StartingRoom extends Room {
         }
     }
     @Override
-    protected void populateRoom() {
+    protected void populateRoom(Player thePlayer) {
         // Might need to change itemsInRoom to this.itemsInRoom
         this.getMap()[this.pressPlate[0]][this.pressPlate[1]] = "*";
         for (Item torch : this.getItemsInRoom()) {
@@ -114,7 +114,7 @@ public class StartingRoom extends Room {
         testStartingRoom.createLayout();
         testStartingRoom.generateTorch();
         testStartingRoom.generateLockedDoor();
-        testStartingRoom.populateRoom();
+//        testStartingRoom.populateRoom();
 
         //Room desc
 
@@ -135,7 +135,7 @@ public class StartingRoom extends Room {
         testStartingRoom.checkEventTriggers();
         System.out.println(testStartingRoom.onPressPlate());
         testStartingRoom.createLayout();
-        testStartingRoom.populateRoom();
+//        testStartingRoom.populateRoom();
         testStartingRoom.displayLayout();
 
 

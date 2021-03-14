@@ -40,7 +40,7 @@ public class GreenKeyRoom extends Room{
 
     //Populates room not sure if these letters can be interacted with.
     @Override
-    protected void populateRoom (){
+    protected void populateRoom (Player thePlayer){
         this.getMap()[this.getExitCoordinate()[0][0]][this.getExitCoordinate()[0][1]] = "D";
         this.getMap()[rope[0]][rope[1]] = "R";
         for (Item items : getItemsInRoom()) {
@@ -112,7 +112,9 @@ public class GreenKeyRoom extends Room{
         BlueKeyRoom testroomb = new BlueKeyRoom(exitCoord, testItemsInRoom,testMap, testObstacle);
         RedKeyRoom testroomr = new RedKeyRoom(exitCoord, testItemsInRoom, testMap);
         StatueRoom testrooms = new StatueRoom(exitCoord, testItemsInRoom, testMap);
+
         HallwayRoom testroomh = new HallwayRoom(hallCoord, testItemsInRoom, testMap, testObstacle);
+
 
 
 //        for (Item items : testItemsInRoom){
@@ -128,7 +130,7 @@ public class GreenKeyRoom extends Room{
         player1.getCurrentRoom().deleteLayout();
         player1.getCurrentRoom().createLayout();
         player1.getCurrentRoom().addItemToRoom(swordItem, itemCoord1);
-        player1.getCurrentRoom().populateRoom();
+        player1.getCurrentRoom().populateRoom(player1);
         player1.getCurrentRoom().displayLayout();
         player1.pickUpItem();
         player1.playerMove("west");
@@ -152,7 +154,7 @@ public class GreenKeyRoom extends Room{
         System.out.println(player1.getCurrentRoom());
         player1.getCurrentRoom().deleteLayout();
         player1.getCurrentRoom().createLayout();
-        player1.getCurrentRoom().populateRoom();
+        player1.getCurrentRoom().populateRoom(player1);
         player1.getCurrentRoom().displayLayout();
 //        System.out.println(testroom3.getItemsInRoom());
 //        for (Item items : testItemsInRoom){
