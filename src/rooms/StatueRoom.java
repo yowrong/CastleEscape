@@ -78,11 +78,22 @@ public class StatueRoom extends Room {
     public void checkEventTriggers() {
         this.eventTrigger = this.hasKey();
     }
-
+//    @Override
+//    public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
+//        int[] var = {2, 4};
+//        if (playerCoord[0] == 5 && playerCoord[1] == 1){
+//            thePlayer.setCurrentRoom(nextRoom[4]);
+//            thePlayer.setPlayerCoordinates(var);
+//        } else {
+//            System.out.println("You are not close enough to the door!");
+//        }
+//    }
     @Override
     public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
+        int[] var = {5, 1};
         if ((playerCoord[0] == 1) && (playerCoord[1]) == 5) {
             thePlayer.setCurrentRoom(nextRoom[4]);
+            thePlayer.setPlayerCoordinates(var);
         }
     }
 
