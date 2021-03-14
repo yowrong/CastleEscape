@@ -38,7 +38,7 @@ public class Player {
         this.currentRoom = currentRoom;
     }
 
-    private void playerMove(String direction) {
+    public void playerMove(String direction) {
         int[] playerOldPos = this.playerCoordinates;
 
         if (direction == "north") {
@@ -60,7 +60,7 @@ public class Player {
         currentRoom.updatePlayerPos(playerOldPos, this.playerCoordinates);
     }
 
-    private void placeItem(String itemName) {
+    public void placeItem(String itemName) {
         for (Item itemInInventory : inventory) {
             if (itemName.equals(itemInInventory.getItemName())) {
                 itemInInventory.setItemCoordinate(this.getPlayerCoordinates());
@@ -70,7 +70,7 @@ public class Player {
         }
     }
 
-    private void pickUpItem() {
+    public void pickUpItem() {
         for (Item itemInRoom : currentRoom.getItemsInRoom()) {
             if (this.playerCoordinates == itemInRoom.getItemCoordinate()) {
                 this.getInventory().add(itemInRoom);
