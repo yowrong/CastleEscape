@@ -89,7 +89,6 @@ public class Player {
                 int[] playerNewPos = {playerOldPos[0] - 1, playerOldPos[1]};
                 int[] obstacleNewPos = {obstacleOldPos[0] - 1, obstacleOldPos[1]};
                 currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
-                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
                 this.getPlayerCoordinates()[0] -= 1;
                 this.currentRoom.getObstacle().getObstacleCoordinate()[0] -= 1;
             }
@@ -100,7 +99,6 @@ public class Player {
                 int[] playerNewPos = {playerOldPos[0] + 1, playerOldPos[1]};
                 int[] obstacleNewPos = {obstacleOldPos[0] + 1, obstacleOldPos[1]};
                 currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
-                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
                 this.getPlayerCoordinates()[0] += 1;
                 this.currentRoom.getObstacle().getObstacleCoordinate()[0] += 1;
             }
