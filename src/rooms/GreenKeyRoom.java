@@ -112,11 +112,8 @@ public class GreenKeyRoom extends Room{
         BlueKeyRoom testroomb = new BlueKeyRoom(exitCoord, testItemsInRoom,testMap, testObstacle);
         RedKeyRoom testroomr = new RedKeyRoom(exitCoord, testItemsInRoom, testMap);
         StatueRoom testrooms = new StatueRoom(exitCoord, testItemsInRoom, testMap);
-<<<<<<< HEAD
-        HallwayRoom testroomh = new HallwayRoom(exitCoord, testItemsInRoom, testMap, testObstacle);
-=======
+
         HallwayRoom testroomh = new HallwayRoom(hallCoord, testItemsInRoom, testMap, testObstacle);
->>>>>>> 7d1319fa12415e86d87b1d52f6adb50a909bf220
 
 
 //        for (Item items : testItemsInRoom){
@@ -138,26 +135,29 @@ public class GreenKeyRoom extends Room{
         player1.playerMove("west");
         player1.playerMove("west");
         player1.playerMove("west");
+        testroomg.cutRope(player1);
         player1.playerMove("west");
         player1.playerMove("south");
-        player1.playerMove("south");
-        player1.playerMove("south");
-        player1.playerMove("south");
-//        System.out.println(player1.getInventory().get(0).getItemName());
+//        player1.playerMove("south");
+        player1.pickUpItem();
+//        player1.playerMove("south");
+//        player1.playerMove("south");
+        System.out.println(testroomg.getItemsInRoom());
 //        System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
 //        testroom3.cutRope(player1);
+        System.out.println(player1.getInventory().get(0).getItemName());
         System.out.println(Arrays.deepToString(testroomg.getExitCoordinate()));
         System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
 
 
 
         player1.getCurrentRoom().displayLayout();
-        player1.getCurrentRoom().exitRoom(player1.getPlayerCoordinates(), player1, roomlist);
-        System.out.println(player1.getCurrentRoom());
-        player1.getCurrentRoom().deleteLayout();
-        player1.getCurrentRoom().createLayout();
-        player1.getCurrentRoom().populateRoom();
-        player1.getCurrentRoom().displayLayout();
+//        player1.getCurrentRoom().exitRoom(player1.getPlayerCoordinates(), player1, roomlist);
+//        System.out.println(player1.getCurrentRoom());
+//        player1.getCurrentRoom().deleteLayout();
+//        player1.getCurrentRoom().createLayout();
+//        player1.getCurrentRoom().populateRoom();
+//        player1.getCurrentRoom().displayLayout();
 
 //        System.out.println(testroom3.getItemsInRoom());
 //        for (Item items : testItemsInRoom){
