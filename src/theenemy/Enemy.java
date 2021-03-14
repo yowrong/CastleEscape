@@ -3,8 +3,6 @@ package theenemy;
 public class Enemy {
 
 
-
-
     public static void main(String[] args) {
 
         int bossHP = 3;

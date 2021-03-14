@@ -33,7 +33,7 @@ public class StatueRoom extends Room {
             }
             this.map1b[1][1] = "X";
             // adds a barrier to statue, can take this code out if too complicated
-            this.map1b[1][2] = "|";
+            this.map1b[1][2] = "X";
         }
     }
 
@@ -45,15 +45,14 @@ public class StatueRoom extends Room {
     }
 
     // potential code for player to use key to access statue
-/*    protected void useKey(Player thePlayer) {
+    protected void useKey(Player thePlayer) {
         for (Item eachItem : thePlayer.getInventory()) {
-            if ((eachItem.getItemName().equals("Small key")) && ((thePlayer.getPlayerCoordinates()[0] == 1)
-                    && (thePlayer.getPlayerCoordinates()[1] == 3))) {
-                this.map1b[1][1] = " ";
+            if ((eachItem.getItemName().equals("Small key"))) {
+                this.map1b[1][2]= " ";
             }
             thePlayer.getInventory().remove("Small Key");
         }
-    }*/
+    }
 
     public static void main(final String[] args) {
         int[] keyCoord = {5, 5};
