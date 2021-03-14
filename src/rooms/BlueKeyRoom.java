@@ -5,14 +5,15 @@ import theobstacles.Obstacle;
 import theplayer.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
-public class Room2 extends Room {
+public class BlueKeyRoom extends Room {
 
     private Obstacle obstacleInRoom;
     private int[] pressPlate = {4 ,4};
 
-    public Room2(int[][] exitCoordinates, ArrayList<Item> items, String[][] map, Obstacle obstacleInRoom) {
+    public BlueKeyRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map, Obstacle obstacleInRoom) {
         super(exitCoordinates, items, map);
         this.obstacleInRoom = obstacleInRoom;
     }
@@ -66,10 +67,8 @@ public class Room2 extends Room {
         int[] tableAccessPos1 = {tablePos[0], tablePos[1]+1};
         int[] tableAccessPos2 = {tablePos[0]-1, tablePos[1]};
 
-        if ((player.getPlayerCoordinates()[0] == tableAccessPos1[0]
-                && player.getPlayerCoordinates()[1] == tableAccessPos1[1])
-                || (player.getPlayerCoordinates()[0] == tableAccessPos2[0]
-                && player.getPlayerCoordinates()[1] == tableAccessPos2[1])) {
+        if (Arrays.equals(player.getPlayerCoordinates(), tableAccessPos1)
+                || Arrays.equals(player.getPlayerCoordinates(), tableAccessPos2)) {
             System.out.println("There are three jewels on the table, a ruby, a sapphire, and an emerald."
                 + "\nYou notice there is a chest with 3 colored slots in the order: red, green, blue"
                 + "\nEnter the order you place the jewels in to unlock the chest:");
@@ -103,7 +102,7 @@ public class Room2 extends Room {
                 testMap[index][innerIndex] = "U";
             }
         }
-        Room2 testRoom = new Room2(testExitCoord, testItemsInRoom, testMap, testObstacle);
+        BlueKeyRoom testRoom = new BlueKeyRoom(testExitCoord, testItemsInRoom, testMap, testObstacle);
 
         Player testPlayer = new Player("Player", testRoom, testPlayCoord);
 
@@ -114,8 +113,7 @@ public class Room2 extends Room {
 
         testRoom.jewelSort(testPlayer);
         testRoom.displayLayout();
-        testPlayer.pickUpItem();
-
+//        testPlayer.pickUpItem();
 
         for (Item items : testItemsInRoom) {
             System.out.println(items.getItemName());
