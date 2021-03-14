@@ -15,6 +15,15 @@ public class Player {
     private ArrayList<Item> inventory;
     private int[] playerCoordinates;
 
+    public boolean getWinGame() {
+        return winGame;
+    }
+
+    public boolean winGame = false;
+    public void setWinGame(boolean winGame) {
+        this.winGame = winGame;
+    }
+
     public Player(String playerName, Room[] listRooms, int[] playerCoordinates) {
         this.playerName = playerName;
         this.listRooms = listRooms;

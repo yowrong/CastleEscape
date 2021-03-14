@@ -14,6 +14,8 @@ public class HallwayRoom extends Room{
     private int[] pressPlate = {3, 3};
     private boolean barsRetracted = false;
     private boolean eventTrigger = false;
+
+
     private String roomDescription = "After entering the hallway, the torches light up in  blue flames front of thou"
             + "The door behind you disappears and five new doors appear with metal bars blocking each exit"
             + "You notice there is a crate on the ground, seemingly out of place.";
@@ -54,6 +56,10 @@ public class HallwayRoom extends Room{
     }
 
     public boolean onPressPlate() {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 15afc06a84f720b7cbe128a558296fdf905302eb
         if (Arrays.equals(this.getObstacle().getObstacleCoordinate(), this.pressPlate)) {
             if (!this.barsRetracted) {
                 System.out.println("The bars blocking the doors retract.");
@@ -71,26 +77,61 @@ public class HallwayRoom extends Room{
 
     @Override
     public void checkEventTriggers() {
+<<<<<<< HEAD
         System.out.println("hello");
         this.eventTrigger = onPressPlate();
+=======
+        boolean check = true;
+        this.eventTrigger = this.onPressPlate();
+        System.out.println(eventTrigger);
+    }
+
+    public void setEventTrigger(boolean eventTrigger) {
+        this.eventTrigger = eventTrigger;
+        if (this.onPressPlate()) {
+            this.setEventTrigger(true);
+        }
+    }
+
+    public void exitCastle(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
+        int count = 0;
+        if (!thePlayer.getWinGame()) {
+            for (Item item : thePlayer.getInventory()) {
+                if (item.getItemName() == "Big Green Key") {
+                    count++;
+                } if (item.getItemName() == "Big Blue Key") {
+                    count++;
+                } if (item.getItemName() == "Big Red Key") {
+                    count++;
+                } if (item.getItemName() == "A sword.") {
+                    count++;
+                }
+            }
+            if (count == 4) {
+                thePlayer.setWinGame(true);
+                System.out.println("You win!");
+            }
+        }
+>>>>>>> 15afc06a84f720b7cbe128a558296fdf905302eb
     }
 
     @Override
     public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
         if (this.eventTrigger) {
-            if (playerCoord == this.getExitCoordinate()[0]) {
+            System.out.println("yes");
+            if (Arrays.equals(playerCoord, this.getExitCoordinate()[0])) {
                 thePlayer.setCurrentRoom(nextRoom[0]);
             }
 
-            else if (playerCoord == this.getExitCoordinate()[1]) {
+            else if (Arrays.equals(playerCoord, this.getExitCoordinate()[1])){
                 thePlayer.setCurrentRoom(nextRoom[1]);
             }
 
-            else if (playerCoord == this.getExitCoordinate()[2]) {
+            else if (Arrays.equals(playerCoord, this.getExitCoordinate()[2])) {
                 thePlayer.setCurrentRoom(nextRoom[3]);
             }
 
-            else if (playerCoord == this.getExitCoordinate()[3]) {
+            else if (Arrays.equals(playerCoord, this.getExitCoordinate()[3])){
                 thePlayer.setCurrentRoom(nextRoom[2]);
             }
 
