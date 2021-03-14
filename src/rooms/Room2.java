@@ -46,12 +46,8 @@ public class Room2 extends Room {
         }
     }
 
-    private void generateBigKey() {
-        int[] blueKeyCoord = new int[2];
-        for (Item item : this.getItemsInRoom()) {
-            blueKeyCoord[0] = item.getItemCoordinate()[0];
-            blueKeyCoord[0] = item.getItemCoordinate()[1];
-        }
+    private void generateBigKey(Player player) {
+        int[] blueKeyCoord = {player.getPlayerCoordinates()[0],player.getPlayerCoordinates()[1]};
         Item bigBlueKey = new Item(blueKeyCoord, "Big Blue Key", "A large shiny blue key");
         this.getItemsInRoom().add(bigBlueKey);
         this.getMap()[blueKeyCoord[0]][blueKeyCoord[1]] = "!";
@@ -59,7 +55,7 @@ public class Room2 extends Room {
 
     public void jewelSort(Player player) {
         int[] tablePos = new int[2];
-        String chestSlots = "ruby sapphire emerald";
+        String chestSlots = "ruby emerald sapphire";
         Scanner scan = new Scanner(System.in);
 
         for (Item item : this.getItemsInRoom()) {
@@ -70,20 +66,19 @@ public class Room2 extends Room {
         int[] tableAccessPos1 = {tablePos[0], tablePos[1]+1};
         int[] tableAccessPos2 = {tablePos[0]-1, tablePos[1]};
 
-        if (player.getPlayerCoordinates() == tableAccessPos1 || player.getPlayerCoordinates() == tableAccessPos2) {
+        if ((player.getPlayerCoordinates()[0] == tableAccessPos1[0]
+                && player.getPlayerCoordinates()[1] == tableAccessPos1[1])
+                || (player.getPlayerCoordinates()[0] == tableAccessPos2[0]
+                && player.getPlayerCoordinates()[1] == tableAccessPos2[1])) {
             System.out.println("There are three jewels on the table, a ruby, a sapphire, and an emerald."
-                + " You notice there is a chest with 3 colored slots in the order: red, green, blue"
-                + " Enter the order you place the jewels in to unlock the chest:");
-            while (scan.hasNextLine()) {
-                if (scan.nextLine().equals(chestSlots)) {
-                    System.out.println("The jewels clicked into the chest. The chest opens and reveals a key.");
-                    generateBigKey();
-                } else {
+                + "\nYou notice there is a chest with 3 colored slots in the order: red, green, blue"
+                + "\nEnter the order you place the jewels in to unlock the chest:");
+            while (!scan.nextLine().equals(chestSlots)) {
                     System.out.println("The jewels did not fit into the chest, try again?");
-                }
             }
+            System.out.println("The jewels clicked into the chest. The chest opens and reveals a key.");
+            generateBigKey(player);
         }
-
     }
 
 
@@ -91,8 +86,8 @@ public class Room2 extends Room {
     public static void main(final String[] args) {
         int[][] testExitCoord = {{4, 6}};
         int[] testItemCoord = {5, 1};
-        String testItemName = "A rock";
-        String testItemDesc = "I am error.";
+        String testItemName = "Table";
+        String testItemDesc = "A table";
         int[] testObsCoord = {1, 4};
         int[] testPlayCoord = {5, 2};
 
@@ -116,9 +111,20 @@ public class Room2 extends Room {
         testRoom.createLayout();
         testRoom.populateRoom();
         testRoom.displayLayout();
+
         testRoom.jewelSort(testPlayer);
-        System.out.println(testItem.getItemCoordinate());
-        System.out.println(testPlayer.getPlayerCoordinates());
+        testRoom.displayLayout();
+        testPlayer.pickUpItem();
+
+
+        for (Item items : testItemsInRoom) {
+            System.out.println(items.getItemName());
+        }
+
+//        for (Item items : testItemsInRoom) {
+//            System.out.println(items.getItemName());
+//        }
+//        System.out.println(testPlayer.getInventory());
 
 //        String chestSlots = "ruby sapphire emerald";
 //        Scanner scan = new Scanner(System.in);
