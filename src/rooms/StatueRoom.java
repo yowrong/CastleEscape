@@ -11,6 +11,7 @@ public class StatueRoom extends Room {
     private String[][] map1b;
     private int[][] exitCoordinate;
     private ArrayList<Item> itemsInRoom;
+    private boolean eventTrigger;
 
     public StatueRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
         super(exitCoordinates, items, map);
@@ -32,7 +33,7 @@ public class StatueRoom extends Room {
                 }
             }
             this.map1b[1][1] = "X";
-            // adds a barrier to statue, can take this code out if too complicated
+            // adds a barrier to statue
             this.map1b[1][2] = "X";
         }
     }
@@ -52,6 +53,28 @@ public class StatueRoom extends Room {
                 this.map1b[1][2]= " ";
             }
             thePlayer.getInventory().remove("Small Key");
+        }
+    }
+
+    private boolean hasKey() {
+        if (!(this.map1b[5][5] == "i")) {
+            System.out.println("A barrier seems to have moved");
+            this.map1b[1][2] = " ";
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void checkEventTriggers() {
+        this.eventTrigger = this.hasKey();
+    }
+
+    @Override
+    public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
+        if ((playerCoord[0] == 1) && (playerCoord[1]) == 5) {
+            thePlayer.setCurrentRoom(nextRoom[4]);
         }
     }
 
