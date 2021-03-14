@@ -2,21 +2,27 @@ package theplayer;
 
 import rooms.HallwayRoom;
 import rooms.Room;
-import rooms.BlueKeyRoom;
 import theitems.Item;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Player {
 
-    Scanner scan = new Scanner(System.in);
     private String playerName;
     private Room currentRoom;
     private Room[] listRooms;
     private ArrayList<Item> inventory;
     private int[] playerCoordinates;
+
+    public boolean getWinGame() {
+        return winGame;
+    }
+
+    public boolean winGame = false;
+    public void setWinGame(boolean winGame) {
+        this.winGame = winGame;
+    }
 
     public Player(String playerName, Room[] listRooms, int[] playerCoordinates) {
         this.playerName = playerName;
@@ -214,51 +220,6 @@ public class Player {
 
         if (itemExists) {
             currentRoom.getItemsInRoom().remove(itemToRemove);
-        }
-    }
-
-    public void userAction(String userInput) {
-        if (userInput == "move north") {
-            playerMove("north");
-        } else if (userInput == "move south") {
-            playerMove("south");
-        } else if (userInput == "move west") {
-            playerMove("west");
-        } else if (userInput == "move east") {
-            playerMove("east");
-        } else if (userInput == "push north") {
-            playerPush("north");
-        } else if (userInput == "push south") {
-            playerPush("south");
-        } else if (userInput == "push west") {
-            playerPush("west");
-        } else if (userInput == "push east") {
-            playerPush("east");
-        } else if (userInput == "pull north") {
-            playerPull("north");
-        } else if (userInput == "pull south") {
-            playerPull("south");
-        } else if (userInput == "pull west") {
-            playerPull("west");
-        } else if (userInput == "pull east") {
-            playerPull("east");
-        } else if (userInput == "place item") {
-            System.out.println("Enter the name of the item");
-            placeItem(scan.nextLine());
-        } else if (userInput == "pick up item") {
-            pickUpItem();
-        } else if (userInput == "exit" || userInput == "open door") {
-            this.getCurrentRoom().exitRoom(this.getPlayerCoordinates(), this, this.listRooms);
-        } else if (this.getCurrentRoom() == this.listRooms[0]) {
-            if (userInput == "interact") {
-                this.listRooms[0].jewelSort(this);
-            }
-        } else if (this.getCurrentRoom() == this.listRooms[1]) {
-            if (userInput == "interact") {
-                this.listRooms[1].cutRope(this);
-            }
-        } else {
-            System.out.println("command not recognized (lowercase commands only)");
         }
     }
 

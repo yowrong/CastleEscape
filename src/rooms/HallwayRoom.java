@@ -5,6 +5,7 @@ import theobstacles.Obstacle;
 import theplayer.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class HallwayRoom extends Room{
 
@@ -13,6 +14,8 @@ public class HallwayRoom extends Room{
     private int[] pressPlate = {3, 3};
     private boolean barsRetracted = false;
     private boolean eventTrigger = false;
+
+
     private String roomDescription = "After entering the hallway, the torches light up in  blue flames front of thou"
             + "The door behind you disappears and five new doors appear with metal bars blocking each exit"
             + "You notice there is a crate on the ground, seemingly out of place.";
@@ -47,14 +50,13 @@ public class HallwayRoom extends Room{
             this.getMap()[door[0]][door[1]] = "D";
         }
         this.getMap()[this.escapeCoordinate[0]][this.escapeCoordinate[1]] = "E";
-        this.getMap()[this.getObstacle().getObstacleCoordinate()[0]][this.getObstacle().getObstacleCoordinate()[1]] = "O";
         this.getMap()[this.pressPlate[0]][this.pressPlate[1]] = "*";
+        this.getMap()[this.getObstacle().getObstacleCoordinate()[0]][this.getObstacle().getObstacleCoordinate()[1]] = "O";
         this.getMap()[thePlayer.getPlayerCoordinates()[0]][thePlayer.getPlayerCoordinates()[1]] = "P";
     }
 
     public boolean onPressPlate() {
-        if (this.getMap()[this.pressPlate[0]][this.pressPlate[1]].equals("P")
-                || this.getMap()[this.pressPlate[0]][this.pressPlate[1]].equals("O")) {
+        if (Arrays.equals(this.getObstacle().getObstacleCoordinate(), this.pressPlate)) {
             if (!this.barsRetracted) {
                 System.out.println("The bars blocking the doors retract.");
                 this.barsRetracted = true;
@@ -71,26 +73,57 @@ public class HallwayRoom extends Room{
 
     @Override
     public void checkEventTriggers() {
+        boolean check = true;
         this.eventTrigger = this.onPressPlate();
+        System.out.println(eventTrigger);
+    }
+
+    public void setEventTrigger(boolean eventTrigger) {
+        this.eventTrigger = eventTrigger;
+        if (this.onPressPlate()) {
+            this.setEventTrigger(true);
+        }
+    }
+
+    public void exitCastle(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
+        int count = 0;
+        if (!thePlayer.getWinGame()) {
+            for (Item item : thePlayer.getInventory()) {
+                if (item.getItemName() == "Big Green Key") {
+                    count++;
+                } if (item.getItemName() == "Big Blue Key") {
+                    count++;
+                } if (item.getItemName() == "Big Red Key") {
+                    count++;
+                } if (item.getItemName() == "A sword.") {
+                    count++;
+                }
+            }
+            if (count == 4) {
+                thePlayer.setWinGame(true);
+                System.out.println("You win!");
+            }
+        }
     }
 
     @Override
     public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
         if (this.eventTrigger) {
-            if (playerCoord == this.getExitCoordinate()[0]) {
+            System.out.println("yes");
+            if (Arrays.equals(playerCoord, this.getExitCoordinate()[0])) {
                 thePlayer.setCurrentRoom(nextRoom[0]);
             }
 
-            else if (playerCoord == this.getExitCoordinate()[1]) {
+            else if (Arrays.equals(playerCoord, this.getExitCoordinate()[1])){
                 thePlayer.setCurrentRoom(nextRoom[1]);
             }
 
-            else if (playerCoord == this.getExitCoordinate()[2]) {
-                thePlayer.setCurrentRoom(nextRoom[3]);
+            else if (Arrays.equals(playerCoord, this.getExitCoordinate()[2])) {
+                thePlayer.setCurrentRoom(nextRoom[2]);
             }
 
-            else if (playerCoord == this.getExitCoordinate()[3]) {
-                thePlayer.setCurrentRoom(nextRoom[2]);
+            else if (Arrays.equals(playerCoord, this.getExitCoordinate()[3])){
+                thePlayer.setCurrentRoom(nextRoom[3]);
             }
 
             else {
