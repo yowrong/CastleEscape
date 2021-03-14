@@ -5,6 +5,7 @@ import theobstacles.Obstacle;
 import theplayer.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class HallwayRoom extends Room{
 
@@ -47,14 +48,13 @@ public class HallwayRoom extends Room{
             this.getMap()[door[0]][door[1]] = "D";
         }
         this.getMap()[this.escapeCoordinate[0]][this.escapeCoordinate[1]] = "E";
-        this.getMap()[this.getObstacle().getObstacleCoordinate()[0]][this.getObstacle().getObstacleCoordinate()[1]] = "O";
         this.getMap()[this.pressPlate[0]][this.pressPlate[1]] = "*";
+        this.getMap()[this.getObstacle().getObstacleCoordinate()[0]][this.getObstacle().getObstacleCoordinate()[1]] = "O";
         this.getMap()[thePlayer.getPlayerCoordinates()[0]][thePlayer.getPlayerCoordinates()[1]] = "P";
     }
 
     public boolean onPressPlate() {
-        if (this.getMap()[this.pressPlate[0]][this.pressPlate[1]].equals("P")
-                || this.getMap()[this.pressPlate[0]][this.pressPlate[1]].equals("O")) {
+        if (Arrays.equals(this.getObstacle().getObstacleCoordinate(), this.pressPlate)) {
             if (!this.barsRetracted) {
                 System.out.println("The bars blocking the doors retract.");
                 this.barsRetracted = true;
@@ -71,7 +71,8 @@ public class HallwayRoom extends Room{
 
     @Override
     public void checkEventTriggers() {
-        this.eventTrigger = this.onPressPlate();
+        System.out.println("hello");
+        this.eventTrigger = onPressPlate();
     }
 
     @Override
