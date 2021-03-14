@@ -22,10 +22,12 @@ public class Main {
                 map[index][innerIndex] = "U";
             }
         }
-        Obstacle blueRmObstacle = new Obstacle("Crate", "A moveable crate", blueRmObsCoord);
+        Obstacle blueRmObstacle = new Obstacle("Crate", "A movable crate", blueRmObsCoord);
 
         BlueKeyRoom blueKeyRoom = new BlueKeyRoom(blueRmExitCoord, blueRmItems, map, blueRmObstacle);
         Player player = new Player("Player", blueKeyRoom, playerCoord);
+
+        player.setCurrentRoom(Room startingRoom);
 
         // write your code here
         // create an item with its own coordinate
