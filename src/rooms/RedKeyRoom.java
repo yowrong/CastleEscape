@@ -104,60 +104,60 @@ public class RedKeyRoom extends Room {
         }
     }
 
-    public static void main(final String[] args) {
-        int[][] testExitCoord = {{1, 0}};
-        int[] itemCoord = {5, 1};
-        String itemName = "Piece of Paper";
-        String itemDesc = "A written letter addressed to 'Mr Smith'";
-        Item paper = new Item(itemCoord, itemName, itemDesc);
-
-        ArrayList<Item> testItemsInRoom = new ArrayList<Item>();
-        testItemsInRoom.add(paper);
-
-        String[][] testMap = new String[7][7];
-        for (int index = 0; index < 7; index++) {
-            for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
-                testMap[index][innerIndex] = "U";
-            }
-        }
-        RedKeyRoom testRoom1a = new RedKeyRoom(testExitCoord, testItemsInRoom, testMap);
-        testRoom1a.deleteLayout();
-        testRoom1a.createLayout();
-//        testRoom1a.populateRoom();
+//    public static void main(final String[] args) {
+//        int[][] testExitCoord = {{1, 0}};
+//        int[] itemCoord = {5, 1};
+//        String itemName = "Piece of Paper";
+//        String itemDesc = "A written letter addressed to 'Mr Smith'";
+//        Item paper = new Item(itemCoord, itemName, itemDesc);
+//
+//        ArrayList<Item> testItemsInRoom = new ArrayList<Item>();
+//        testItemsInRoom.add(paper);
+//
+//        String[][] testMap = new String[7][7];
+//        for (int index = 0; index < 7; index++) {
+//            for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
+//                testMap[index][innerIndex] = "U";
+//            }
+//        }
+//        RedKeyRoom testRoom1a = new RedKeyRoom(testExitCoord, testItemsInRoom, testMap);
+//        testRoom1a.deleteLayout();
+//        testRoom1a.createLayout();
+////        testRoom1a.populateRoom();
+////        testRoom1a.displayLayout();
+//
+//        int[] statueCoord = {4, 3};
+//        String statueName = "Statue";
+//        String statusDesc = "A written letter addressed to 'Mr Smith'";
+//        Item statue = new Item(statueCoord, statueName, statusDesc);
+//        testItemsInRoom.add(statue);
+//
+//        testRoom1a.deleteLayout();
+//        testRoom1a.createLayout();
+//        testRoom1a.isOnPressPlate();
+////        testRoom1a.populateRoom();
+//        System.out.println("Before statue placed");
 //        testRoom1a.displayLayout();
-
-        int[] statueCoord = {4, 3};
-        String statueName = "Statue";
-        String statusDesc = "A written letter addressed to 'Mr Smith'";
-        Item statue = new Item(statueCoord, statueName, statusDesc);
-        testItemsInRoom.add(statue);
-
-        testRoom1a.deleteLayout();
-        testRoom1a.createLayout();
-        testRoom1a.isOnPressPlate();
-//        testRoom1a.populateRoom();
-        System.out.println("Before statue placed");
-        testRoom1a.displayLayout();
-        for (Item items : testItemsInRoom) {
-            System.out.println(items.getItemName());
-        }
-        System.out.println();
-
-
-        int[] statueNewCoord = {4, 4};
-        testRoom1a.deleteLayout();
-        testRoom1a.createLayout();
-        statue.setItemCoordinate(statueNewCoord);
-        testRoom1a.displayLayout();
-//        testRoom1a.populateRoom();
-        testRoom1a.isOnPressPlate();
-        System.out.println("After statue placed");
-        testRoom1a.displayLayout();
-
-
-        for (Item items : testItemsInRoom) {
-            System.out.println(items.getItemName());
-        }
-
-    }
+//        for (Item items : testItemsInRoom) {
+//            System.out.println(items.getItemName());
+//        }
+//        System.out.println();
+//
+//
+//        int[] statueNewCoord = {4, 4};
+//        testRoom1a.deleteLayout();
+//        testRoom1a.createLayout();
+//        statue.setItemCoordinate(statueNewCoord);
+//        testRoom1a.displayLayout();
+////        testRoom1a.populateRoom();
+//        testRoom1a.isOnPressPlate();
+//        System.out.println("After statue placed");
+//        testRoom1a.displayLayout();
+//
+//
+//        for (Item items : testItemsInRoom) {
+//            System.out.println(items.getItemName());
+//        }
+//
+//    }
 }

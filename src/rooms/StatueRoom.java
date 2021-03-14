@@ -55,14 +55,14 @@ public class StatueRoom extends Room {
     }
 
     // potential code for player to use key to access statue
-    protected void useKey(Player thePlayer) {
-        for (Item eachItem : thePlayer.getInventory()) {
-            if ((eachItem.getItemName().equals("Small key"))) {
-                this.map1b[1][2]= " ";
-            }
-            thePlayer.getInventory().remove("Small Key");
-        }
-    }
+//    protected void useKey(Player thePlayer) {
+//        for (Item eachItem : thePlayer.getInventory()) {
+//            if ((eachItem.getItemName().equals("Small key"))) {
+//                this.map1b[1][2]= " ";
+//            }
+//            thePlayer.getInventory().remove("Small Key");
+//        }
+//    }
 
     private boolean hasKey() {
         if (!(this.map1b[5][5] == "i")) {
@@ -97,43 +97,43 @@ public class StatueRoom extends Room {
         }
     }
 
-    public static void main(final String[] args) {
-        int[] keyCoord = {5, 5};
-        ArrayList<Item> testItemsInRoom = new ArrayList<Item>();
-        String keyName = "Small key";
-        String keyDesc = "This may open a barrier";
-        Item key = new Item(keyCoord, keyName, keyDesc);
-        int[][] testExitCoord = {{1, 6}};
-
-        int[] playerCoord = {1, 3};
-
-        int[] statueCoord = {1, 1};
-        String statueName = "Statue";
-        String statueDesc = "A small statue made of stone.";
-        Item statue = new Item(statueCoord, statueName, statueDesc);
-
-
-        testItemsInRoom.add(key);
-        testItemsInRoom.add(statue);
-        String[][] testMap = new String[7][7];
-        for (int index = 0; index < 7; index++) {
-            for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
-                testMap[index][innerIndex] = "U";
-            }
-        }
-        StatueRoom testRoom1b = new StatueRoom(testExitCoord, testItemsInRoom, testMap);
-        testRoom1b.deleteLayout();
-        testRoom1b.createLayout();
-//        testRoom1b.populateRoom();
-        testRoom1b.displayLayout();
-
-        for (Item items : testItemsInRoom) {
-            System.out.println(items.getItemName());
-        }
-
-//        testRoom1b.populateRoom();
-        testRoom1b.displayLayout();
-
-
-    }
+//    public static void main(final String[] args) {
+//        int[] keyCoord = {5, 5};
+//        ArrayList<Item> testItemsInRoom = new ArrayList<Item>();
+//        String keyName = "Small key";
+//        String keyDesc = "This may open a barrier";
+//        Item key = new Item(keyCoord, keyName, keyDesc);
+//        int[][] testExitCoord = {{1, 6}};
+//
+//        int[] playerCoord = {1, 3};
+//
+//        int[] statueCoord = {1, 1};
+//        String statueName = "Statue";
+//        String statueDesc = "A small statue made of stone.";
+//        Item statue = new Item(statueCoord, statueName, statueDesc);
+//
+//
+//        testItemsInRoom.add(key);
+//        testItemsInRoom.add(statue);
+//        String[][] testMap = new String[7][7];
+//        for (int index = 0; index < 7; index++) {
+//            for (int innerIndex = 0; innerIndex < 7; innerIndex++) {
+//                testMap[index][innerIndex] = "U";
+//            }
+//        }
+//        StatueRoom testRoom1b = new StatueRoom(testExitCoord, testItemsInRoom, testMap);
+//        testRoom1b.deleteLayout();
+//        testRoom1b.createLayout();
+////        testRoom1b.populateRoom();
+//        testRoom1b.displayLayout();
+//
+//        for (Item items : testItemsInRoom) {
+//            System.out.println(items.getItemName());
+//        }
+//
+////        testRoom1b.populateRoom();
+//        testRoom1b.displayLayout();
+//
+//
+//    }
 }

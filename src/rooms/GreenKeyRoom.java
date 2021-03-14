@@ -63,7 +63,8 @@ public class GreenKeyRoom extends Room{
         System.out.println("In the room you see a sword, and a rope attached to the ceiling with a key tied to the end of it.");
     }
     //Supposed to generate a key if player coordinate and player inventory contains a sword.
-    protected void cutRope(Player thePlayer) {
+    @Override
+    public void cutRope(Player thePlayer) {
 
         System.out.println("You swing your sword and cut the rope.");
         for (Item itemInventory : thePlayer.getInventory()) {

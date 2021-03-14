@@ -70,8 +70,9 @@ public class Main {
         thePlayer.setCurrentRoom(startingRoom);
 
         while(!victory) {
-            System.out.println("Hello");
-            scan.next();
+            System.out.println("Enter a command:");
+            thePlayer.userAction(scan.nextLine());
+            thePlayer.getCurrentRoom().checkEventTriggers();
         }
 
 
