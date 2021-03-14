@@ -56,10 +56,6 @@ public class HallwayRoom extends Room{
     }
 
     public boolean onPressPlate() {
-<<<<<<< HEAD
-=======
-
->>>>>>> 15afc06a84f720b7cbe128a558296fdf905302eb
         if (Arrays.equals(this.getObstacle().getObstacleCoordinate(), this.pressPlate)) {
             if (!this.barsRetracted) {
                 System.out.println("The bars blocking the doors retract.");
@@ -77,10 +73,6 @@ public class HallwayRoom extends Room{
 
     @Override
     public void checkEventTriggers() {
-<<<<<<< HEAD
-        System.out.println("hello");
-        this.eventTrigger = onPressPlate();
-=======
         boolean check = true;
         this.eventTrigger = this.onPressPlate();
         System.out.println(eventTrigger);
@@ -112,7 +104,6 @@ public class HallwayRoom extends Room{
                 System.out.println("You win!");
             }
         }
->>>>>>> 15afc06a84f720b7cbe128a558296fdf905302eb
     }
 
     @Override
