@@ -70,7 +70,8 @@ public class Main {
         thePlayer.setCurrentRoom(startingRoom);
 
         while(!victory) {
-
+            System.out.println("Hello");
+            scan.next();
         }
 
 

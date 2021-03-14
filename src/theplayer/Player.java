@@ -108,10 +108,6 @@ public class Player {
 
         else if (direction.equals("west") && !currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] - 2].equals("X")) {
             if (currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] - 1].equals("O")) {
-                int[] playerNewPos = {playerOldPos[0], playerOldPos[1] - 1};
-                int[] obstacleNewPos = {obstacleOldPos[0], obstacleOldPos[1] - 1};
-                currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
-                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
                 this.getPlayerCoordinates()[1] -= 1;
                 this.currentRoom.getObstacle().getObstacleCoordinate()[1] -= 1;
             }
@@ -119,10 +115,6 @@ public class Player {
 
         else if (direction.equals("east") && !currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] + 2].equals("X")) {
             if (currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] + 1].equals("O")) {
-                int[] playerNewPos = {playerOldPos[0], playerOldPos[1] + 1};
-                int[] obstacleNewPos = {obstacleOldPos[0], obstacleOldPos[1] + 1};
-                currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
-                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
                 this.getPlayerCoordinates()[1] += 1;
                 this.currentRoom.getObstacle().getObstacleCoordinate()[1] += 1;
             }
@@ -140,10 +132,6 @@ public class Player {
 
         if (direction.equals("north") && !currentRoom.getMap()[playerOldPos[0] - 1][playerOldPos[1]].equals("X")) {
             if (currentRoom.getMap()[playerOldPos[0] + 1][playerOldPos[1]].equals("O")) {
-                int[] playerNewPos = {playerOldPos[0] - 1, playerOldPos[1]};
-                int[] obstacleNewPos = {obstacleOldPos[0] - 1, obstacleOldPos[1]};
-                currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
-                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
                 this.getPlayerCoordinates()[0] -= 1;
                 this.currentRoom.getObstacle().getObstacleCoordinate()[0] -= 1;
             }
@@ -151,10 +139,6 @@ public class Player {
 
         else if (direction.equals("south") && !currentRoom.getMap()[playerOldPos[0] + 1][playerOldPos[1]].equals("X")) {
             if (currentRoom.getMap()[playerOldPos[0] - 1][playerOldPos[1]].equals("O")) {
-                int[] playerNewPos = {playerOldPos[0] + 1, playerOldPos[1]};
-                int[] obstacleNewPos = {obstacleOldPos[0] + 1, obstacleOldPos[1]};
-                currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
-                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
                 this.getPlayerCoordinates()[0] += 1;
                 this.currentRoom.getObstacle().getObstacleCoordinate()[0] += 1;
             }
@@ -162,10 +146,6 @@ public class Player {
 
         else if (direction.equals("west") && !currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] - 1].equals("X")) {
             if (currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] + 1].equals("O")) {
-                int[] playerNewPos = {playerOldPos[0], playerOldPos[1] - 1};
-                int[] obstacleNewPos = {obstacleOldPos[0], obstacleOldPos[1] - 1};
-                currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
-                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
                 this.getPlayerCoordinates()[1] -= 1;
                 this.currentRoom.getObstacle().getObstacleCoordinate()[1] -= 1;
             }
@@ -173,10 +153,6 @@ public class Player {
 
         else if (direction.equals("east") && !currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] + 1].equals("X")) {
             if (currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] - 1].equals("O")) {
-                int[] playerNewPos = {playerOldPos[0], playerOldPos[1] + 1};
-                int[] obstacleNewPos = {obstacleOldPos[0], obstacleOldPos[1] + 1};
-                currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
-                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
                 this.getPlayerCoordinates()[1] += 1;
                 this.currentRoom.getObstacle().getObstacleCoordinate()[1] += 1;
             }
@@ -212,6 +188,10 @@ public class Player {
         if (itemExists) {
             currentRoom.getItemsInRoom().remove(itemToRemove);
         }
+    }
+
+    public void userAction(String userInput) {
+
     }
 
 //    public void openDoor() {
