@@ -40,8 +40,8 @@ public class HallwayRoom extends Room{
     }
 
     public boolean onPressPlate() {
-        if (this.getMap()[pressPlate[0]][pressPlate[1]].equals("P")
-                || this.getMap()[pressPlate[0]][pressPlate[1]].equals("O")) {
+        if (this.getMap()[this.pressPlate[0]][this.pressPlate[1]].equals("P")
+                || this.getMap()[this.pressPlate[0]][this.pressPlate[1]].equals("O")) {
             if (!this.barsRetracted) {
                 System.out.println("The bars blocking the doors retract.");
                 this.barsRetracted = true;
