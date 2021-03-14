@@ -51,6 +51,32 @@ public class BlueKeyRoom extends Room {
         }
     }
 
+    @Override
+    public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
+        for (int i = 0; i < this.getExitCoordinate().length; i++) {
+            for (int j = 0; j < this.getExitCoordinate()[i].length; j++) {
+                if ((Math.abs(playerCoord[0] - this.getExitCoordinate()[i][j]) == 1
+                        && Math.abs(playerCoord[1] - this.getExitCoordinate()[i][j]) == 0)
+                        || (Math.abs(playerCoord[0] - this.getExitCoordinate()[i][j]) == 0
+                        && Math.abs(playerCoord[1] - this.getExitCoordinate()[i][j]) == 1)) {
+                    if (Arrays.equals(this.getExitCoordinate()[i], new int[]{2, 1})) {
+                        thePlayer.setCurrentRoom(nextRoom[0]);
+                    } else if (Arrays.equals(this.getExitCoordinate()[i], new int[]{2, 5})) {
+                        thePlayer.setCurrentRoom(nextRoom[1]);
+                    } else if (Arrays.equals(this.getExitCoordinate()[i], new int[]{4, 5})) {
+                        thePlayer.setCurrentRoom(nextRoom[2]);
+                    } else if (Arrays.equals(this.getExitCoordinate()[i], new int[]{4, 1})) {
+                        thePlayer.setCurrentRoom(nextRoom[3]);
+                    } else {
+                        thePlayer.setCurrentRoom(nextRoom[4]);
+                    }
+                } else {
+                    System.out.println("You are not close enough to the door!");
+                }
+            }
+        }
+    }
+
     //onPressPlate when the player or obstacle is on the pressure plate, the table item becomes accessible
     public boolean onPressPlate() {
         if (this.getMap()[pressPlate[0]][pressPlate[1]].equals("P")
