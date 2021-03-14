@@ -23,7 +23,7 @@ public class Room {
         this.map = map;
     }
 
-    protected void populateRoom() {
+    protected void populateRoom(Player thePlayer) {
     }
 
 

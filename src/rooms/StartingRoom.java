@@ -37,7 +37,7 @@ public class StartingRoom extends Room {
         }
     }
     @Override
-    protected void populateRoom() {
+    protected void populateRoom(Player thePlayer) {
         // Might need to change itemsInRoom to this.itemsInRoom
         this.getMap()[this.pressPlate[0]][this.pressPlate[1]] = "*";
         for (Item torch : this.getItemsInRoom()) {
@@ -82,20 +82,13 @@ public class StartingRoom extends Room {
         }
     }
 
+
+
     @Override
     public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
-        if (this.eventTrigger) {
-            if (playerCoord == this.getExitCoordinate()[0]) {
-                thePlayer.setCurrentRoom(nextRoom[0]);
-            } else if (playerCoord == this.getExitCoordinate()[1]) {
-                thePlayer.setCurrentRoom(nextRoom[1]);
-            } else if (playerCoord == this.getExitCoordinate()[2]) {
-                thePlayer.setCurrentRoom(nextRoom[3]);
-            } else if (playerCoord == this.getExitCoordinate()[3]) {
-                thePlayer.setCurrentRoom(nextRoom[2]);
-            } else {
-                System.out.println("There is no door.");
-            }
+        int[] playerPosOnExit = {5, 3};
+        if (playerCoord[0] == 5 && playerCoord[1] == 5) {
+            thePlayer.setCurrentRoom(nextRoom[4]);
         }
     }
     public void generateLockedDoor() {
@@ -132,7 +125,7 @@ public class StartingRoom extends Room {
         testStartingRoom.createLayout();
         testStartingRoom.generateTorch();
         testStartingRoom.generateLockedDoor();
-        testStartingRoom.populateRoom();
+//        testStartingRoom.populateRoom();
 
         //Room desc
 
@@ -153,7 +146,7 @@ public class StartingRoom extends Room {
         testStartingRoom.checkEventTriggers();
         System.out.println(testStartingRoom.onPressPlate());
         testStartingRoom.createLayout();
-        testStartingRoom.populateRoom();
+//        testStartingRoom.populateRoom();
         testStartingRoom.displayLayout();
 
 

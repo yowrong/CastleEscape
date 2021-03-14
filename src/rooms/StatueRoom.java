@@ -46,7 +46,7 @@ public class StatueRoom extends Room {
     }
 
     @Override
-    protected void populateRoom() {
+    protected void populateRoom(Player thePlayer) {
         for (Item eachItem : this.getItemsInRoom()) {
             this.map1b[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "i";
         }
@@ -112,14 +112,14 @@ public class StatueRoom extends Room {
         StatueRoom testRoom1b = new StatueRoom(testExitCoord, testItemsInRoom, testMap);
         testRoom1b.deleteLayout();
         testRoom1b.createLayout();
-        testRoom1b.populateRoom();
+//        testRoom1b.populateRoom();
         testRoom1b.displayLayout();
 
         for (Item items : testItemsInRoom) {
             System.out.println(items.getItemName());
         }
 
-        testRoom1b.populateRoom();
+//        testRoom1b.populateRoom();
         testRoom1b.displayLayout();
 
 
