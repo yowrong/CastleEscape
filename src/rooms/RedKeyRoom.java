@@ -35,31 +35,35 @@ public class RedKeyRoom extends Room {
     }
     **/
 
+    // creates room with door, press plate, and items
     private void populateRoom() {
         this.map1a[this.getExitCoordinate()[0][0]][this.getExitCoordinate()[0][1]] = "D";
         this.map1a[this.pressPlate[0]][this.pressPlate[1]] = "*";
         for (Item eachItem : this.getItemsInRoom()) {
-            if (eachItem.getItemName().equals("Big Red Key")) {
-                this.map1a[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "!";
-                // remove this and add to generateBigKey
-            } else {
                 this.map1a[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "i";
             }
         }
-    }
 
+    // creates the red key
     private void generateBigKey() {
         int[] redKeyCoord = {1, 5};
         Item bigRedKey = new Item(redKeyCoord, "Big Red Key", "A large shiny red key");
         this.getItemsInRoom().add(bigRedKey);
-        // add "!" to this method
+        this.map1a[1][5] = "!";
     }
 
+    // press plate triggers when statue placed
     private void onPressPlate(Item item) {
             if ((item.getItemName().equals("Statue")) && (item.getItemCoordinate()[0] == this.pressPlate[0])
                     && (item.getItemCoordinate()[1] == this.pressPlate[1])) {
                 generateBigKey();
             }
+            this.map1a[4][4] = "i";
+    }
+
+    public void checkEventTriggers() {
+        boolean eventTrigger = false;
+        System.out.println("This will be overridden.");
     }
 
     public static void main(final String[] args) {
@@ -107,7 +111,6 @@ public class RedKeyRoom extends Room {
         testRoom1a.createLayout();
         statue.setItemCoordinate(statueNewCoord);
         testRoom1a.onPressPlate(statue);
-        testRoom1a.populateRoom();
         System.out.println("After statue placed");
         testRoom1a.displayLayout();
 
