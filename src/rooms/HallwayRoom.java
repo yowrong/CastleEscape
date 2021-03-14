@@ -2,6 +2,7 @@ package rooms;
 
 import theitems.Item;
 import theobstacles.Obstacle;
+import theplayer.Player;
 
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ public class HallwayRoom extends Room{
     Obstacle crate;
     private int[] pressPlate = {3, 3};
     private boolean barsRetracted = false;
-    private boolean eventTrigger;
+    private boolean eventTrigger = false;
 
     public HallwayRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map, Obstacle crate) {
         super(exitCoordinates, items, map);
@@ -28,7 +29,10 @@ public class HallwayRoom extends Room{
         }
     }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 7d1319fa12415e86d87b1d52f6adb50a909bf220
     @Override
     protected void populateRoom() {
         for (int[] door : this.getExitCoordinate()) {
@@ -61,5 +65,38 @@ public class HallwayRoom extends Room{
         this.eventTrigger = this.onPressPlate();
     }
 
+    @Override
+    public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
+        if (this.eventTrigger) {
+            if (playerCoord == this.getExitCoordinate()[0]) {
+                thePlayer.setCurrentRoom(nextRoom[0]);
+            }
 
+            else if (playerCoord == this.getExitCoordinate()[1]) {
+                thePlayer.setCurrentRoom(nextRoom[1]);
+            }
+
+            else if (playerCoord == this.getExitCoordinate()[2]) {
+                thePlayer.setCurrentRoom(nextRoom[3]);
+            }
+
+            else if (playerCoord == this.getExitCoordinate()[3]) {
+                thePlayer.setCurrentRoom(nextRoom[2]);
+            }
+
+            else {
+                System.out.println("There is no door.");
+            }
+        }
+
+        else {
+            for (int[] exitCoord : this.getExitCoordinate()) {
+                if (playerCoord == exitCoord) {
+                    System.out.println("The bars prevent you from going through the door.");
+                }
+            }
+
+            System.out.println("You can't go through a door.");
+        }
+    }
 }
