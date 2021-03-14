@@ -41,7 +41,7 @@ public class GreenKeyRoom extends Room{
 
     @Override
     public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
-                int[] var = {2, 4};
+                int[] var = {2, 5};
                 if (playerCoord[0] == 5 && playerCoord[1] == 1){
                     thePlayer.setCurrentRoom(nextRoom[4]);
                     thePlayer.setPlayerCoordinates(var);

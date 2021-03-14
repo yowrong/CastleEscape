@@ -100,6 +100,8 @@ public class RedKeyRoom extends Room {
     @Override
     public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
         if ((playerCoord[0] == 1) && (playerCoord[1] == 1)) {
+            int[] hallspwn = new int[] {4, 1};
+            thePlayer.setPlayerCoordinates(hallspwn);
             thePlayer.setCurrentRoom(nextRoom[4]);
         }
     }

@@ -90,7 +90,7 @@ public class StatueRoom extends Room {
 //    }
     @Override
     public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
-        int[] var = {5, 1};
+        int[] var = {4, 4};
         if ((playerCoord[0] == 1) && (playerCoord[1]) == 5) {
             thePlayer.setCurrentRoom(nextRoom[4]);
             thePlayer.setPlayerCoordinates(var);
