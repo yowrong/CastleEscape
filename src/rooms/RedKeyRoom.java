@@ -4,14 +4,18 @@ import theitems.Item;
 
 import java.util.ArrayList;
 
-public class Room1a extends Room {
+public class RedKeyRoom extends Room {
 
     private String[][] map1a;
     private int[] pressPlate = {4, 4};
+    private int[][] exitCoordinate;
+    private ArrayList<Item> itemsInRoom;
 
-    public Room1a(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
+    public RedKeyRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
         super(exitCoordinates, items, map);
         this.map1a = map;
+        this.exitCoordinate = exitCoordinates;
+        this.itemsInRoom = items;
     }
 
     @Override
@@ -25,33 +29,41 @@ public class Room1a extends Room {
         }
     }
 
+    /**
+    private void printExit()  {
+        System.out.println(this.getExitCoordinate());
+    }
+    **/
+
     private void populateRoom() {
-        for (Item eachItem : this.getItemsInRoom()) {
-            this.map1a[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "i";
-        }
         this.map1a[this.getExitCoordinate()[0][0]][this.getExitCoordinate()[0][1]] = "D";
         this.map1a[this.pressPlate[0]][this.pressPlate[1]] = "*";
+        for (Item eachItem : this.getItemsInRoom()) {
+            if (eachItem.getItemName().equals("Big Red Key")) {
+                this.map1a[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "!";
+            } else {
+                this.map1a[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "i";
+            }
+        }
     }
 
     private void generateBigKey() {
         int[] redKeyCoord = {1, 5};
         Item bigRedKey = new Item(redKeyCoord, "Big Red Key", "A large shiny red key");
         this.getItemsInRoom().add(bigRedKey);
-
     }
 
     private void onPressPlate(Item item) {
-        if ((item.getItemName().equals("Statue")) && (item.getItemCoordinate()[0] == this.pressPlate[0])
-            && (item.getItemCoordinate()[1] == this.pressPlate[1])) {
-            generateBigKey();
-        }
+            if ((item.getItemName().equals("Statue")) && (item.getItemCoordinate()[0] == this.pressPlate[0])
+                    && (item.getItemCoordinate()[1] == this.pressPlate[1])) {
+                generateBigKey();
+            }
     }
-
 
     public static void main(final String[] args) {
         int[][] testExitCoord = {{1, 0}};
         int[] itemCoord = {5, 1};
-        String itemName = "A piece of Paper";
+        String itemName = "Piece of Paper";
         String itemDesc = "A written letter addressed to 'Mr Smith'";
         Item paper = new Item(itemCoord, itemName, itemDesc);
 
@@ -64,7 +76,7 @@ public class Room1a extends Room {
                 testMap[index][innerIndex] = "U";
             }
         }
-        Room1a testRoom1a = new Room1a(testExitCoord, testItemsInRoom, testMap);
+        RedKeyRoom testRoom1a = new RedKeyRoom(testExitCoord, testItemsInRoom, testMap);
         testRoom1a.deleteLayout();
         testRoom1a.createLayout();
 //        testRoom1a.populateRoom();
