@@ -11,7 +11,8 @@ import java.util.Scanner;
 public class BlueKeyRoom extends Room {
 
     private Obstacle obstacleInRoom;
-    private int[] pressPlate = {4 ,4};
+    private int[] pressPlate = {4, 4};
+    private int[] table = {5, 1};
 
     public BlueKeyRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map, Obstacle obstacleInRoom) {
         super(exitCoordinates, items, map);
@@ -29,19 +30,30 @@ public class BlueKeyRoom extends Room {
         }
     }
 
+    //populateRoom creates the room
     private void populateRoom() {
-        for (Item item : this.getItemsInRoom()) {
-            this.getMap()[item.getItemCoordinate()[0]][item.getItemCoordinate()[1]] = "?";
-        }
+//        for (Item item : this.getItemsInRoom()) {
+//            this.getMap()[item.getItemCoordinate()[0]][item.getItemCoordinate()[1]] = "?";
+//        }
         this.getMap()[getExitCoordinate()[0][0]][getExitCoordinate()[0][1]] = "D";
         this.getMap()[getExitCoordinate()[0][0]][(getExitCoordinate()[0][1]-1)] = "P";
         this.getMap()[obstacleInRoom.getObstacleCoordinate()[0]][obstacleInRoom.getObstacleCoordinate()[1]] = "O";
         this.getMap()[pressPlate[0]][pressPlate[1]] = "*";
+        this.getMap()[table[0]][table[1]] = "?";
+    }
+
+    @Override
+    public void checkEventTriggers() {
+        boolean eventTrigger = false;
+        if (this.onPressPlate()) {
+            eventTrigger = true;
+        }
     }
 
     //onPressPlate when the player or obstacle is on the pressure plate, the table item becomes accessible
-    public boolean onPressPlate(Player player) {
-        if (player.getPlayerCoordinates() == pressPlate || obstacleInRoom.getObstacleCoordinate() == pressPlate) {
+    public boolean onPressPlate() {
+        if (this.getMap()[pressPlate[0]][pressPlate[1]].equals("P")
+                || this.getMap()[pressPlate[0]][pressPlate[1]].equals("O")) {
             System.out.println("You see a table with jewels scattered on top at the back of the room");
             return true;
         } else {
@@ -50,6 +62,7 @@ public class BlueKeyRoom extends Room {
         }
     }
 
+    //generateBigKey generates the Big Blue Key once the player has solved the puzzle
     private void generateBigKey(Player player) {
         int[] blueKeyCoord = {player.getPlayerCoordinates()[0],player.getPlayerCoordinates()[1]};
         Item bigBlueKey = new Item(blueKeyCoord, "Big Blue Key", "A large shiny blue key");
@@ -98,7 +111,7 @@ public class BlueKeyRoom extends Room {
 
         Item testItem = new Item(testItemCoord, testItemName, testItemDesc);
 
-        ArrayList<Item> testItemsInRoom = new ArrayList<Item>();
+        ArrayList<Item> testItemsInRoom = new ArrayList<>();
         testItemsInRoom.add(testItem);
         String[][] testMap = new String[7][7];
         for (int index = 0; index < 7; index++) {
