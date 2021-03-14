@@ -9,10 +9,21 @@ public class StartingRoom extends Room {
     private int[] pressPlate = {1, 5};
     private boolean eventTrigger;
     private boolean doorOpen = false;
+    private String roomDescription = "Thee findeth yourself inside a dark castle. "
+            + "Thy head is pounding and feel a large bruise on top of thy head\n"
+            + "Thou try thy hardest to open the door behind thou,  yet to no avail.\n"
+            + "'tis pitch dark around thou, and thou see a torch towards the right\n"
+            + "thou should'st take it with thou";
+    ;
 
     public StartingRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
         super(exitCoordinates, items, map);
 
+    }
+
+    @Override
+    public String getRoomDescription() {
+        return roomDescription;
     }
 
     @Override
@@ -71,20 +82,13 @@ public class StartingRoom extends Room {
         }
     }
 
+
+
     @Override
     public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
-        if (this.eventTrigger) {
-            if (playerCoord == this.getExitCoordinate()[0]) {
-                thePlayer.setCurrentRoom(nextRoom[0]);
-            } else if (playerCoord == this.getExitCoordinate()[1]) {
-                thePlayer.setCurrentRoom(nextRoom[1]);
-            } else if (playerCoord == this.getExitCoordinate()[2]) {
-                thePlayer.setCurrentRoom(nextRoom[3]);
-            } else if (playerCoord == this.getExitCoordinate()[3]) {
-                thePlayer.setCurrentRoom(nextRoom[2]);
-            } else {
-                System.out.println("There is no door.");
-            }
+        int[] playerPosOnExit = {5, 3};
+        if (playerCoord[0] == 5 && playerCoord[1] == 5) {
+            thePlayer.setCurrentRoom(nextRoom[4]);
         }
     }
     public void generateLockedDoor() {

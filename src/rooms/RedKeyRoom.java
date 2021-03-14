@@ -12,12 +12,19 @@ public class RedKeyRoom extends Room {
     private int[][] exitCoordinate;
     private ArrayList<Item> itemsInRoom;
     private boolean eventTrigger;
+    private String roomDescription = "You immediately notice a lot of statues, but one pedestal seems to be missing…\n"
+            + "Each of the statues seem to be pushing on a gray plate, but this pedestal seems to be raised.";
 
     public RedKeyRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
         super(exitCoordinates, items, map);
         this.map1a = map;
         this.exitCoordinate = exitCoordinates;
         this.itemsInRoom = items;
+    }
+
+    @Override
+    public String getRoomDescription() {
+        return roomDescription;
     }
 
     @Override

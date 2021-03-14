@@ -14,6 +14,7 @@ public class Room {
     private String[][] map;
     private String lastSquare = " ";
     private Obstacle obstacle;
+    private String roomDescription;
 
 
     public Room(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
@@ -42,6 +43,9 @@ public class Room {
         return obstacle;
     }
 
+    public String getRoomDescription() {
+        return roomDescription;
+    }
 
     protected void createLayout() {
         for (int index = 1; index < 6; index++) {
@@ -72,7 +76,6 @@ public class Room {
             System.out.println();
         }
     }
-
 
     public void updatePlayerPos(int[] currentPlayerPos, int[] newPlayerPos) {
         this.getMap()[currentPlayerPos[0]][currentPlayerPos[1]] = lastSquare;

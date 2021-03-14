@@ -12,12 +12,19 @@ public class StatueRoom extends Room {
     private int[][] exitCoordinate;
     private ArrayList<Item> itemsInRoom;
     private boolean eventTrigger;
+    private String roomDescription = "You immediately spot a statue behind bars.\n"
+            + "If you could just get through the barrier somehow...";
 
     public StatueRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
         super(exitCoordinates, items, map);
         this.exitCoordinate = exitCoordinates;
         this.itemsInRoom = items;
         this.map1b = map;
+    }
+
+    @Override
+    public String getRoomDescription() {
+        return roomDescription;
     }
 
     @Override
