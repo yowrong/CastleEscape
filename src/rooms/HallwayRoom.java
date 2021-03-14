@@ -28,7 +28,9 @@ public class HallwayRoom extends Room{
         }
     }
 
-    private void populateRoom() {
+
+    @Override
+    protected void populateRoom() {
         for (int[] door : this.getExitCoordinate()) {
             this.getMap()[door[0]][door[1]] = "D";
         }

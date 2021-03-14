@@ -29,6 +29,14 @@ public class GreenKeyRoom extends Room{
     public GreenKeyRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
         super(exitCoordinates, items, map);
     }
+    @Override
+    public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
+                if (playerCoord[0] == 5 && playerCoord[1] == 1){
+                    thePlayer.setCurrentRoom(nextRoom[4]);
+                } else {
+                    System.out.println("You are not close enough to the door!");
+        }
+    }
 
     //Populates room not sure if these letters can be interacted with.
     @Override
@@ -83,6 +91,7 @@ public class GreenKeyRoom extends Room{
 
     public static void main(final String[] args) {
         int[][] exitCoord = {{5, 0}};
+        int[][] hallCoord = {{2, 1},{2, 5},{4, 1},{4, 5}};
 
         int[] itemCoord1 = {1, 5};
         String itemSword = "A sword.";
@@ -103,7 +112,7 @@ public class GreenKeyRoom extends Room{
         BlueKeyRoom testroomb = new BlueKeyRoom(exitCoord, testItemsInRoom,testMap, testObstacle);
         RedKeyRoom testroomr = new RedKeyRoom(exitCoord, testItemsInRoom, testMap);
         StatueRoom testrooms = new StatueRoom(exitCoord, testItemsInRoom, testMap);
-        HallwayRoom testroomh = new HallwayRoom(exitCoord, testItemsInRoom, testMap);
+        HallwayRoom testroomh = new HallwayRoom(hallCoord, testItemsInRoom, testMap, testObstacle);
 
 
 //        for (Item items : testItemsInRoom){
@@ -138,8 +147,13 @@ public class GreenKeyRoom extends Room{
 
 
 
-        testroomg.displayLayout();
-        testroomg.exitRoom(player1.getPlayerCoordinates(), player1, roomlist);
+        player1.getCurrentRoom().displayLayout();
+        player1.getCurrentRoom().exitRoom(player1.getPlayerCoordinates(), player1, roomlist);
+        System.out.println(player1.getCurrentRoom());
+        player1.getCurrentRoom().deleteLayout();
+        player1.getCurrentRoom().createLayout();
+        player1.getCurrentRoom().populateRoom();
+        player1.getCurrentRoom().displayLayout();
 //        System.out.println(testroom3.getItemsInRoom());
 //        for (Item items : testItemsInRoom){
 //            System.out.println(items.getItemName());
