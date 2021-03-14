@@ -52,7 +52,6 @@ public class Player {
         }
 
         else if (direction.equals("south") && !currentRoom.getMap()[playerOldPos[0] + 1][playerOldPos[1]].equals("X")) {
-
             int[] playerNewPos = {playerOldPos[0] + 1,playerOldPos[1]};
             currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
             this.getPlayerCoordinates()[0] += 1;
@@ -76,6 +75,114 @@ public class Player {
 
     }
 
+    public void playerPush(String direction) {
+        int[] playerOldPos = this.getPlayerCoordinates();
+        int[] obstacleOldPos = this.currentRoom.getObstacle().getObstacleCoordinate();
+
+        if (direction.equals("north") && !currentRoom.getMap()[playerOldPos[0] - 2][playerOldPos[1]].equals("X")) {
+            if (currentRoom.getMap()[playerOldPos[0] - 1][playerOldPos[1]].equals("O")) {
+                int[] playerNewPos = {playerOldPos[0] - 1, playerOldPos[1]};
+                int[] obstacleNewPos = {obstacleOldPos[0] - 1, obstacleOldPos[1]};
+                currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
+                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
+                this.getPlayerCoordinates()[0] -= 1;
+                this.currentRoom.getObstacle().getObstacleCoordinate()[0] -= 1;
+            }
+        }
+
+        else if (direction.equals("south") && !currentRoom.getMap()[playerOldPos[0] + 2][playerOldPos[1]].equals("X")) {
+            if (currentRoom.getMap()[playerOldPos[0] + 1][playerOldPos[1]].equals("O")) {
+                int[] playerNewPos = {playerOldPos[0] + 1, playerOldPos[1]};
+                int[] obstacleNewPos = {obstacleOldPos[0] + 1, obstacleOldPos[1]};
+                currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
+                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
+                this.getPlayerCoordinates()[0] += 1;
+                this.currentRoom.getObstacle().getObstacleCoordinate()[0] += 1;
+            }
+        }
+
+        else if (direction.equals("west") && !currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] - 2].equals("X")) {
+            if (currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] - 1].equals("O")) {
+                int[] playerNewPos = {playerOldPos[0], playerOldPos[1] - 1};
+                int[] obstacleNewPos = {obstacleOldPos[0], obstacleOldPos[1] - 1};
+                currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
+                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
+                this.getPlayerCoordinates()[1] -= 1;
+                this.currentRoom.getObstacle().getObstacleCoordinate()[1] -= 1;
+            }
+        }
+
+        else if (direction.equals("east") && !currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] + 2].equals("X")) {
+            if (currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] + 1].equals("O")) {
+                int[] playerNewPos = {playerOldPos[0], playerOldPos[1] + 1};
+                int[] obstacleNewPos = {obstacleOldPos[0], obstacleOldPos[1] + 1};
+                currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
+                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
+                this.getPlayerCoordinates()[1] += 1;
+                this.currentRoom.getObstacle().getObstacleCoordinate()[1] += 1;
+            }
+
+        }
+
+        else {
+            System.out.println("That doesn't work.");
+        }
+    }
+
+    public void playerPull(String direction) {
+        int[] playerOldPos = this.getPlayerCoordinates();
+        int[] obstacleOldPos = this.currentRoom.getObstacle().getObstacleCoordinate();
+
+        if (direction.equals("north") && !currentRoom.getMap()[playerOldPos[0] - 1][playerOldPos[1]].equals("X")) {
+            if (currentRoom.getMap()[playerOldPos[0] + 1][playerOldPos[1]].equals("O")) {
+                int[] playerNewPos = {playerOldPos[0] - 1, playerOldPos[1]};
+                int[] obstacleNewPos = {obstacleOldPos[0] - 1, obstacleOldPos[1]};
+                currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
+                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
+                this.getPlayerCoordinates()[0] -= 1;
+                this.currentRoom.getObstacle().getObstacleCoordinate()[0] -= 1;
+            }
+        }
+
+        else if (direction.equals("south") && !currentRoom.getMap()[playerOldPos[0] + 1][playerOldPos[1]].equals("X")) {
+            if (currentRoom.getMap()[playerOldPos[0] - 1][playerOldPos[1]].equals("O")) {
+                int[] playerNewPos = {playerOldPos[0] + 1, playerOldPos[1]};
+                int[] obstacleNewPos = {obstacleOldPos[0] + 1, obstacleOldPos[1]};
+                currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
+                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
+                this.getPlayerCoordinates()[0] += 1;
+                this.currentRoom.getObstacle().getObstacleCoordinate()[0] += 1;
+            }
+        }
+
+        else if (direction.equals("west") && !currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] - 1].equals("X")) {
+            if (currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] + 1].equals("O")) {
+                int[] playerNewPos = {playerOldPos[0], playerOldPos[1] - 1};
+                int[] obstacleNewPos = {obstacleOldPos[0], obstacleOldPos[1] - 1};
+                currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
+                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
+                this.getPlayerCoordinates()[1] -= 1;
+                this.currentRoom.getObstacle().getObstacleCoordinate()[1] -= 1;
+            }
+        }
+
+        else if (direction.equals("east") && !currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] + 1].equals("X")) {
+            if (currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] - 1].equals("O")) {
+                int[] playerNewPos = {playerOldPos[0], playerOldPos[1] + 1};
+                int[] obstacleNewPos = {obstacleOldPos[0], obstacleOldPos[1] + 1};
+                currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
+                currentRoom.updateObstaclePos(obstacleOldPos, obstacleNewPos);
+                this.getPlayerCoordinates()[1] += 1;
+                this.currentRoom.getObstacle().getObstacleCoordinate()[1] += 1;
+            }
+
+        }
+
+        else {
+            System.out.println("There's a wall in the way.");
+        }
+    }
+
     public void placeItem(String itemName) {
         for (Item itemInInventory : inventory) {
             if (itemName.equals(itemInInventory.getItemName())) {
@@ -88,15 +195,18 @@ public class Player {
 
     public void pickUpItem() {
         Item itemToRemove = null;
+        boolean itemExists = false;
         for (Item itemInRoom : currentRoom.getItemsInRoom()) {
             if (Arrays.equals(this.getPlayerCoordinates(), itemInRoom.getItemCoordinate())) {
                 this.getInventory().add(itemInRoom);
                 itemToRemove = itemInRoom;
-                System.out.println("Ye");
+                itemExists = true;
             }
         }
 
-        currentRoom.getItemsInRoom().remove(itemToRemove);
+        if (itemExists) {
+            currentRoom.getItemsInRoom().remove(itemToRemove);
+        }
     }
 
 //    public void openDoor() {
