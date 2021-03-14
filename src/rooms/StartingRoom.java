@@ -32,6 +32,7 @@ public class StartingRoom extends Room {
 
     protected void populateRoom() {
         // Might need to change itemsInRoom to this.itemsInRoom
+        this.StartingRoom[this.getExitCoordinate()[0][0] + 1][this.getExitCoordinate()[0][1] + 1] = "H";
         for (Item torch : itemsInRoom) {
             this.StartingRoom[torch.getItemCoordinate()[0]][torch.getItemCoordinate()[1]] = "T";
         }
@@ -47,8 +48,9 @@ public class StartingRoom extends Room {
 
         //Locked door
         this.StartingRoom[(this.getExitCoordinate()[0][0]) + 4][this.getExitCoordinate()[0][1] - 4] = "D";
+
+        //Fake player
         this.StartingRoom[(this.getExitCoordinate()[0][0]) + 4][this.getExitCoordinate()[0][1] - 3] = "P";
-        this.StartingRoom[this.getExitCoordinate()[0][0] + 1][this.getExitCoordinate()[0][1] + 1] = "H";
     }
 
 
@@ -61,15 +63,20 @@ public class StartingRoom extends Room {
             this.StartingRoom[this.getExitCoordinate()[0][0] + 1][this.getExitCoordinate()[0][1] + 1] = "H";
             if (player.getPlayerCoordinates() == torchPlace && itemInInventory.getItemName() == "Torch") {
                 //Player places item.
+
             }
         }
     }
 
 
-    public void experimentalTorchLever2(Item item) {
+    public String experimentalTorchLever2(Item item) {
 
-        if ((item.getItemName().equals("Torch")) && ((item.getItemCoordinate() == torchPlace))) {
+        if ((item.getItemName().equals("Torch")) && (item.getItemCoordinate()[0] == torchPlace[0])
+                && (item.getItemCoordinate()[1] == torchPlace[1])) {
             //if torch is placed, door opens.
+            return "Torch triggered pressure plate successfully";
+        } else {
+            return "Torch didn't trigger";
         }
     }
 
@@ -80,6 +87,8 @@ public class StartingRoom extends Room {
         Item torch = new Item(torchCoord1, itemName1, torchDesc1);
         this.getItemsInRoom().add(torch);
     }
+
+
 
 //    private void onPressPlate(Item item) {
 //        if ((item.getItemName().equals("Statue")) && (item.getItemCoordinate()[0] == this.pressPlate[0])
@@ -117,8 +126,12 @@ public class StartingRoom extends Room {
             System.out.println(items.getItemName());
         }
 
+        //Testing if player placed torch on pressure plate successfully
         int[] torchNewCoord = {1, 5};
         testItemsInRoom.get(0).setItemCoordinate(torchNewCoord);
+
+        //Prints if the pressureplate
+        System.out.println(testStartingRoom.experimentalTorchLever2(testItemsInRoom.get(0)));
         testStartingRoom.createLayout();
         testStartingRoom.populateRoom();
         testStartingRoom.displayLayout();

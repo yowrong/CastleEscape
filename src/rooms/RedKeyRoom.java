@@ -1,18 +1,17 @@
 package rooms;
 
 import theitems.Item;
-import theplayer.Player;
 
 import java.util.ArrayList;
 
-public class Room1a extends Room {
+public class RedKeyRoom extends Room {
 
     private String[][] map1a;
     private int[] pressPlate = {4, 4};
     private int[][] exitCoordinate;
     private ArrayList<Item> itemsInRoom;
 
-    public Room1a(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
+    public RedKeyRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
         super(exitCoordinates, items, map);
         this.map1a = map;
         this.exitCoordinate = exitCoordinates;
@@ -77,7 +76,7 @@ public class Room1a extends Room {
                 testMap[index][innerIndex] = "U";
             }
         }
-        Room1a testRoom1a = new Room1a(testExitCoord, testItemsInRoom, testMap);
+        RedKeyRoom testRoom1a = new RedKeyRoom(testExitCoord, testItemsInRoom, testMap);
         testRoom1a.deleteLayout();
         testRoom1a.createLayout();
 //        testRoom1a.populateRoom();
