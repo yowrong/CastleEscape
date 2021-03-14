@@ -20,7 +20,7 @@ public class GreenKeyRoom extends Room{
 //    private String keyDesc = "It's a green key.";
     private int[] rope = {1, 1};
     private int[] key = {3, 1};
-    private int[] spot1 = {2, 1};
+    private int[] spot1 = {1, 2};
     private int[] spot2 = {2, 2};
     private int[] spot3 = {1, 5};
 
@@ -38,6 +38,20 @@ public class GreenKeyRoom extends Room{
                 this.getMap()[items.getItemCoordinate()[0]][items.getItemCoordinate()[1]] = "S";
             }
         }
+        System.out.println("In the room you see a sword, and a rope attached to the ceiling with a key tied to the end of it.");
+    }
+    //Supposed to generate a key if player coordinate and player inventory contains a sword.
+    protected void cutRope(Player thePlayer) {
+
+        System.out.println("You swing your sword and cut the rope.");
+        for (Item itemInventory : thePlayer.getInventory()) {
+            if ((itemInventory.getItemName().equals("A sword."))
+                    && ((Arrays.equals(thePlayer.getPlayerCoordinates(),spot1))
+                    || (Arrays.equals(thePlayer.getPlayerCoordinates(),spot2))
+                    || (Arrays.equals(thePlayer.getPlayerCoordinates(),spot3)))){
+                generateGreenKey();
+            }
+        }
     }
 
     private void generateGreenKey() {
@@ -49,6 +63,7 @@ public class GreenKeyRoom extends Room{
             }
         }
         this.getMap()[rope[0]][rope[1]] = " ";
+        System.out.println("The key drops to the floor, and lands with a \"tink\".");
     }
 
     //Layout for room.
@@ -61,19 +76,6 @@ public class GreenKeyRoom extends Room{
                 }
             }
         }
-    }
-
-    //Supposed to generate a key if player coordinate and player inventory contains a sword.
-    protected void cutRope(Player thePlayer) {
-
-        for (Item itemInventory : thePlayer.getInventory()) {
-            if ((itemInventory.getItemName().equals("A sword."))
-                    && ((Arrays.equals(thePlayer.getPlayerCoordinates(),spot1))
-                    || (Arrays.equals(thePlayer.getPlayerCoordinates(),spot2))
-                    || (Arrays.equals(thePlayer.getPlayerCoordinates(),spot3)))){
-                    generateGreenKey();
-                }
-            }
     }
 
 
@@ -111,11 +113,9 @@ public class GreenKeyRoom extends Room{
         player1.playerMove("west");
         player1.playerMove("west");
         player1.playerMove("west");
-        player1.playerMove("south");
-        player1.playerMove("west");
-//        System.out.println(player1.getInventory().get(0).getItemName());
-//        System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
-//        testroom3.cutRope(player1);
+        System.out.println(player1.getInventory().get(0).getItemName());
+        System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
+        testroom3.cutRope(player1);
 
 
         testroom3.displayLayout();
