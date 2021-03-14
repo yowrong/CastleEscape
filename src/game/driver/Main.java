@@ -15,7 +15,7 @@ public class Main {
         int[] blueRmObsCoord = {1, 4};
         ArrayList<Item> blueRmItems = new ArrayList<>();
 
-        int[] playerCoord = {blueRmExitCoord[0][0], blueRmExitCoord[0][1]};
+        int[] playerCoord = {blueRmExitCoord[0][0], blueRmExitCoord[0][1]-1};
 
         String[][] map = new String[7][7];
         for (int index = 0; index < 7; index++) {
@@ -23,12 +23,14 @@ public class Main {
                 map[index][innerIndex] = "U";
             }
         }
-        Obstacle blueRmObstacle = new Obstacle("Crate", "A moveable crate", blueRmObsCoord);
+        Obstacle blueRmObstacle = new Obstacle("Crate", "A movable crate", blueRmObsCoord);
 
         BlueKeyRoom blueKeyRoom = new BlueKeyRoom(blueRmExitCoord, blueRmItems, map, blueRmObstacle);
         Player player = new Player("Player", blueKeyRoom, playerCoord);
+        System.out.println(player.getCurrentRoom());
+        player.playerMove("east");
 
-        //----------------------------
+
 
         int[][] startingRoomExitCoord = {{0, 4}};
         ArrayList<Item> startingRoomItemsInRoom = new ArrayList<>();
@@ -40,7 +42,8 @@ public class Main {
         }
         StartingRoom startingRoom = new StartingRoom(startingRoomExitCoord, startingRoomItemsInRoom, startingRoomMap);
 
-
+        player.setCurrentRoom(startingRoom);
+        System.out.println(player.getCurrentRoom());
 
 
         // write your code here

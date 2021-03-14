@@ -64,18 +64,18 @@ public class Room {
 
 
     public void updatePlayerPos(int[] currentPlayerPos, int[] newPlayerPos) {
-        this.map[currentPlayerPos[0]][currentPlayerPos[1]] = " ";
-        this.map[newPlayerPos[0]][newPlayerPos[1]] = "P";
+        this.getMap()[currentPlayerPos[0]][currentPlayerPos[1]] = " ";
+        this.getMap()[newPlayerPos[0]][newPlayerPos[1]] = "P";
     }
 
     public void updateItemPos(int[] currentItemPos, int[] newItemPos) {
-        this.map[currentItemPos[0]][currentItemPos[1]] = " ";
-        this.map[newItemPos[0]][newItemPos[1]] = "i";
+        this.getMap()[currentItemPos[0]][currentItemPos[1]] = " ";
+        this.getMap()[newItemPos[0]][newItemPos[1]] = "i";
     }
 
     public void updateObstaclePos(int[] currentObstaclePos, int[] newObstaclePos) {
-        this.map[currentObstaclePos[0]][currentObstaclePos[1]] = " ";
-        this.map[newObstaclePos[0]][newObstaclePos[1]] = "O";
+        this.getMap()[currentObstaclePos[0]][currentObstaclePos[1]] = " ";
+        this.getMap()[newObstaclePos[0]][newObstaclePos[1]] = "O";
     }
 
     public void addItemToRoom(Item itemToDrop, int[] currentPosition) {
@@ -99,13 +99,37 @@ public class Room {
 //
 //    }
 
-//    private void playerExitsRoom(int[] playerCoord, Player thePlayer) {
+    //Room[] = {blue, green, red, statue, hallway, starting}
+
+    private void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
+        for (int i = 0; i < this.getExitCoordinate().length; i++) {
+            for (int j = 0; j < this.getExitCoordinate()[i].length; j++) {
+                if ((Math.abs(playerCoord[0] - this.getExitCoordinate()[i][j]) == 1
+                        && Math.abs(playerCoord[1] - this.getExitCoordinate()[i][j]) == 0)
+                        || (Math.abs(playerCoord[0] - this.getExitCoordinate()[i][j]) == 0
+                        && Math.abs(playerCoord[1] - this.getExitCoordinate()[i][j]) == 1)) {
+                    if (Arrays.equals(this.getExitCoordinate()[i], new int[]{2, 1})) {
+                        thePlayer.setCurrentRoom(nextRoom[0]);
+                    } else if (Arrays.equals(this.getExitCoordinate()[i], new int[]{2, 5})) {
+                        thePlayer.setCurrentRoom(nextRoom[1]);
+                    } else if (Arrays.equals(this.getExitCoordinate()[i], new int[]{4, 5})) {
+                        thePlayer.setCurrentRoom(nextRoom[2]);
+                    } else if (Arrays.equals(this.getExitCoordinate()[i], new int[]{4, 1})) {
+                        thePlayer.setCurrentRoom(nextRoom[3]);
+                    } else {
+                        thePlayer.setCurrentRoom(nextRoom[4]);
+                    }
+                } else {
+                    System.out.println("You are not close enough to the door!");
+                }
+            }
+        }
+    }
 //        if (playerCoord == this.exitCoordinate[0]) {
 //            thePlayer.setCurrentRoom();
 //            deleteLayout();
 //            newRoom.createLayout();
 //        }
-//    }
 
 
     public static void main(final String[] args) {

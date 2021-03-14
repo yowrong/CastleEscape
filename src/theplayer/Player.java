@@ -1,5 +1,6 @@
 package theplayer;
 
+import rooms.HallwayRoom;
 import rooms.Room;
 import theitems.Item;
 
@@ -41,31 +42,36 @@ public class Player {
     }
 
     public void playerMove(String direction) {
-        int[] playerOldPos = this.playerCoordinates;
+        int[] playerOldPos = this.getPlayerCoordinates();
 
         if (direction.equals("north") && !currentRoom.getMap()[playerOldPos[0] - 1][playerOldPos[1]].equals("X")) {
-            this.playerCoordinates[0] -= 1;
-            currentRoom.updatePlayerPos(playerOldPos, this.playerCoordinates);
+            int[] playerNewPos = {playerOldPos[0] - 1,playerOldPos[1]};
+            currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
+            this.getPlayerCoordinates()[0] -= 1;
         }
 
         else if (direction.equals("south") && !currentRoom.getMap()[playerOldPos[0] + 1][playerOldPos[1]].equals("X")) {
-            this.playerCoordinates[0] += 1;
-            currentRoom.updatePlayerPos(playerOldPos, this.playerCoordinates);
+            int[] playerNewPos = {playerOldPos[0] + 1,playerOldPos[1]};
+            currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
+            this.getPlayerCoordinates()[0] += 1;
         }
 
         else if (direction.equals("west") && !currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] - 1].equals("X")) {
-            this.playerCoordinates[1] -= 1;
-            currentRoom.updatePlayerPos(playerOldPos, this.playerCoordinates);
+            int[] playerNewPos = {playerOldPos[0],playerOldPos[1] - 1};
+            currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
+            this.getPlayerCoordinates()[1] -= 1;
         }
 
         else if (direction.equals("east") && !currentRoom.getMap()[playerOldPos[0]][playerOldPos[1] + 1].equals("X")) {
-            this.playerCoordinates[1] += 1;
-            currentRoom.updatePlayerPos(playerOldPos, this.playerCoordinates);
+            int[] playerNewPos = {playerOldPos[0],playerOldPos[1] + 1};
+            currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
+            this.getPlayerCoordinates()[1] += 1;
         }
 
         else {
             System.out.println("There's a wall there");
         }
+
     }
 
     public void placeItem(String itemName) {
@@ -90,4 +96,18 @@ public class Player {
 
         currentRoom.getItemsInRoom().remove(itemToRemove);
     }
+
+//    public void openDoor() {
+//        for (int i = 0; i < currentRoom.getExitCoordinate().length; i++) {
+//            for (int j = 0; j < currentRoom.getExitCoordinate()[i].length; j++) {
+//                if ((Math.abs(this.getPlayerCoordinates()[0] - currentRoom.getExitCoordinate()[i][j]) == 1
+//                    && Math.abs(this.getPlayerCoordinates()[1] - currentRoom.getExitCoordinate()[i][j]) == 0)
+//                    || (Math.abs(this.getPlayerCoordinates()[0] - currentRoom.getExitCoordinate()[i][j]) == 0
+//                    && Math.abs(this.getPlayerCoordinates()[1] - currentRoom.getExitCoordinate()[i][j]) == 1)) {
+//                    System.out.println("You opened the door and enter the new room");
+//                    this.setCurrentRoom()
+//                }
+//            }
+//        }
+//    }
 }
