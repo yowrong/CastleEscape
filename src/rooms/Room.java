@@ -12,7 +12,9 @@ public class Room {
     private int[][] exitCoordinate;
     private ArrayList<Item> itemsInRoom;
     private String[][] map;
+    private String lastSquare = " ";
     private Obstacle obstacle;
+
 
     public Room(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
         this.exitCoordinate = exitCoordinates;
@@ -73,8 +75,17 @@ public class Room {
 
 
     public void updatePlayerPos(int[] currentPlayerPos, int[] newPlayerPos) {
-        this.getMap()[currentPlayerPos[0]][currentPlayerPos[1]] = " ";
+        this.getMap()[currentPlayerPos[0]][currentPlayerPos[1]] = lastSquare;
+        lastSquare = this.getMap()[newPlayerPos[0]][newPlayerPos[1]];
         this.getMap()[newPlayerPos[0]][newPlayerPos[1]] = "P";
+    }
+
+    public String getLastSquare() {
+        return lastSquare;
+    }
+
+    public void setLastSquare(String lastSquare) {
+        this.lastSquare = lastSquare;
     }
 
     public void updateItemPos(int[] currentItemPos, int[] newItemPos) {
