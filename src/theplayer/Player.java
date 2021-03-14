@@ -4,6 +4,7 @@ import rooms.Room;
 import theitems.Item;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Player {
 
@@ -72,7 +73,7 @@ public class Player {
 
     public void pickUpItem() {
         for (Item itemInRoom : currentRoom.getItemsInRoom()) {
-            if (this.playerCoordinates == itemInRoom.getItemCoordinate()) {
+            if (Arrays.asList(this.playerCoordinates).equals(itemInRoom.getItemCoordinate())) {
                 this.getInventory().add(itemInRoom);
                 currentRoom.getItemsInRoom().remove(itemInRoom);
             }
