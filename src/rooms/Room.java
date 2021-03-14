@@ -101,7 +101,7 @@ public class Room {
 
     //Room[] = {blue, green, red, statue, hallway, starting}
 
-    private void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
+    public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
         for (int i = 0; i < this.getExitCoordinate().length; i++) {
             for (int j = 0; j < this.getExitCoordinate()[i].length; j++) {
                 if ((Math.abs(playerCoord[0] - this.getExitCoordinate()[i][j]) == 1
