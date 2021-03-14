@@ -69,9 +69,9 @@ public class Main {
         Player thePlayer = new Player("Player 1", listRooms, spawnCoord);
         thePlayer.setCurrentRoom(startingRoom);
 
-//        while(!victory) {
-//
-//        }
+        while(!victory) {
+
+        }
 
 
 
