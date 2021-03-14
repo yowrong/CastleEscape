@@ -15,10 +15,19 @@ public class BlueKeyRoom extends Room {
     private int[] table = {5, 1};
     private boolean wallsOpened = false;
     private boolean eventTrigger;
+    private String roomDescription = "Thou enter a dimly lit room\n.There seems to be a table at "
+            + "the back of the room yet thou just canst not see what it is.\n"
+            + "Ere thou compose a move, thou notice a most loose tile  in front of thou.\n"
+            + "It looks like it could be pushed in\n.There seems to be a couple boxes towards the north.";
 
     public BlueKeyRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map, Obstacle obstacleInRoom) {
         super(exitCoordinates, items, map);
         this.obstacleInRoom = obstacleInRoom;
+    }
+
+    @Override
+    public String getRoomDescription() {
+        return roomDescription;
     }
 
     @Override

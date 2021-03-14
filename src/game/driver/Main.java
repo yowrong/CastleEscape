@@ -15,6 +15,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
+        boolean victory = false;
+
         int[][] blueExitCoord = {{4, 6}};
         int[][] greenExitCoord = {{5, 0}};
         int[][] redExitCoord = {{1, 0}};
@@ -67,7 +69,9 @@ public class Main {
         Player thePlayer = new Player("Player 1", listRooms, spawnCoord);
         thePlayer.setCurrentRoom(startingRoom);
 
-
+//        while(!victory) {
+//
+//        }
 
 
 

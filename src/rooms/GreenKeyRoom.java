@@ -24,11 +24,20 @@ public class GreenKeyRoom extends Room{
     private int[] spot1 = {1, 2};
     private int[] spot2 = {2, 2};
     private int[] spot3 = {1, 5};
+    private String roomDescription = "Thou see a rope pulley system bearing a key over the ceiling.\n"
+            + "The pulley seems most unstable. Maybe thou could disrupt it somehow.";
+
 
     //Constuctor for room3.
     public GreenKeyRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
         super(exitCoordinates, items, map);
     }
+
+    @Override
+    public String getRoomDescription() {
+        return roomDescription;
+    }
+
     @Override
     public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
                 if (playerCoord[0] == 5 && playerCoord[1] == 1){

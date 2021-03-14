@@ -13,11 +13,19 @@ public class HallwayRoom extends Room{
     private int[] pressPlate = {3, 3};
     private boolean barsRetracted = false;
     private boolean eventTrigger = false;
+    private String roomDescription = "After entering the hallway, the torches light up in  blue flames front of thou"
+            + "The door behind you disappears and five new doors appear with metal bars blocking each exit"
+            + "You notice there is a crate on the ground, seemingly out of place.";
 
     public HallwayRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map, Obstacle crate) {
         super(exitCoordinates, items, map);
         this.escapeCoordinate = new int[]{0, 3};
         this.crate = crate;
+    }
+
+    @Override
+    public String getRoomDescription() {
+        return roomDescription;
     }
 
     @Override
