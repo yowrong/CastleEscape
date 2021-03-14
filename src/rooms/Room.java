@@ -18,6 +18,9 @@ public class Room {
         this.map = map;
     }
 
+    protected void populateRoom() {
+    }
+
 
     public ArrayList<Item> getItemsInRoom() {
         return itemsInRoom;

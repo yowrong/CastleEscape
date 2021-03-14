@@ -31,7 +31,8 @@ public class BlueKeyRoom extends Room {
     }
 
     //populateRoom creates the room
-    private void populateRoom() {
+    @Override
+    protected void populateRoom() {
 //        for (Item item : this.getItemsInRoom()) {
 //            this.getMap()[item.getItemCoordinate()[0]][item.getItemCoordinate()[1]] = "?";
 //        }
@@ -116,19 +117,19 @@ public class BlueKeyRoom extends Room {
         }
         BlueKeyRoom testRoom = new BlueKeyRoom(testExitCoord, testItemsInRoom, testMap, testObstacle);
 
-        Player testPlayer = new Player("Player", testRoom, testPlayCoord);
+//        Player testPlayer = new Player("Player", testRoom, testPlayCoord);
 
-        testRoom.deleteLayout();
-        testRoom.createLayout();
-        testRoom.populateRoom();
-        testRoom.displayLayout();
-
-        testRoom.jewelSort(testPlayer);
-        testRoom.displayLayout();
-        testPlayer.pickUpItem();
-        for (Item items : testItemsInRoom) {
-            System.out.println(items.getItemName());
-        }
+//        testRoom.deleteLayout();
+//        testRoom.createLayout();
+//        testRoom.populateRoom();
+//        testRoom.displayLayout();
+//
+//        testRoom.jewelSort(testPlayer);
+//        testRoom.displayLayout();
+//        testPlayer.pickUpItem();
+//        for (Item items : testItemsInRoom) {
+//            System.out.println(items.getItemName());
+//        }
 
 
 
@@ -142,10 +143,10 @@ public class BlueKeyRoom extends Room {
 //            System.out.println(Arrays.toString(items.getItemCoordinate()));
 //        }
 //
-        System.out.println(testPlayer.getInventory().size());
-        for (Item items : testPlayer.getInventory()) {
-            System.out.println(items.getItemName());
-        }
+//        System.out.println(testPlayer.getInventory().size());
+//        for (Item items : testPlayer.getInventory()) {
+//            System.out.println(items.getItemName());
+//        }
 //
 //
 //        for (Item items : testItemsInRoom) {

@@ -24,7 +24,7 @@ public class StartingRoom extends Room {
             }
         }
     }
-
+    @Override
     protected void populateRoom() {
         // Might need to change itemsInRoom to this.itemsInRoom
         this.getMap()[this.getExitCoordinate()[0][0] + 1][this.getExitCoordinate()[0][1] + 1] = "H";
