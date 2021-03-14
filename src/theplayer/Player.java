@@ -17,6 +17,7 @@ public class Player {
         this.playerName = playerName;
         this.currentRoom = currentRoom;
         this.playerCoordinates = playerCoordinates;
+        this.inventory = new ArrayList<>();
     }
 
     public Room getCurrentRoom() {
@@ -28,7 +29,7 @@ public class Player {
     }
 
     public ArrayList<Item> getInventory() {
-        return inventory;
+        return this.inventory;
     }
 
     public int[] getPlayerCoordinates() {
@@ -72,11 +73,15 @@ public class Player {
     }
 
     public void pickUpItem() {
+        Item itemToRemove = null;
         for (Item itemInRoom : currentRoom.getItemsInRoom()) {
-            if (Arrays.asList(this.playerCoordinates).equals(itemInRoom.getItemCoordinate())) {
+            if (Arrays.equals(this.getPlayerCoordinates(), itemInRoom.getItemCoordinate())) {
                 this.getInventory().add(itemInRoom);
-                currentRoom.getItemsInRoom().remove(itemInRoom);
+                itemToRemove = itemInRoom;
+                System.out.println("Ye");
             }
         }
+
+        currentRoom.getItemsInRoom().remove(itemToRemove);
     }
 }

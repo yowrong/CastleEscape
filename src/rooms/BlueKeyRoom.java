@@ -39,11 +39,14 @@ public class BlueKeyRoom extends Room {
         this.getMap()[pressPlate[0]][pressPlate[1]] = "*";
     }
 
-    public void onPressPlate(Player player) {
+    //onPressPlate when the player or obstacle is on the pressure plate, the table item becomes accessible
+    public boolean onPressPlate(Player player) {
         if (player.getPlayerCoordinates() == pressPlate || obstacleInRoom.getObstacleCoordinate() == pressPlate) {
             System.out.println("You see a table with jewels scattered on top at the back of the room");
+            return true;
         } else {
             System.out.println("There's a table at the back of the room, but you can't make out what is on the table.");
+            return false;
         }
     }
 
@@ -54,6 +57,7 @@ public class BlueKeyRoom extends Room {
         this.getMap()[blueKeyCoord[0]][blueKeyCoord[1]] = "!";
     }
 
+    //jewelSort is a sequence puzzle triggered when the player is in the adjacent position to the table item
     public void jewelSort(Player player) {
         int[] tablePos = new int[2];
         String chestSlots = "ruby emerald sapphire";
@@ -113,12 +117,29 @@ public class BlueKeyRoom extends Room {
 
         testRoom.jewelSort(testPlayer);
         testRoom.displayLayout();
-//        testPlayer.pickUpItem();
-
+        testPlayer.pickUpItem();
         for (Item items : testItemsInRoom) {
             System.out.println(items.getItemName());
         }
 
+
+
+
+
+//        for (Item items : testItemsInRoom) {
+//            System.out.println(items.getItemName());
+//        }
+//
+//        for (Item items : testItemsInRoom) {
+//            System.out.println(Arrays.toString(items.getItemCoordinate()));
+//        }
+//
+        System.out.println(testPlayer.getInventory().size());
+        for (Item items : testPlayer.getInventory()) {
+            System.out.println(items.getItemName());
+        }
+//
+//
 //        for (Item items : testItemsInRoom) {
 //            System.out.println(items.getItemName());
 //        }
