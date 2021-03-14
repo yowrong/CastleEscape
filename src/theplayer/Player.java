@@ -11,12 +11,13 @@ public class Player {
 
     private String playerName;
     private Room currentRoom;
+    private Room[] listRooms;
     private ArrayList<Item> inventory;
     private int[] playerCoordinates;
 
-    public Player(String playerName, Room currentRoom, int[] playerCoordinates) {
+    public Player(String playerName, Room[] listRooms, int[] playerCoordinates) {
         this.playerName = playerName;
-        this.currentRoom = currentRoom;
+        this.listRooms = listRooms;
         this.playerCoordinates = playerCoordinates;
         this.inventory = new ArrayList<>();
     }
@@ -51,6 +52,7 @@ public class Player {
         }
 
         else if (direction.equals("south") && !currentRoom.getMap()[playerOldPos[0] + 1][playerOldPos[1]].equals("X")) {
+
             int[] playerNewPos = {playerOldPos[0] + 1,playerOldPos[1]};
             currentRoom.updatePlayerPos(playerOldPos, playerNewPos);
             this.getPlayerCoordinates()[0] += 1;
