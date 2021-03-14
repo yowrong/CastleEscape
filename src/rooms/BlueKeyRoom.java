@@ -29,6 +29,7 @@ public class BlueKeyRoom extends Room {
         }
     }
 
+    //populateRoom creates the room
     private void populateRoom() {
         for (Item item : this.getItemsInRoom()) {
             this.getMap()[item.getItemCoordinate()[0]][item.getItemCoordinate()[1]] = "?";
@@ -38,6 +39,14 @@ public class BlueKeyRoom extends Room {
         this.getMap()[obstacleInRoom.getObstacleCoordinate()[0]][obstacleInRoom.getObstacleCoordinate()[1]] = "O";
         this.getMap()[pressPlate[0]][pressPlate[1]] = "*";
     }
+
+//    @Override
+//    public void checkEventTriggers(boolean onPressPlate) {
+//        boolean eventTrigger = false;
+//        if (onPressPlate) {
+//            eventTrigger = true;
+//        }
+//    }
 
     //onPressPlate when the player or obstacle is on the pressure plate, the table item becomes accessible
     public boolean onPressPlate(Player player) {
@@ -50,6 +59,7 @@ public class BlueKeyRoom extends Room {
         }
     }
 
+    //generateBigKey generates the Big Blue Key once the player has solved the puzzle
     private void generateBigKey(Player player) {
         int[] blueKeyCoord = {player.getPlayerCoordinates()[0],player.getPlayerCoordinates()[1]};
         Item bigBlueKey = new Item(blueKeyCoord, "Big Blue Key", "A large shiny blue key");
