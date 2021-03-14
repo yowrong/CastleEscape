@@ -176,13 +176,21 @@ public class GreenKeyRoom extends Room{
         player1.getCurrentRoom().displayLayout();
         System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
         player1.playerPull("south");
-        System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
+        player1.playerPull("south");
+        player1.playerMove("west");
+        player1.playerMove("north");
+        player1.getCurrentRoom().checkEventTriggers();
+        player1.playerPull("west");
+        player1.playerMove("south");
+        player1.getCurrentRoom().checkEventTriggers();
+        player1.playerMove("west");
+        player1.getCurrentRoom().exitRoom(player1.getPlayerCoordinates(), player1, roomlist);
+        player1.getCurrentRoom().deleteLayout();
+        player1.getCurrentRoom().createLayout();
         player1.getCurrentRoom().populateRoom(player1);
         player1.getCurrentRoom().displayLayout();
-//        player1.playerMove("west");
-//        player1.playerMove("west");
-        player1.getCurrentRoom().displayLayout();
-        System.out.println(player1.getCurrentRoom().getObstacle().getObstacleName());
+        System.out.println(player1.getCurrentRoom());
+        System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
 
 //        System.out.println(testroom3.getItemsInRoom());
 //        for (Item items : testItemsInRoom){
