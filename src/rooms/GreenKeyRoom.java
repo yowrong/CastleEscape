@@ -20,6 +20,7 @@ public class GreenKeyRoom extends Room{
 //    private String testSwordDesc = "It's sharp.";
 //    private String keyDesc = "It's a green key.";
     private int[] rope = {1, 1};
+    private int[] spawn = {5, 1};
     private int[] key = {3, 1};
     private int[] spot1 = {1, 2};
     private int[] spot2 = {2, 2};
@@ -31,8 +32,10 @@ public class GreenKeyRoom extends Room{
     }
     @Override
     public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
+                int[] var = {2, 4};
                 if (playerCoord[0] == 5 && playerCoord[1] == 1){
                     thePlayer.setCurrentRoom(nextRoom[4]);
+                    thePlayer.setPlayerCoordinates(var);
                 } else {
                     System.out.println("You are not close enough to the door!");
         }
@@ -65,16 +68,18 @@ public class GreenKeyRoom extends Room{
     }
 
     private void generateGreenKey() {
-        Item itemGreenKey = new Item(itemkeyCoord, "Big Green Key", "It's a big green key.");
+        Item itemGreenKey = new Item(key, "Big Green Key", "It's a big green key.");
         this.getItemsInRoom().add(itemGreenKey);
         for (Item itemInRoom : getItemsInRoom()) {
             if (itemInRoom.getItemName().equals("Big Green Key")) {
                 this.getMap()[key[0]][key[1]] = "&";
+                System.out.println(Arrays.toString(itemGreenKey.getItemCoordinate()));
             }
         }
         this.getMap()[rope[0]][rope[1]] = " ";
         System.out.println("The key drops to the floor, and lands with a \"tink\".");
     }
+
 
     //Layout for room.
     @Override
@@ -137,26 +142,27 @@ public class GreenKeyRoom extends Room{
         testroomg.cutRope(player1);
         player1.playerMove("west");
         player1.playerMove("south");
-//        player1.playerMove("south");
+        player1.playerMove("south");
         player1.pickUpItem();
-//        player1.playerMove("south");
-//        player1.playerMove("south");
-        System.out.println(testroomg.getItemsInRoom());
+        player1.playerMove("south");
+        player1.playerMove("south");
+//        System.out.println(testroomg.getItemsInRoom());
 //        System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
 //        testroom3.cutRope(player1);
-        System.out.println(player1.getInventory().get(0).getItemName());
+//        System.out.println(item);
+        System.out.println(player1.getInventory().get(1).getItemName());
         System.out.println(Arrays.deepToString(testroomg.getExitCoordinate()));
         System.out.println(Arrays.toString(player1.getPlayerCoordinates()));
 
 
 
         player1.getCurrentRoom().displayLayout();
-//        player1.getCurrentRoom().exitRoom(player1.getPlayerCoordinates(), player1, roomlist);
-//        System.out.println(player1.getCurrentRoom());
-//        player1.getCurrentRoom().deleteLayout();
-//        player1.getCurrentRoom().createLayout();
-//        player1.getCurrentRoom().populateRoom();
-//        player1.getCurrentRoom().displayLayout();
+        player1.getCurrentRoom().exitRoom(player1.getPlayerCoordinates(), player1, roomlist);
+        System.out.println(player1.getCurrentRoom());
+        player1.getCurrentRoom().deleteLayout();
+        player1.getCurrentRoom().createLayout();
+        player1.getCurrentRoom().populateRoom();
+        player1.getCurrentRoom().displayLayout();
 
 //        System.out.println(testroom3.getItemsInRoom());
 //        for (Item items : testItemsInRoom){

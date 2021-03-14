@@ -34,6 +34,10 @@ public class Player {
         return this.inventory;
     }
 
+    public void setPlayerCoordinates(int[] playerCoordinates) {
+        this.playerCoordinates = playerCoordinates;
+    }
+
     public int[] getPlayerCoordinates() {
         return playerCoordinates;
     }
@@ -202,11 +206,13 @@ public class Player {
                 this.getInventory().add(itemInRoom);
                 itemToRemove = itemInRoom;
                 itemExists = true;
+                System.out.println("ye");
             }
         }
 
         if (itemExists) {
             currentRoom.getItemsInRoom().remove(itemToRemove);
+            System.out.println("ye");
         }
     }
 
