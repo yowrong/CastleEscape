@@ -154,6 +154,7 @@ public class GreenKeyRoom extends Room{
         player1.getCurrentRoom().createLayout();
         player1.getCurrentRoom().populateRoom();
         player1.getCurrentRoom().displayLayout();
+
 //        System.out.println(testroom3.getItemsInRoom());
 //        for (Item items : testItemsInRoom){
 //            System.out.println(items.getItemName());
