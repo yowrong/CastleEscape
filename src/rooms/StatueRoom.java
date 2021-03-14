@@ -59,7 +59,7 @@ public class StatueRoom extends Room {
         int[] keyCoord = {5, 5};
         ArrayList<Item> testItemsInRoom = new ArrayList<Item>();
         String keyName = "Small key";
-        String keyDesc = "Opens a lock";
+        String keyDesc = "This may open a barrier";
         Item key = new Item(keyCoord, keyName, keyDesc);
         int[][] testExitCoord = {{1, 6}};
 
