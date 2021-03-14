@@ -22,25 +22,22 @@ public class GreenKeyRoom extends Room{
     private int[] key = {3, 1};
     private int[] spot1 = {1, 2};
     private int[] spot2 = {2, 2};
-    private int[] spot3 = {2, 1};
+    private int[] spot3 = {1, 5};
 
     //Constuctor for room3.
     public GreenKeyRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
         super(exitCoordinates, items, map);
-        this.exitCoordinate = exitCoordinates;
-        this.itemsInRoom = items;
-        this.map3 = map;
     }
 
     //Populates room not sure if these letters can be interacted with.
     protected void populateRoom (){
-        for (Item items : getItemsInRoom()) {
-            if (!items.getItemName().equals("Big Green Key")) {
-                this.map3[items.getItemCoordinate()[0]][items.getItemCoordinate()[1]] = "S";
-            }
-        }
         this.getMap()[this.getExitCoordinate()[0][0]][this.getExitCoordinate()[0][1]] = "D";
         this.getMap()[rope[0]][rope[1]] = "R";
+        for (Item items : getItemsInRoom()) {
+            if (!items.getItemName().equals("Big Green Key")) {
+                this.getMap()[items.getItemCoordinate()[0]][items.getItemCoordinate()[1]] = "S";
+            }
+        }
     }
 
     private void generateGreenKey() {
@@ -60,7 +57,7 @@ public class GreenKeyRoom extends Room{
         for (int index = 1; index < 6; index++) {
             for (int innerIndex = 1; innerIndex < 6; innerIndex++) {
                 if (index < 3 || innerIndex < 3) {
-                    this.map3[index][innerIndex] = " ";
+                    this.getMap()[index][innerIndex] = " ";
                 }
             }
         }
@@ -106,9 +103,13 @@ public class GreenKeyRoom extends Room{
             System.out.println(items.getItemName());
         }
         System.out.println("after");
+        Player player1 = new Player("Sup",testroom3, new int[]{1, 5});
+        player1.pickUpItem();
+        System.out.println(player1.getInventory());
+//        testroom3.cutRope(player1);
         //what map should look like after key generated, the S needs to be able to be taken first though.
-        testroom3.generateGreenKey();
         testroom3.displayLayout();
+        System.out.println(testroom3.getItemsInRoom());
 
         for (Item items : testItemsInRoom){
             System.out.println(items.getItemName());
