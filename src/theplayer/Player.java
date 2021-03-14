@@ -214,6 +214,10 @@ public class Player {
         }
     }
 
+    public void userAction(String userInput) {
+
+    }
+
 //    public void openDoor() {
 //        for (int i = 0; i < currentRoom.getExitCoordinate().length; i++) {
 //            for (int j = 0; j < currentRoom.getExitCoordinate()[i].length; j++) {
