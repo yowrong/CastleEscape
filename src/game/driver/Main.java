@@ -160,6 +160,6 @@ public class Main {
         // first fill with X
         // place whitespace
         // add symbols
-        
+
     }
 }
