@@ -28,7 +28,7 @@ public class HallwayRoom extends Room{
         return roomDescription;
     }
 
-    public Obstacle getCrate() {
+    public Obstacle getObstacle() {
         return crate;
     }
 
