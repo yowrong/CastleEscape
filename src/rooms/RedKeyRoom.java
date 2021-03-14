@@ -11,6 +11,7 @@ public class RedKeyRoom extends Room {
     private int[] pressPlate = {4, 4};
     private int[][] exitCoordinate;
     private ArrayList<Item> itemsInRoom;
+    private boolean eventTrigger;
 
     public RedKeyRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map) {
         super(exitCoordinates, items, map);
@@ -55,32 +56,43 @@ public class RedKeyRoom extends Room {
     }
 
     // press plate triggers when statue placed
-    private void onPressPlate(Item item) {
-            if ((item.getItemName().equals("Statue")) && (item.getItemCoordinate()[0] == this.pressPlate[0])
-                    && (item.getItemCoordinate()[1] == this.pressPlate[1])) {
-                generateBigKey();
-            }
-            this.map1a[4][4] = "i";
-    }
+//    private void onPressPlate(Item item) {
+//            if ((item.getItemName().equals("Statue")) && (item.getItemCoordinate()[0] == this.pressPlate[0])
+//                    && (item.getItemCoordinate()[1] == this.pressPlate[1])) {
+//                generateBigKey();
+//            }
+//            this.map1a[4][4] = "i";
+//    }
 
     // trying out new plate trigger method for checkEventTriggers
-    private boolean isOnPressPlate(Player thePlayer) {
-        for (Item items : thePlayer.getInventory()) {
-            if ((items.getItemName().equals("Statue")) && (thePlayer.getPlayerCoordinates()[0] == this.pressPlate[0])
-                    && (thePlayer.getPlayerCoordinates()[1] == this.pressPlate[1] - 1)) {
-                this.map1a[4][4] = "i";
-                return true;
-            }
+    private boolean isOnPressPlate() {
+        if (this.map1a[4][4].equals("i")) {
+            generateBigKey();
+            return true;
+        } else {
+            return false;
         }
-        return false;
+
+    }
+//        for (Item items : thePlayer.getInventory()) {
+//            if ((items.getItemName().equals("Statue")) && (thePlayer.getPlayerCoordinates()[0] == this.pressPlate[0])
+//                    && (thePlayer.getPlayerCoordinates()[1] == this.pressPlate[1] - 1)) {
+//                this.map1a[4][4] = "i";
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
+
+    public void checkEventTriggers() {
+        this.eventTrigger = this.isOnPressPlate();
     }
 
-
-    // checkEventTrigger needs player parameter???
-    public void checkEventTriggers(Player thePlayer) {
-        boolean eventTrigger = false;
-        if (this.isOnPressPlate(thePlayer)) {
-            eventTrigger = true;
+    @Override
+    public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
+        if ((playerCoord[0] == 1) && (playerCoord[1] == 1)) {
+            thePlayer.setCurrentRoom(nextRoom[4]);
         }
     }
 
@@ -114,7 +126,7 @@ public class RedKeyRoom extends Room {
 
         testRoom1a.deleteLayout();
         testRoom1a.createLayout();
-        testRoom1a.onPressPlate(statue);
+        testRoom1a.isOnPressPlate();
         testRoom1a.populateRoom();
         System.out.println("Before statue placed");
         testRoom1a.displayLayout();
@@ -128,7 +140,9 @@ public class RedKeyRoom extends Room {
         testRoom1a.deleteLayout();
         testRoom1a.createLayout();
         statue.setItemCoordinate(statueNewCoord);
-        testRoom1a.onPressPlate(statue);
+        testRoom1a.displayLayout();
+        testRoom1a.populateRoom();
+        testRoom1a.isOnPressPlate();
         System.out.println("After statue placed");
         testRoom1a.displayLayout();
 
