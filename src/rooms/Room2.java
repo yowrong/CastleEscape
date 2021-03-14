@@ -5,6 +5,7 @@ import theobstacles.Obstacle;
 import theplayer.Player;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Room2 extends Room {
 
@@ -22,7 +23,7 @@ public class Room2 extends Room {
     protected void createLayout() {
         for (int index = 1; index < 6; index++) {
             for (int innerIndex = 1; innerIndex < 6; innerIndex++) {
-                if (index > 3 || innerIndex > 3) {
+                if (index > 2 || innerIndex > 3) {
                     this.map2[index][innerIndex] = " ";
                 }
             }
@@ -39,9 +40,39 @@ public class Room2 extends Room {
         this.map2[pressPlate[0]][pressPlate[1]] = "*";
     }
 
-//    public void onPressPlate() {
-//        if ()
-//    }
+    public void onPressPlate(Player player) {
+        if (player.getPlayerCoordinates() == pressPlate || obstacleInRoom.getObstacleCoordinate() == pressPlate) {
+            System.out.println("You see a table with jewels scattered on top at the back of the room");
+        } else {
+            System.out.println("There's a table at the back of the room, but you can't make out what is on the table.");
+        }
+    }
+
+    public void jewelSort(Player player) {
+        int[] tablePos = new int[2];
+        String chestSlots = "ruby sapphire emerald";
+        Scanner scan = new Scanner(System.in);
+
+        for (Item item : this.getItemsInRoom()) {
+            tablePos[0] = item.getItemCoordinate()[0];
+            tablePos[1] = item.getItemCoordinate()[1];
+        }
+
+        if (player.getPlayerCoordinates() == tablePos) {
+            System.out.println("There are three jewels on the table, a ruby, a sapphire, and an emerald."
+                + " You notice there is a chest with 3 colored slots in the order: red, green, blue"
+                + " Enter the order you place the jewels in to unlock the chest:");
+            while (scan.hasNextLine()) {
+                if (scan.nextLine().equals(chestSlots)) {
+                    System.out.println("The jewels clicked into the chest");
+                } else {
+                    System.out.println("The jewels did not fit into the chest, try again?");
+                }
+            }
+
+        }
+
+    }
 
 
 
@@ -51,6 +82,7 @@ public class Room2 extends Room {
         String testItemName = "A rock";
         String testItemDesc = "I am error.";
         int[] testObsCoord = {1, 4};
+
 
 
         Obstacle testObstacle = new Obstacle("crate", "I'm a crate", testObsCoord);
@@ -69,6 +101,19 @@ public class Room2 extends Room {
         testRoom.createLayout();
         testRoom.populateRoom();
         testRoom.displayLayout();
+        String chestSlots = "ruby sapphire emerald";
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("There are three jewels on the table, a ruby, a sapphire, and an emerald."
+                + " You notice there is a chest with 3 colored slots in the order: red, green, blue"
+                + " Enter the order you place the jewels in the chest slots:");
+        while (scan.hasNextLine()) {
+            if (scan.nextLine().equals(chestSlots)) {
+                System.out.println("The jewels clicked into the chest");
+            } else {
+                System.out.println("The jewels did not fit into the chest, try again?");
+            }
+        }
 
     }
 
