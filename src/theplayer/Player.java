@@ -14,6 +14,7 @@ public class Player {
     private Room[] listRooms;
     private ArrayList<Item> inventory;
     private int[] playerCoordinates;
+    private boolean itemExists = false;
 
     public Player(String playerName, Room[] listRooms, int[] playerCoordinates) {
         this.playerName = playerName;
@@ -37,6 +38,8 @@ public class Player {
     public void setPlayerCoordinates(int[] playerCoordinates) {
         this.playerCoordinates = playerCoordinates;
     }
+
+    
 
     public int[] getPlayerCoordinates() {
         return playerCoordinates;
@@ -107,12 +110,9 @@ public class Player {
         }
 
                 System.out.println("Ye");
-            }
-        }
-
-        currentRoom.getItemsInRoom().remove(itemToRemove);
-
     }
+}
+
 
 //    public void openDoor() {
 //        for (int i = 0; i < currentRoom.getExitCoordinate().length; i++) {
@@ -127,4 +127,4 @@ public class Player {
 //            }
 //        }
 //    }
-}
+//}
