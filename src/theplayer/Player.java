@@ -277,7 +277,17 @@ public class Player {
             if (userInput.equals("escape") && Arrays.equals(this.getPlayerCoordinates(), escapeCoord)) {
                 this.listRooms[4].exitCastle(this.getPlayerCoordinates(), this, this.listRooms);
             }
-        } else {
+        } else if (userInput.equals("view items")) {
+            if (getInventory().isEmpty()) {
+                System.out.println("You have no items!");
+            }
+            String msg = "";
+            for (Item item : this.inventory) {
+                msg += item.getItemName();
+            }
+            System.out.println("Items: " + msg + " ");
+        }
+        else {
             System.out.println("command not recognized (lowercase commands only)");
         }
     }

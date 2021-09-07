@@ -40,9 +40,16 @@ public class StartingRoom extends Room {
     @Override
     public void populateRoom(Player thePlayer) {
         // Might need to change itemsInRoom to this.itemsInRoom
+        boolean torchPickedUp = false;
         this.getMap()[this.pressPlate[0]][this.pressPlate[1]] = "*";
         for (Item torch : this.getItemsInRoom()) {
-            this.getMap()[torch.getItemCoordinate()[0]][torch.getItemCoordinate()[1]] = "T";
+            if (thePlayer.getInventory().contains(torch)) {
+                torchPickedUp = true;
+                this.getMap()[torch.getItemCoordinate()[0]][torch.getItemCoordinate()[1]] = " ";
+            } else {
+                this.getMap()[torch.getItemCoordinate()[0]][torch.getItemCoordinate()[1]] = "T";
+            }
+
         }
         this.getExitCoordinate();
 
@@ -53,11 +60,16 @@ public class StartingRoom extends Room {
         this.getMap()[thePlayer.getPlayerCoordinates()[0]][thePlayer.getPlayerCoordinates()[1]] = "P";
 
         generateLockedDoor();
-        generateTorch();
+
         int[] spawn = new int[] {5, 5};
         if (Arrays.equals(thePlayer.getPlayerCoordinates(), spawn)) {
             System.out.println(getRoomDescription());
         }
+
+        if (!torchPickedUp) {
+            generateTorch();
+        }
+
     }
 
 //    public boolean TorchLever(Item item) {
