@@ -4,6 +4,7 @@ import theitems.Item;
 import theplayer.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class StatueRoom extends Room {
 
@@ -52,6 +53,10 @@ public class StatueRoom extends Room {
             this.map1b[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "i";
         }
         this.map1b[this.getExitCoordinate()[0][0]][this.getExitCoordinate()[0][1]] = "D";
+        int[] statueSpawn = new int[] {1, 5};
+        if (Arrays.equals(thePlayer.getPlayerCoordinates(), statueSpawn)) {
+            System.out.println(getRoomDescription());
+        }
     }
 
     // potential code for player to use key to access statue

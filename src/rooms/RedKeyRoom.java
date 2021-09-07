@@ -4,6 +4,7 @@ import theitems.Item;
 import theplayer.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RedKeyRoom extends Room {
 
@@ -52,8 +53,12 @@ public class RedKeyRoom extends Room {
         this.map1a[this.pressPlate[0]][this.pressPlate[1]] = "*";
         for (Item eachItem : this.getItemsInRoom()) {
                 this.map1a[eachItem.getItemCoordinate()[0]][eachItem.getItemCoordinate()[1]] = "i";
-            }
         }
+        int[] redSpawn = new int[] {1, 1};
+        if (Arrays.equals(thePlayer.getPlayerCoordinates(), redSpawn)) {
+            System.out.println(getRoomDescription());
+        }
+    }
 
     // creates the red key
     private void generateBigKey() {

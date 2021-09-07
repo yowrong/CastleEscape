@@ -26,7 +26,8 @@ public class GreenKeyRoom extends Room{
     private int[] spot2 = {2, 2};
     private int[] spot3 = {1, 5};
     private String roomDescription = "Thou see a rope pulley system bearing a key over the ceiling.\n"
-            + "The pulley seems most unstable. Maybe thou could disrupt it somehow.";
+            + "The pulley seems most unstable. Maybe thou could disrupt it somehow."
+            + "In the room you also see a sword you can pick up.";
 
 
     //Constuctor for room3.
@@ -60,7 +61,10 @@ public class GreenKeyRoom extends Room{
                 this.getMap()[items.getItemCoordinate()[0]][items.getItemCoordinate()[1]] = "S";
             }
         }
-        System.out.println("In the room you see a sword, and a rope attached to the ceiling with a key tied to the end of it.");
+        int[] greenSpawn = new int[] {5, 1};
+        if (Arrays.equals(thePlayer.getPlayerCoordinates(), greenSpawn)) {
+            System.out.println(getRoomDescription());
+        }
     }
     //Supposed to generate a key if player coordinate and player inventory contains a sword.
     @Override

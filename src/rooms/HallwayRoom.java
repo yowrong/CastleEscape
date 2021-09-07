@@ -16,7 +16,7 @@ public class HallwayRoom extends Room{
     private boolean eventTrigger = false;
 
 
-    private String roomDescription = "After entering the hallway, the torches light up in  blue flames front of thou"
+    private String roomDescription = "After entering the hallway, the torches light up in blue flames front of thou"
             + "The door behind you disappears and five new doors appear with metal bars blocking each exit"
             + "You notice there is a crate on the ground, seemingly out of place.";
 
@@ -53,6 +53,10 @@ public class HallwayRoom extends Room{
         this.getMap()[this.pressPlate[0]][this.pressPlate[1]] = "*";
         this.getMap()[this.getObstacle().getObstacleCoordinate()[0]][this.getObstacle().getObstacleCoordinate()[1]] = "O";
         this.getMap()[thePlayer.getPlayerCoordinates()[0]][thePlayer.getPlayerCoordinates()[1]] = "P";
+        int[] hallSpawn = new int[] {5, 3};
+        if (Arrays.equals(thePlayer.getPlayerCoordinates(), hallSpawn)) {
+            System.out.println(getRoomDescription());
+        }
     }
 
     public boolean onPressPlate() {
@@ -75,7 +79,7 @@ public class HallwayRoom extends Room{
     public void checkEventTriggers() {
         boolean check = true;
         this.eventTrigger = this.onPressPlate();
-        System.out.println(eventTrigger);
+//        System.out.println(eventTrigger);
     }
 
     public void setEventTrigger(boolean eventTrigger) {
@@ -110,7 +114,7 @@ public class HallwayRoom extends Room{
     @Override
     public void exitRoom(int[] playerCoord, Player thePlayer, Room[] nextRoom) {
         if (this.eventTrigger) {
-            System.out.println("yes");
+//            System.out.println("yes");
             if (Arrays.equals(playerCoord, this.getExitCoordinate()[0])) {
                 int[] blueSpawn = new int[] {4, 5};
                 thePlayer.setPlayerCoordinates(blueSpawn);

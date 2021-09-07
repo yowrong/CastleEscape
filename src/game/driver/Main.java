@@ -77,6 +77,7 @@ public class Main {
             System.out.println("Enter a command:");
             thePlayer.userAction(scan.nextLine());
             thePlayer.getCurrentRoom().checkEventTriggers();
+
             if (thePlayer.getWinGame()) {
                 victory = true;
             }

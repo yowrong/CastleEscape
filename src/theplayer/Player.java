@@ -260,7 +260,7 @@ public class Player {
             placeItem(scan.nextLine());
         } else if (userInput.equals("pick up item")) {
             this.pickUpItem();
-            System.out.println("You've picked up a " + this.inventory.get(0).getItemName());
+            System.out.println("You've picked up a " + this.inventory.get((this.inventory.size() - 1)).getItemName());
         } else if (userInput.equals("exit") || userInput.equals("open door")) {
             this.getCurrentRoom().exitRoom(this.getPlayerCoordinates(), this, this.listRooms);
             this.getCurrentRoom().deleteLayout();

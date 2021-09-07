@@ -4,6 +4,7 @@ import theitems.Item;
 import theplayer.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class StartingRoom extends Room {
     private int[] pressPlate = {1, 5};
@@ -11,7 +12,7 @@ public class StartingRoom extends Room {
     private boolean doorOpen = false;
     private String roomDescription = "Thee findeth yourself inside a dark castle. "
             + "Thy head is pounding and feel a large bruise on top of thy head\n"
-            + "Thou try thy hardest to open the door behind thou,  yet to no avail.\n"
+            + "Thou try thy hardest to open the door behind thou, yet to no avail.\n"
             + "'tis pitch dark around thou, and thou see a torch towards the right\n"
             + "thou should'st take it with thou";
     ;
@@ -53,6 +54,10 @@ public class StartingRoom extends Room {
 
         generateLockedDoor();
         generateTorch();
+        int[] spawn = new int[] {5, 5};
+        if (Arrays.equals(thePlayer.getPlayerCoordinates(), spawn)) {
+            System.out.println(getRoomDescription());
+        }
     }
 
 //    public boolean TorchLever(Item item) {

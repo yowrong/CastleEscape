@@ -15,10 +15,10 @@ public class BlueKeyRoom extends Room {
     private int[] table = {5, 1};
     private boolean wallsOpened = false;
     private boolean eventTrigger;
-    private String roomDescription = "Thou enter a dimly lit room\n.There seems to be a table at "
+    private String roomDescription = "Thou enter a dimly lit room. \nThere seems to be a table at "
             + "the back of the room yet thou just canst not see what it is.\n"
             + "Ere thou compose a move, thou notice a most loose tile  in front of thou.\n"
-            + "It looks like it could be pushed in\n.There seems to be a couple boxes towards the north.";
+            + "It looks like it could be pushed in.\nThere seems to be a couple boxes towards the north.";
 
     public BlueKeyRoom(int[][] exitCoordinates, ArrayList<Item> items, String[][] map, Obstacle obstacleInRoom) {
         super(exitCoordinates, items, map);
@@ -28,6 +28,10 @@ public class BlueKeyRoom extends Room {
     @Override
     public String getRoomDescription() {
         return roomDescription;
+    }
+
+    public Obstacle getObstacle() {
+        return obstacleInRoom;
     }
 
     @Override
@@ -49,6 +53,10 @@ public class BlueKeyRoom extends Room {
         this.getMap()[this.getObstacle().getObstacleCoordinate()[0]][this.getObstacle().getObstacleCoordinate()[1]] = "O";
         this.getMap()[pressPlate[0]][pressPlate[1]] = "*";
         this.getMap()[table[0]][table[1]] = "?";
+        int[] blueSpawn = new int[] {4, 5};
+        if (Arrays.equals(thePlayer.getPlayerCoordinates(), blueSpawn)) {
+            System.out.println(getRoomDescription());
+        }
     }
 
     @Override
@@ -112,7 +120,6 @@ public class BlueKeyRoom extends Room {
         } else {
             System.out.println("You're too far away from the table.");
         }
-        scan.close();
     }
 
 }
